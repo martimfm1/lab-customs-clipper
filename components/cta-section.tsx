@@ -5,7 +5,7 @@ import { MessageCircle, ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
 
 const WHATSAPP_URL =
-  "https://wa.me/351000000000?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20vossos%20servi%C3%A7os.";
+  "/marcacao";
 
 export default function CtaSection() {
   return (
