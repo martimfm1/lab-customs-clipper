@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
 
   title: {
-    default: "LAB Customs Clipper | Manutenção de Máquinas de Barbear",
+    default: "LAB Customs Clipper",
     template: "%s | LAB Customs Clipper",
   },
 
