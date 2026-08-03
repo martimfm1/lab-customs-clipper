@@ -6,7 +6,7 @@ import { Wrench, Award, Microscope, HeartHandshake } from "lucide-react";
 const stats = [
   {
     icon: Wrench,
-    value: "+1000",
+    value: "+50",
     label: "Equipamentos Intervencionados",
     desc: "Máquinas profissionais restauradas e otimizadas.",
   },

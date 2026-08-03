@@ -1,16 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  Shield,
-  Wrench,
-  Star,
-  CheckCircle2,
-  MessageCircle,
-} from "lucide-react";
+import { Shield, Wrench, Star, CheckCircle2, MessageCircle } from "lucide-react";
 
-const WHATSAPP_URL =
-  "https://wa.me/351000000000?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20vossos%20servi%C3%A7os.";
+const WHATSAPP_NUMBER = "351926463182";
+
+function buildWhatsAppUrl(message: string): string {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}
 
 const services = [
   {
@@ -27,6 +24,9 @@ const services = [
       "Testes de funcionamento",
       "Alinhamento de lâminas",
     ],
+    ctaLabel: "Pedir Orçamento",
+    whatsappMessage:
+      "Olá! Gostaria de pedir um orçamento para *Manutenção Preventiva* do meu equipamento. Podem ajudar-me?",
     featured: false,
   },
   {
@@ -42,8 +42,11 @@ const services = [
       "Substituição de componentes",
       "Testes finais exaustivos",
     ],
-    featured: false,
     note: "Componentes cotados separadamente.",
+    ctaLabel: "Pedir Orçamento",
+    whatsappMessage:
+      "Olá! O meu equipamento tem uma avaria e gostaria de pedir um orçamento para *Manutenção Corretiva*. Podem ajudar-me?",
+    featured: false,
   },
   {
     icon: Star,
@@ -62,14 +65,17 @@ const services = [
       "Redução de custos futuros",
       "Prioridade no atendimento",
     ],
+    ctaLabel: "Aderir ao Plano",
+    whatsappMessage:
+      "Olá! Gostaria de aderir ao *Plano de Prevenção*. Podem ajudar-me?",
     featured: true,
   },
-];
+] as const;
 
 export default function ServicesSection() {
   return (
     <section id="servicos" className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 hex-bg opacity-30" />
+      <div className="pointer-events-none absolute inset-0 hex-bg opacity-30" />
 
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
@@ -91,8 +97,7 @@ export default function ServicesSection() {
             O que fazemos.
           </h2>
           <p className="mt-4 text-white/45 text-lg max-w-xl text-pretty leading-relaxed">
-            Três serviços desenhados para manter o seu equipamento no pico do
-            desempenho, sempre.
+            Três serviços desenhados para manter o seu equipamento no pico do desempenho, sempre.
           </p>
         </motion.div>
 
@@ -112,7 +117,6 @@ export default function ServicesSection() {
                     : "bg-[#0d0d0d] border border-white/[0.06] hover:border-white/[0.12]"
                 }`}
               >
-                {/* Featured badge */}
                 {service.featured && (
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                     <span className="px-3 py-1 rounded-full bg-[#a3e635] text-[#050505] text-xs font-bold tracking-wide">
@@ -120,101 +124,64 @@ export default function ServicesSection() {
                     </span>
                   </div>
                 )}
-
-                {/* Glow top line */}
                 {service.featured && (
-                  <div className="absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-[#a3e635]/50 to-transparent" />
+                  <div className="pointer-events-none absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-[#a3e635]/50 to-transparent" />
                 )}
 
                 <div className="flex items-center justify-between mb-6">
-                  <span
-                    className={`text-xs font-mono tracking-widest uppercase ${
-                      service.featured ? "text-[#a3e635]" : "text-white/30"
-                    }`}
-                  >
+                  <span className={`text-xs font-mono tracking-widest uppercase ${service.featured ? "text-[#a3e635]" : "text-white/30"}`}>
                     {service.tag}
                   </span>
-                  <div
-                    className={`w-9 h-9 rounded-xl flex items-center justify-center ${
-                      service.featured
-                        ? "bg-[#a3e635]/15 border border-[#a3e635]/30"
-                        : "bg-white/[0.05] border border-white/[0.08]"
-                    }`}
-                  >
-                    <Icon
-                      className={`w-4 h-4 ${
-                        service.featured ? "text-[#a3e635]" : "text-white/50"
-                      }`}
-                    />
+                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${
+                    service.featured
+                      ? "bg-[#a3e635]/15 border border-[#a3e635]/30"
+                      : "bg-white/[0.05] border border-white/[0.08]"
+                  }`}>
+                    <Icon className={`w-4 h-4 ${service.featured ? "text-[#a3e635]" : "text-white/50"}`} />
                   </div>
                 </div>
 
-                {/* Price (featured only) */}
-                {service.price && (
+                {"price" in service && service.price && (
                   <div className="mb-4">
                     <div className="flex items-baseline gap-1">
-                      <span className="text-4xl font-black text-white">
-                        {service.price}
-                      </span>
-                      <span className="text-white/40 text-sm">
-                        {service.period}
-                      </span>
+                      <span className="text-4xl font-black text-white">{service.price}</span>
+                      <span className="text-white/40 text-sm">{service.period}</span>
                     </div>
-                    <span className="text-[#a3e635] text-sm font-medium mt-0.5 block">
-                      {service.perks}
-                    </span>
+                    <span className="text-[#a3e635] text-sm font-medium mt-0.5 block">{service.perks}</span>
                   </div>
                 )}
 
-                <h3 className="text-xl font-bold text-white mb-1">
-                  {service.title}
-                </h3>
-                <p
-                  className={`text-sm font-medium mb-3 ${
-                    service.featured ? "text-[#a3e635]" : "text-white/50"
-                  }`}
-                >
+                <h3 className="text-xl font-bold text-white mb-1">{service.title}</h3>
+                <p className={`text-sm font-medium mb-3 ${service.featured ? "text-[#a3e635]" : "text-white/50"}`}>
                   {service.subtitle}
                 </p>
-                <p className="text-sm text-white/35 leading-relaxed mb-6">
-                  {service.description}
-                </p>
+                <p className="text-sm text-white/35 leading-relaxed mb-6">{service.description}</p>
 
                 <div className="flex flex-col gap-2.5 mb-6 flex-1">
                   {service.items.map((item, j) => (
                     <div key={j} className="flex items-start gap-2.5">
-                      <CheckCircle2
-                        className={`w-4 h-4 mt-0.5 shrink-0 ${
-                          service.featured
-                            ? "text-[#a3e635]"
-                            : "text-white/30"
-                        }`}
-                      />
+                      <CheckCircle2 className={`w-4 h-4 mt-0.5 shrink-0 ${service.featured ? "text-[#a3e635]" : "text-white/30"}`} />
                       <span className="text-sm text-white/60">{item}</span>
                     </div>
                   ))}
                 </div>
 
-                {service.note && (
-                  <p className="text-xs text-white/25 mb-4 font-mono">
-                    * {service.note}
-                  </p>
+                {"note" in service && service.note && (
+                  <p className="text-xs text-white/25 mb-4 font-mono">* {service.note}</p>
                 )}
 
                 <a
-                  href={WHATSAPP_URL}
+                  href={buildWhatsAppUrl(service.whatsappMessage)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold transition-all duration-200 ${
+                  className={`flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold transition-all duration-200 active:scale-[0.98] ${
                     service.featured
                       ? "bg-[#a3e635] text-[#050505] hover:bg-[#bef264] accent-glow"
                       : "bg-white/[0.05] text-white/70 border border-white/[0.08] hover:bg-white/[0.08] hover:text-white"
                   }`}
                 >
-                  <MessageCircle className="w-4 h-4" />
-                  <span>
-                    {service.featured ? "Aderir ao Plano" : "Pedir Orçamento"}
-                  </span>
+                  <MessageCircle className="w-4 h-4 shrink-0" />
+                  <span>{service.ctaLabel}</span>
                 </a>
               </motion.div>
             );

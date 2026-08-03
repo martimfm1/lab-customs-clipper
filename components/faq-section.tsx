@@ -1,8 +1,13 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Plus, Minus } from "lucide-react";
+import { motion } from "framer-motion";
+import { Plus } from "lucide-react";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "./ui/accordion"; // Ajusta o caminho se necessário
 
 const faqs = [
   {
@@ -32,95 +37,67 @@ const faqs = [
 ];
 
 export default function FaqSection() {
-  const [open, setOpen] = useState<number | null>(0);
-
   return (
-    <section id="faq" className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 blueprint-bg opacity-15" />
+    <section id="faq" className="py-16 sm:py-24 relative overflow-hidden">
+      <div className="absolute inset-0 blueprint-bg opacity-15 pointer-events-none" />
 
-      <div className="max-w-4xl mx-auto px-6">
-        {/* Header */}
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 relative z-10">
+        {/* Header Otimizado */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-14"
+          transition={{ duration: 0.5 }}
+          className="text-center mb-10 sm:mb-14"
         >
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="h-px w-12 bg-[#a3e635]/30" />
-            <span className="text-[#a3e635] text-xs font-mono tracking-widest uppercase">
+          <div className="flex items-center justify-center gap-3 mb-4 sm:mb-6">
+            <div className="h-px w-8 sm:w-12 bg-[#a3e635]/30" />
+            <span className="text-[#a3e635] text-[11px] sm:text-xs font-mono tracking-widest uppercase">
               FAQ
             </span>
-            <div className="h-px w-12 bg-[#a3e635]/30" />
+            <div className="h-px w-8 sm:w-12 bg-[#a3e635]/30" />
           </div>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white text-balance">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white text-balance">
             Perguntas Frequentes.
           </h2>
         </motion.div>
 
-        {/* Accordion */}
-        <div className="flex flex-col gap-2">
+        {/* Accordion Responsivo */}
+        <Accordion className="flex flex-col gap-2.5 sm:gap-3">
           {faqs.map((faq, i) => (
             <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 16 }}
+              key={`faq-wrapper-${i}`}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.4, delay: i * 0.07 }}
-              className={`rounded-xl border transition-all duration-300 overflow-hidden ${
-                open === i
-                  ? "bg-[#111111] border-[#a3e635]/20"
-                  : "bg-[#0d0d0d] border-white/[0.06] hover:border-white/[0.1]"
-              }`}
+              transition={{ duration: 0.3, delay: i * 0.03 }}
             >
-              <button
-                onClick={() => setOpen(open === i ? null : i)}
-                className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left"
-                aria-expanded={open === i}
+              <AccordionItem
+                value={`faq-item-${i}`}
+                className="group rounded-xl border border-white/[0.06] bg-[#0d0d0d] overflow-hidden transition-all duration-200 hover:border-white/10 hover:bg-[#0f0f0f] active:scale-[0.995] data-open:bg-[#111111] data-open:border-[#a3e635]/25"
               >
-                <span
-                  className={`text-sm sm:text-base font-medium transition-colors ${
-                    open === i ? "text-white" : "text-white/70"
-                  }`}
+                <AccordionTrigger
+                  hideChevron
+                  className="w-full flex items-center justify-between gap-3 sm:gap-4 px-4 py-3.5 sm:px-6 sm:py-5 text-left text-sm sm:text-base lg:text-lg font-medium text-white/70 hover:no-underline transition-colors aria-expanded:text-white"
                 >
-                  {faq.q}
-                </span>
-                <div
-                  className={`w-7 h-7 rounded-lg border shrink-0 flex items-center justify-center transition-all duration-200 ${
-                    open === i
-                      ? "bg-[#a3e635]/10 border-[#a3e635]/30"
-                      : "bg-white/[0.04] border-white/[0.08]"
-                  }`}
-                >
-                  {open === i ? (
-                    <Minus className="w-3.5 h-3.5 text-[#a3e635]" />
-                  ) : (
-                    <Plus className="w-3.5 h-3.5 text-white/40" />
-                  )}
-                </div>
-              </button>
+                  <span className="leading-snug">{faq.q}</span>
 
-              <AnimatePresence initial={false}>
-                {open === i && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                  >
-                    <div className="px-6 pb-5">
-                      <div className="h-px bg-white/[0.05] mb-4" />
-                      <p className="text-sm text-white/45 leading-relaxed">
-                        {faq.a}
-                      </p>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+                  {/* Botão de Ícone com Toque Adaptado */}
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-lg border border-white/[0.08] bg-white/[0.04] flex items-center justify-center transition-all duration-300 shrink-0 group-aria-expanded/accordion-trigger:bg-[#a3e635]/10 group-aria-expanded/accordion-trigger:border-[#a3e635]/30">
+                    <Plus className="w-4 h-4 text-white/40 transition-transform duration-300 group-aria-expanded/accordion-trigger:rotate-45 group-aria-expanded/accordion-trigger:text-[#a3e635]" />
+                  </div>
+                </AccordionTrigger>
+
+                <AccordionContent className="px-4 pb-4 sm:px-6 sm:pb-5 pt-0">
+                  <div className="h-px bg-white/[0.04] mb-3" />
+                  <p className="text-xs sm:text-sm lg:text-base text-white/45 leading-relaxed">
+                    {faq.a}
+                  </p>
+                </AccordionContent>
+              </AccordionItem>
             </motion.div>
           ))}
-        </div>
+        </Accordion>
       </div>
     </section>
   );

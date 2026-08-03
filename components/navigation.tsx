@@ -3,9 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, MessageCircle } from "lucide-react";
-
-const WHATSAPP_URL =
-  "https://wa.me/351000000000?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20vossos%20servi%C3%A7os.";
+import Image from "next/legacy/image";
 
 const navLinks = [
   { label: "Início", href: "#inicio" },
@@ -43,11 +41,16 @@ export default function Navigation() {
           <a href="#inicio" className="flex items-center gap-2 group">
             <div className="w-7 h-7 rounded-md bg-[#a3e635] flex items-center justify-center">
               <span className="text-[#050505] text-xs font-black tracking-tighter font-mono">
-                LC
+                <Image
+                  src="/favicon.ico"
+                  alt="LAB Customs Clipper Logo"
+                  width={28}
+                  height={28}
+                />
               </span>
             </div>
             <span className="text-sm font-semibold tracking-wide text-white/90 group-hover:text-white transition-colors">
-              LAB Customs
+              LAB Customs Clipper
             </span>
           </a>
 
@@ -67,7 +70,7 @@ export default function Navigation() {
           {/* CTA + Mobile Toggle */}
           <div className="flex items-center gap-3">
             <a
-              href={WHATSAPP_URL}
+              href="/marcacao"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-lg bg-[#a3e635] text-[#050505] text-sm font-semibold hover:bg-[#bef264] transition-all duration-200 accent-glow"
@@ -117,7 +120,7 @@ export default function Navigation() {
               ))}
               <div className="pt-3 mt-2 border-t border-white/[0.06]">
                 <a
-                  href={WHATSAPP_URL}
+                  href="/marcacao"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-lg bg-[#a3e635] text-[#050505] text-sm font-semibold"

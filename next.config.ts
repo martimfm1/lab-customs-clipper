@@ -1,6 +1,9 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
+type ExtendedNextConfig = NextConfig & { allowedDevOrigins?: string[] };
+
+const nextConfig: ExtendedNextConfig = {
+  allowedDevOrigins: ["192.168.56.1", "localhost:3000", "192.168.1.6"],
   async headers() {
     return [
       {

@@ -4,9 +4,6 @@ import { motion } from "framer-motion";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import Image from "next/image";
 
-const WHATSAPP_URL =
-  "https://wa.me/351000000000?text=Ol%C3%A1!%20Gostaria%20de%20saber%20mais%20sobre%20os%20vossos%20servi%C3%A7os.";
-
 export default function Hero() {
   return (
     <section
@@ -32,7 +29,6 @@ export default function Hero() {
       </div>
       <div className="absolute top-24 right-8 text-[#a3e635]/20 font-mono text-xs text-right hidden lg:block">
         <div>EST. 2024</div>
-        <div className="mt-1 opacity-60">PORTUGAL</div>
       </div>
 
       {/* Crosshair decorations */}
@@ -56,7 +52,7 @@ export default function Hero() {
           >
             <span className="w-1.5 h-1.5 rounded-full bg-[#a3e635] animate-[pulseAccent_2s_ease-in-out_infinite]" />
             <span className="text-[#a3e635] text-xs font-mono tracking-widest uppercase">
-              Oficina Certificada — Portugal
+              Oficina Certificada
             </span>
           </motion.div>
 
@@ -103,7 +99,7 @@ export default function Hero() {
             className="mt-10 flex flex-col sm:flex-row items-center lg:items-start gap-4 justify-center lg:justify-start"
           >
             <a
-              href={WHATSAPP_URL}
+              href="/marcacao"
               target="_blank"
               rel="noopener noreferrer"
               className="group flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#a3e635] text-[#050505] font-semibold text-base hover:bg-[#bef264] transition-all duration-200 accent-glow"
