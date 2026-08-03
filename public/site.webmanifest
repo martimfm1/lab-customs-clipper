@@ -1,0 +1,19 @@
+{
+    "name": "LAB Customs Clipper",
+    "short_name": "LAB Clipper",
+    "description": "Especialistas em manutenção de máquinas de corte profissionais.",
+    "start_url": "/",
+    "scope": "/",
+    "display": "standalone",
+    "background_color": "#050505",
+    "theme_color": "#050505",
+    "orientation": "portrait",
+    "lang": "pt-PT",
+    "icons": [
+        {
+            "src": "/favicon.ico",
+            "sizes": "192x192",
+            "type": "image/x-icon"
+        }
+    ]
+}
