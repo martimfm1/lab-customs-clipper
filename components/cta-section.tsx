@@ -28,12 +28,6 @@ export default function CtaSection() {
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#a3e635]/20 bg-[#a3e635]/5 mb-10">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#a3e635]" />
-            <span className="text-[#a3e635] text-xs font-mono tracking-widest uppercase">
-              Contacto
-            </span>
-          </div>
 
           <h2 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight text-white leading-tight text-balance mb-6">
             Pronto para dar uma nova

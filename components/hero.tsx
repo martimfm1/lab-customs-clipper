@@ -28,7 +28,7 @@ export default function Hero() {
         <div className="mt-1 opacity-60">STATUS: OPERACIONAL</div>
       </div>
       <div className="absolute top-24 right-8 text-[#a3e635]/20 font-mono text-xs text-right hidden lg:block">
-        <div>EST. 2024</div>
+        <div>EST. 2026</div>
       </div>
 
       {/* Crosshair decorations */}
