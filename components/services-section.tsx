@@ -73,7 +73,7 @@ const services = [
       "Diagnóstico assim que chega",
       "Devolução segura",
     ],
-    note: "Acima de 60€ em serviços, o cliente fica isento de pagar o envio de devolução.",
+    note: "A máquina deve ser enviada devidamente acondicionada, protegida e segura para evitar danos durante o transporte.",
     ctaLabel: "Enviar Equipamento",
     whatsappMessage:
       "Olá! Quero enviar as minhas máquinas para manutenção. Como posso proceder com o envio?",
@@ -114,7 +114,7 @@ export default function ServicesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5 }}
-          className="mb-16 text-center max-w-3xl mx-auto"
+          className="mb-10 text-center max-w-3xl mx-auto"
         >
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#a3e635]/10 border border-[#a3e635]/20 text-[#a3e635] text-xs font-mono tracking-widest uppercase mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-[#a3e635] animate-pulse" />
@@ -126,6 +126,22 @@ export default function ServicesSection() {
           <p className="mt-4 text-zinc-400 text-base sm:text-lg leading-relaxed">
             Manutenção de alta precisão e planos contínuos para garantir performance impecável na tua barbearia.
           </p>
+        </motion.div>
+
+        {/* Shipping benefit badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.45, delay: 0.1 }}
+          className="flex justify-center mb-12"
+        >
+          <div className="inline-flex max-w-3xl items-center gap-3 px-4 py-3 rounded-full bg-[#a3e635]/10 border border-[#a3e635]/30 text-[#bef264] shadow-[0_0_30px_rgba(163,230,53,0.08)]">
+            <Truck className="w-4 h-4 shrink-0 text-[#a3e635]" />
+            <span className="text-xs sm:text-sm font-semibold leading-snug text-center">
+              Acima de 60€ em serviços, o cliente fica isento de pagar o envio de devolução.
+            </span>
+          </div>
         </motion.div>
 
         {/* Services Grid */}
