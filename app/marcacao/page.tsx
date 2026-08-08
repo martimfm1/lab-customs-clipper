@@ -135,7 +135,7 @@ export default function BookingMessagePage() {
           </div>
 
           {/* Footer */}
-          <p className="text-[11px] font-mono text-zinc-600 hover:text-[#a3e635] cursor-pointer tracking-wider">
+          <p className="text-[11px] font-mono text-zinc-600 hover:text-[#a3e635] cursor-default tracking-wider">
             LAB CUSTOMS CLIPPER — EST. 2026
           </p>
         </div>

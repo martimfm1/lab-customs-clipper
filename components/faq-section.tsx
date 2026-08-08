@@ -12,7 +12,7 @@ import {
 const faqs = [
   {
     q: "Que tipos de equipamentos aceitam?",
-    a: "Wahl, Style Craft, Gamma Piu, JRL entre outras.",
+    a: "Máquinas Clipper, Trimmer e Shaver da Wahl, Style Craft, Gamma Piu, JRL entre outras.",
   },
   {
     q: "Quanto tempo demora uma intervenção?",
