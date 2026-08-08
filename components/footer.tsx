@@ -142,7 +142,7 @@ export default function Footer() {
                 <div className="w-9 h-9 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center group-hover:border-[#a3e635]/40 group-hover:bg-zinc-800/80 transition-all duration-200">
                   <InstagramIcon className="w-4 h-4 text-zinc-400 group-hover:text-[#a3e635] transition-colors" />
                 </div>
-                <span>@labcustomsclipper</span>
+                <span>Instagram</span>
               </a>
               <a
                 href={YOUTUBE_URL}
