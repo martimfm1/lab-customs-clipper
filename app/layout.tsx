@@ -18,7 +18,7 @@ const siteUrl = "https://labcustomsclipper.pt";
 const siteName = "LAB Customs Clipper";
 const siteDescription =
   "Manutenção, reparação, limpeza e afinação de máquinas de cortar cabelo e barba profissionais. Serviço especializado para barbeiros em Portugal.";
-const ogImage = "/og-image.png";
+const ogImage = "/opengraph-image";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
