@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Shield, Wrench, Star, CheckCircle2, MessageCircle } from "lucide-react";
+import { Shield, Wrench, Star, CheckCircle2, MessageCircle, Truck } from "lucide-react";
 
 const WHATSAPP_NUMBER = "351926463182";
 
@@ -48,6 +48,24 @@ const services = [
       "Olá! O meu equipamento tem uma avaria e gostaria de pedir um orçamento para *Manutenção Corretiva*. Podem ajudar-me?",
     featured: false,
   },
+    {
+    icon: Truck,
+    tag: "Serviço 03",
+    title: "Envio para Manutenção",
+    subtitle: "Para barbeiros de todo o país.",
+    description:
+      "Não estás perto da oficina? Envia as tuas máquinas por correio ou transportadora. Recebemos, reparamos e devolvemos em segurança.",
+    items: [
+      "Atendimento a todo o país",
+      "Instruções de envio simples",
+      "Diagnóstico assim que chega",
+      "Devolução rápida e segura",
+    ],
+    ctaLabel: "Enviar Equipamento",
+    whatsappMessage:
+      "Olá! Quero enviar as minhas máquinas para manutenção. Como posso proceder com o envio?",
+    featured: false,
+  },
   {
     icon: Star,
     tag: "Plano Premium",
@@ -84,9 +102,9 @@ export default function ServicesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="mb-16 text-center lg:text-left"
         >
-          <div className="flex items-center gap-3 mb-6">
+          <div className="flex items-center justify-center lg:justify-start gap-3 mb-6">
             <div className="h-px flex-1 max-w-12 bg-[#a3e635]/30" />
             <span className="text-[#a3e635] text-xs font-mono tracking-widest uppercase">
               Serviços
@@ -96,12 +114,12 @@ export default function ServicesSection() {
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white text-balance">
             O que fazemos.
           </h2>
-          <p className="mt-4 text-white/45 text-lg max-w-xl text-pretty leading-relaxed">
-            Três serviços desenhados para manter o seu equipamento no pico do desempenho, sempre.
+          <p className="mt-4 text-white/45 text-lg max-w-xl text-pretty leading-relaxed mx-auto lg:mx-0">
+            Soluções desenhadas para manter o seu equipamento no pico do desempenho, esteja onde estiver.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6" id="plano">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="plano">
           {services.map((service, i) => {
             const Icon = service.icon;
             return (
