@@ -110,8 +110,6 @@ export default function Navigation() {
               <div className="pt-4 mt-2 border-t border-zinc-800/80">
                 <a
                   href="/marcacao"
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-[#a3e635] text-zinc-950 text-xs font-bold tracking-wide hover:bg-[#b8f542] transition-all duration-200 shadow-[0_0_20px_rgba(163,230,53,0.2)]"
                 >
                   <MessageCircle className="w-4 h-4 shrink-0" />
