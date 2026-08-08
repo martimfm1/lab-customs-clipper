@@ -1,7 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Shield, Wrench, Star, CheckCircle2, MessageCircle, Truck } from "lucide-react";
+import {
+  Shield,
+  Wrench,
+  Star,
+  CheckCircle2,
+  MessageCircle,
+  Truck,
+  AlertCircle,
+  Package,
+} from "lucide-react";
 
 const WHATSAPP_NUMBER = "351926463182";
 
@@ -14,9 +23,10 @@ const services = [
     icon: Shield,
     tag: "Serviço 01",
     title: "Manutenção Preventiva",
-    subtitle: "Aumenta a vida útil do equipamento.",
+    subtitle: "Aumenta a vida útil do equipamento",
     description:
-      "Intervenção regular para manter o seu equipamento em condições de pico de desempenho, prevenindo avarias e aumentando a longevidade.",
+      "Intervenção regular para manter o equipamento no pico de desempenho, prevenindo avarias.",
+    priceTag: { value: "Sob Consulta", label: "Serviço Pontual" },
     items: [
       "Higienização técnica completa",
       "Lubrificação de componentes",
@@ -33,9 +43,10 @@ const services = [
     icon: Wrench,
     tag: "Serviço 02",
     title: "Manutenção Corretiva",
-    subtitle: "Diagnóstico e reparação especializados.",
+    subtitle: "Diagnóstico e reparação especializados",
     description:
-      "Identificação e resolução de avarias, substituição de componentes danificados com garantia de qualidade. Componentes cotados separadamente.",
+      "Resolução de avarias e substituição de componentes danificados com garantia de qualidade.",
+    priceTag: { value: "Sob Consulta", label: "Orçamento p/ peças" },
     items: [
       "Diagnóstico técnico avançado",
       "Reparação de motor",
@@ -48,19 +59,21 @@ const services = [
       "Olá! O meu equipamento tem uma avaria e gostaria de pedir um orçamento para *Manutenção Corretiva*. Podem ajudar-me?",
     featured: false,
   },
-    {
+  {
     icon: Truck,
     tag: "Serviço 03",
     title: "Envio para Manutenção",
-    subtitle: "Para barbeiros de todo o país.",
+    subtitle: "Para barbeiros de todo o país",
     description:
-      "Não estás perto da oficina? Envia as tuas máquinas por correio ou transportadora. Recebemos, reparamos e devolvemos em segurança.",
+      "Envia as tuas máquinas por correio ou transportadora. Recebemos, reparamos e devolvemos.",
+    priceTag: { value: "Nacional", label: "Envio & Retorno" },
     items: [
       "Atendimento a todo o país",
       "Instruções de envio simples",
       "Diagnóstico assim que chega",
       "Devolução rápida e segura",
     ],
+    note: "Envia o equipamento bem embalado e protegido.",
     ctaLabel: "Enviar Equipamento",
     whatsappMessage:
       "Olá! Quero enviar as minhas máquinas para manutenção. Como posso proceder com o envio?",
@@ -70,12 +83,10 @@ const services = [
     icon: Star,
     tag: "Plano Premium",
     title: "Plano de Prevenção",
-    subtitle: "O plano mais inteligente para profissionais.",
+    subtitle: "O plano mais inteligente",
     description:
-      "Manutenção preventiva regular para até 3 máquinas. Maior durabilidade, melhor desempenho e redução de custos futuros.",
-    price: "20€",
-    period: "/mês",
-    perks: "Até 3 máquinas",
+      "Manutenção preventiva regular para até 3 máquinas. Maior durabilidade e redução de custos.",
+    priceTag: { value: "20€", label: "/mês • Até 3 máquinas" },
     items: [
       "Manutenção preventiva regular",
       "Maior durabilidade garantida",
@@ -92,115 +103,163 @@ const services = [
 
 export default function ServicesSection() {
   return (
-    <section id="servicos" className="py-24 relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 hex-bg opacity-30" />
+    <section id="servicos" className="py-24 relative overflow-hidden bg-zinc-950">
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#1f293710_1px,transparent_1px),linear-gradient(to_bottom,#1f293710_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#a3e635]/5 blur-[140px] rounded-full" />
 
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Header */}
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6 }}
-          className="mb-16 text-center lg:text-left"
+          transition={{ duration: 0.5 }}
+          className="mb-16 text-center max-w-3xl mx-auto"
         >
-          <div className="flex items-center justify-center lg:justify-start gap-3 mb-6">
-            <div className="h-px flex-1 max-w-12 bg-[#a3e635]/30" />
-            <span className="text-[#a3e635] text-xs font-mono tracking-widest uppercase">
-              Serviços
-            </span>
-            <div className="h-px flex-1 max-w-12 bg-[#a3e635]/30" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#a3e635]/10 border border-[#a3e635]/20 text-[#a3e635] text-xs font-mono tracking-widest uppercase mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#a3e635] animate-pulse" />
+            Serviços Especializados
           </div>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white text-balance">
-            O que fazemos.
+          <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
+            Soluções para o teu equipamento.
           </h2>
-          <p className="mt-4 text-white/45 text-lg max-w-xl text-pretty leading-relaxed mx-auto lg:mx-0">
-            Soluções desenhadas para manter o seu equipamento no pico do desempenho, esteja onde estiver.
+          <p className="mt-4 text-zinc-400 text-base sm:text-lg leading-relaxed">
+            Manutenção de alta precisão e planos contínuos para garantir performance impecável na tua barbearia.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" id="plano">
+        {/* Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch" id="plano">
           {services.map((service, i) => {
             const Icon = service.icon;
+            const isFeatured = service.featured;
+
             return (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.6, delay: i * 0.12 }}
-                className={`relative rounded-2xl p-7 flex flex-col transition-all duration-300 ${
-                  service.featured
-                    ? "bg-[#111111] border border-[#a3e635]/25 shadow-[0_0_60px_rgba(163,230,53,0.08)]"
-                    : "bg-[#0d0d0d] border border-white/[0.06] hover:border-white/[0.12]"
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className={`group relative rounded-2xl p-6 lg:p-7 flex flex-col justify-between transition-all duration-300 ${
+                  isFeatured
+                    ? "bg-zinc-900/90 border-2 border-[#a3e635] shadow-[0_0_50px_rgba(163,230,53,0.12)] scale-[1.02] lg:scale-105 z-20"
+                    : "bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-700 hover:bg-zinc-900/60"
                 }`}
               >
-                {service.featured && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <span className="px-3 py-1 rounded-full bg-[#a3e635] text-[#050505] text-xs font-bold tracking-wide">
-                      Mais Popular
+                {/* Popular Badge */}
+                {isFeatured && (
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
+                    <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#a3e635] text-zinc-950 text-xs font-black tracking-wide uppercase shadow-lg shadow-[#a3e635]/20">
+                      <Star className="w-3 h-3 fill-zinc-950" /> Mais Recomendado
                     </span>
                   </div>
                 )}
-                {service.featured && (
-                  <div className="pointer-events-none absolute top-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-[#a3e635]/50 to-transparent" />
-                )}
 
-                <div className="flex items-center justify-between mb-6">
-                  <span className={`text-xs font-mono tracking-widest uppercase ${service.featured ? "text-[#a3e635]" : "text-white/30"}`}>
-                    {service.tag}
+                {/* Top Section */}
+                <div className="flex flex-col gap-5">
+                  <div className="flex items-center justify-between">
+                    <span className={`text-[11px] font-mono tracking-wider uppercase px-2.5 py-1 rounded-md ${
+                      isFeatured 
+                        ? "bg-[#a3e635]/15 text-[#a3e635] font-semibold" 
+                        : "bg-zinc-800/60 text-zinc-400"
+                    }`}>
+                      {service.tag}
+                    </span>
+                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110 ${
+                      isFeatured
+                        ? "bg-[#a3e635] text-zinc-950"
+                        : "bg-zinc-800/80 text-zinc-300 border border-zinc-700/50"
+                    }`}>
+                      <Icon className="w-5 h-5" />
+                    </div>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <h3 className="text-xl font-bold text-white tracking-tight leading-snug">
+                      {service.title}
+                    </h3>
+                    <p className={`text-xs font-medium leading-normal ${
+                      isFeatured ? "text-[#a3e635]" : "text-zinc-400"
+                    }`}>
+                      {service.subtitle}
+                    </p>
+                  </div>
+
+                  <p className="text-xs text-zinc-400/90 leading-relaxed min-h-[48px]">
+                    {service.description}
+                  </p>
+
+                  <div className="p-3.5 rounded-xl bg-zinc-950/60 border border-zinc-800/60 flex flex-col justify-center min-h-[68px]">
+                    <div className="flex items-baseline gap-1.5">
+                      <span className={`font-extrabold tracking-tight ${
+                        service.priceTag.value.includes("€") 
+                          ? "text-3xl text-white" 
+                          : "text-lg text-zinc-200"
+                      }`}>
+                        {service.priceTag.value}
+                      </span>
+                    </div>
+                    <span className="text-[11px] font-medium text-zinc-400 mt-0.5">
+                      {service.priceTag.label}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Middle Section: Items List */}
+                <div className="my-6 pt-5 border-t border-zinc-800/60 flex-1 flex flex-col justify-start">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 mb-3 block">
+                    O que inclui:
                   </span>
-                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center ${
-                    service.featured
-                      ? "bg-[#a3e635]/15 border border-[#a3e635]/30"
-                      : "bg-white/[0.05] border border-white/[0.08]"
-                  }`}>
-                    <Icon className={`w-4 h-4 ${service.featured ? "text-[#a3e635]" : "text-white/50"}`} />
-                  </div>
+                  <ul className="space-y-2.5">
+                    {service.items.map((item, j) => (
+                      <li key={j} className="flex items-start gap-2.5">
+                        <CheckCircle2 className={`w-4 h-4 mt-0.5 shrink-0 ${
+                          isFeatured ? "text-[#a3e635]" : "text-zinc-500"
+                        }`} />
+                        <span className="text-xs text-zinc-300 leading-snug">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
-                {"price" in service && service.price && (
-                  <div className="mb-4">
-                    <div className="flex items-baseline gap-1">
-                      <span className="text-4xl font-black text-white">{service.price}</span>
-                      <span className="text-white/40 text-sm">{service.period}</span>
-                    </div>
-                    <span className="text-[#a3e635] text-sm font-medium mt-0.5 block">{service.perks}</span>
+                {/* Bottom Section: High-Visibility Note & CTA */}
+                <div className="flex flex-col gap-4">
+                  {/* Callout de Nota/Aviso com Excelente Visibilidade em Desktop */}
+                  <div className="min-h-[48px] flex items-center">
+                    {"note" in service && service.note ? (
+                      <div className={`w-full flex items-start gap-2 p-2.5 rounded-xl border text-[11px] leading-tight font-medium ${
+                        service.title.includes("Envio")
+                          ? "bg-[#a3e635]/10 border-[#a3e635]/30 text-[#bef264]"
+                          : "bg-amber-500/10 border-amber-500/25 text-amber-300"
+                      }`}>
+                        {service.title.includes("Envio") ? (
+                          <Package className="w-3.5 h-3.5 text-[#a3e635] shrink-0 mt-0.5" />
+                        ) : (
+                          <AlertCircle className="w-3.5 h-3.5 text-amber-400 shrink-0 mt-0.5" />
+                        )}
+                        <span className="leading-snug">{service.note}</span>
+                      </div>
+                    ) : (
+                      <div className="w-full h-px bg-transparent" />
+                    )}
                   </div>
-                )}
 
-                <h3 className="text-xl font-bold text-white mb-1">{service.title}</h3>
-                <p className={`text-sm font-medium mb-3 ${service.featured ? "text-[#a3e635]" : "text-white/50"}`}>
-                  {service.subtitle}
-                </p>
-                <p className="text-sm text-white/35 leading-relaxed mb-6">{service.description}</p>
-
-                <div className="flex flex-col gap-2.5 mb-6 flex-1">
-                  {service.items.map((item, j) => (
-                    <div key={j} className="flex items-start gap-2.5">
-                      <CheckCircle2 className={`w-4 h-4 mt-0.5 shrink-0 ${service.featured ? "text-[#a3e635]" : "text-white/30"}`} />
-                      <span className="text-sm text-white/60">{item}</span>
-                    </div>
-                  ))}
+                  {/* CTA Button */}
+                  <a
+                    href={buildWhatsAppUrl(service.whatsappMessage)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl text-xs font-bold transition-all duration-200 active:scale-[0.98] ${
+                      isFeatured
+                        ? "bg-[#a3e635] text-zinc-950 hover:bg-[#bef264] hover:shadow-lg hover:shadow-[#a3e635]/20"
+                        : "bg-zinc-800/80 text-zinc-200 border border-zinc-700/60 hover:bg-zinc-800 hover:text-white hover:border-zinc-600"
+                    }`}
+                  >
+                    <MessageCircle className="w-4 h-4 shrink-0" />
+                    <span>{service.ctaLabel}</span>
+                  </a>
                 </div>
-
-                {"note" in service && service.note && (
-                  <p className="text-xs text-white/25 mb-4 font-mono">* {service.note}</p>
-                )}
-
-                <a
-                  href={buildWhatsAppUrl(service.whatsappMessage)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-semibold transition-all duration-200 active:scale-[0.98] ${
-                    service.featured
-                      ? "bg-[#a3e635] text-[#050505] hover:bg-[#bef264] accent-glow"
-                      : "bg-white/[0.05] text-white/70 border border-white/[0.08] hover:bg-white/[0.08] hover:text-white"
-                  }`}
-                >
-                  <MessageCircle className="w-4 h-4 shrink-0" />
-                  <span>{service.ctaLabel}</span>
-                </a>
               </motion.div>
             );
           })}

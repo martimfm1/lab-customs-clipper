@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const url = "https://lab-customs-clipper.vercel.app/";
+  const url = "https://labcustomsclipper.pt";
 
   return [
     {

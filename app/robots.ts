@@ -9,8 +9,8 @@ export default function robots(): MetadataRoute.Robots {
       },
     ],
 
-    sitemap: "https://lab-customs-clipper.vercel.app/sitemap.xml",
+    sitemap: "https://labcustomsclipper.pt/sitemap.xml",
 
-    host: "https://lab-customs-clipper.vercel.app",
+    host: "https://labcustomsclipper.pt",
   };
 }
