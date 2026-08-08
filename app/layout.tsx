@@ -15,7 +15,7 @@ const mono = JetBrains_Mono({
 });
 
 const siteUrl = "https://labcustomsclipper.pt";
-const siteName = "LAB Customs Clipper";
+const siteName = "LAB CUSTOMS CLIPPER";
 const siteDescription =
   "Manutenção, reparação, limpeza e afinação de máquinas de cortar cabelo e barba profissionais. Serviço especializado para barbeiros em Portugal.";
 const ogImage = "/opengraph-image";
@@ -24,8 +24,8 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
 
   title: {
-    default: "Reparação e Manutenção de Clippers | LAB Customs",
-    template: "%s | LAB Customs",
+    default: "Reparação e Manutenção | LAB CUSTOMS CLIPPER",
+    template: "%s | LAB CUSTOMS CLIPPER",
   },
 
   description: siteDescription,
@@ -78,21 +78,21 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName,
     locale: "pt_PT",
-    title: "Reparação e Manutenção de Clippers | LAB Customs",
+    title: "Reparação e Manutenção | LAB CUSTOMS CLIPPER",
     description: siteDescription,
     images: [
       {
         url: ogImage,
         width: 1200,
         height: 630,
-        alt: "LAB Customs Clipper — reparação e manutenção profissional de máquinas de corte",
+        alt: "LAB CUSTOMS CLIPPER — reparação e manutenção profissional de máquinas de corte",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Reparação e Manutenção de Clippers | LAB Customs",
+    title: "Reparação e Manutenção | LAB CUSTOMS CLIPPER",
     description: siteDescription,
     images: [ogImage],
   },
