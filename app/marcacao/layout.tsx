@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://lab-customs-clipper.vercel.app/marcacao'),
-
-  title: {
-    default: "LAB Customs Clipper | Marcação de Serviços",
-    template: "%s | LAB Customs Clipper",
+  title: "Marcar Serviço de Manutenção de Clippers",
+  description:
+    "Solicita a marcação de manutenção ou reparação da tua máquina de corte profissional. Escolhe o serviço e contacta a LAB Customs Clipper pelo WhatsApp.",
+  alternates: {
+    canonical: "/marcacao",
+  },
+  robots: {
+    index: false,
+    follow: true,
   },
 };
 
