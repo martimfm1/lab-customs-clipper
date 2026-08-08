@@ -26,7 +26,7 @@ const services = [
     subtitle: "Aumenta a vida útil do equipamento",
     description:
       "Intervenção regular para manter o equipamento no pico de desempenho, prevenindo avarias.",
-    priceTag: { value: "Sob Consulta", label: "Serviço Pontual" },
+    priceTag: { value: "8€", label: "Por máquina" },
     items: [
       "Higienização técnica completa",
       "Lubrificação de componentes",
@@ -34,9 +34,9 @@ const services = [
       "Testes de funcionamento",
       "Alinhamento de lâminas",
     ],
-    ctaLabel: "Pedir Orçamento",
+    ctaLabel: "Marcar Manutenção",
     whatsappMessage:
-      "Olá! Gostaria de pedir um orçamento para *Manutenção Preventiva* do meu equipamento. Podem ajudar-me?",
+      "Olá! Preciso de manutenção preventiva para as minhas máquinas, pode ajudar-me?",
     featured: false,
   },
   {
@@ -71,9 +71,9 @@ const services = [
       "Atendimento a todo o país",
       "Instruções de envio simples",
       "Diagnóstico assim que chega",
-      "Devolução rápida e segura",
+      "Devolução segura",
     ],
-    note: "Envia o equipamento bem embalado e protegido.",
+    note: "Acima de 60€ em serviços, o cliente fica isento de pagar o envio de devolução.",
     ctaLabel: "Enviar Equipamento",
     whatsappMessage:
       "Olá! Quero enviar as minhas máquinas para manutenção. Como posso proceder com o envio?",
@@ -147,7 +147,6 @@ export default function ServicesSection() {
                     : "bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-700 hover:bg-zinc-900/60"
                 }`}
               >
-                {/* Popular Badge */}
                 {isFeatured && (
                   <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
                     <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#a3e635] text-zinc-950 text-xs font-black tracking-wide uppercase shadow-lg shadow-[#a3e635]/20">
@@ -156,12 +155,11 @@ export default function ServicesSection() {
                   </div>
                 )}
 
-                {/* Top Section */}
                 <div className="flex flex-col gap-5">
                   <div className="flex items-center justify-between">
                     <span className={`text-[11px] font-mono tracking-wider uppercase px-2.5 py-1 rounded-md ${
-                      isFeatured 
-                        ? "bg-[#a3e635]/15 text-[#a3e635] font-semibold" 
+                      isFeatured
+                        ? "bg-[#a3e635]/15 text-[#a3e635] font-semibold"
                         : "bg-zinc-800/60 text-zinc-400"
                     }`}>
                       {service.tag}
@@ -193,8 +191,8 @@ export default function ServicesSection() {
                   <div className="p-3.5 rounded-xl bg-zinc-950/60 border border-zinc-800/60 flex flex-col justify-center min-h-[68px]">
                     <div className="flex items-baseline gap-1.5">
                       <span className={`font-extrabold tracking-tight ${
-                        service.priceTag.value.includes("€") 
-                          ? "text-3xl text-white" 
+                        service.priceTag.value.includes("€")
+                          ? "text-3xl text-white"
                           : "text-lg text-zinc-200"
                       }`}>
                         {service.priceTag.value}
@@ -206,7 +204,6 @@ export default function ServicesSection() {
                   </div>
                 </div>
 
-                {/* Middle Section: Items List */}
                 <div className="my-6 pt-5 border-t border-zinc-800/60 flex-1 flex flex-col justify-start">
                   <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 mb-3 block">
                     O que inclui:
@@ -223,9 +220,7 @@ export default function ServicesSection() {
                   </ul>
                 </div>
 
-                {/* Bottom Section: High-Visibility Note & CTA */}
                 <div className="flex flex-col gap-4">
-                  {/* Callout de Nota/Aviso com Excelente Visibilidade em Desktop */}
                   <div className="min-h-[48px] flex items-center">
                     {"note" in service && service.note ? (
                       <div className={`w-full flex items-start gap-2 p-2.5 rounded-xl border text-[11px] leading-tight font-medium ${
@@ -245,7 +240,6 @@ export default function ServicesSection() {
                     )}
                   </div>
 
-                  {/* CTA Button */}
                   <a
                     href={buildWhatsAppUrl(service.whatsappMessage)}
                     target="_blank"
