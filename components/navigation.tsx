@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, MessageCircle } from "lucide-react";
-import Image from "next/legacy/image";
+// import Image from "next/image";
 
 const navLinks = [
   { label: "Início", href: "#inicio" },
@@ -39,7 +39,7 @@ export default function Navigation() {
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           {/* Logo */}
           <a href="#inicio" className="flex items-center gap-2 group">
-            <div className="w-7 h-7 rounded-md bg-[#a3e635] flex items-center justify-center">
+            {/* <div className="w-7 h-7 rounded-md bg-[#a3e635] flex items-center justify-center">
               <span className="text-[#050505] text-xs font-black tracking-tighter font-mono">
                 <Image
                   src="/favicon.ico"
@@ -48,9 +48,9 @@ export default function Navigation() {
                   height={28}
                 />
               </span>
-            </div>
+            </div> */}
             <span className="text-sm font-semibold tracking-wide text-white/90 group-hover:text-white transition-colors">
-              LAB Customs Clipper
+              LAB CUSTOMS CLIPPER
             </span>
           </a>
 
@@ -71,8 +71,6 @@ export default function Navigation() {
           <div className="flex items-center gap-3">
             <a
               href="/marcacao"
-              target="_blank"
-              rel="noopener noreferrer"
               className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-lg bg-[#a3e635] text-[#050505] text-sm font-semibold hover:bg-[#bef264] transition-all duration-200 accent-glow"
             >
               <MessageCircle className="w-4 h-4" />

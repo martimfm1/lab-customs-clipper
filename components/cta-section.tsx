@@ -42,7 +42,7 @@ export default function CtaSection() {
           <Button
             type="button"
             size="lg"
-            onClick={() => window.open(WHATSAPP_URL, "_blank", "noopener,noreferrer")}
+            onClick={() => { window.location.href = WHATSAPP_URL; }}
             className="inline-flex cursor-pointer items-center gap-4 h-14 px-10 rounded-3xl bg-[#a3e635] text-[#050505] font-bold text-lg hover:bg-[#bef264] transition-colors accent-glow"
           >
             <MessageCircle className="w-5 h-5" />

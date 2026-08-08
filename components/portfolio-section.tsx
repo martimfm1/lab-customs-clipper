@@ -34,13 +34,13 @@ const works = [
     span: "col-span-1 row-span-1",
   },
   {
-    src: "/work-1.png",
+    src: "/work-1.webp",
     alt: "Desmontagem e diagnóstico de clipper profissional",
     tag: "Resultado Final",
     span: "col-span-1 row-span-2",
   },
   {
-    src: "/work-3.png",
+    src: "/work-3.jpg",
     alt: "Clipper restaurado após manutenção completa",
     tag: "Diagnóstico Técnico",
     span: "col-span-1 row-span-1",
@@ -49,6 +49,12 @@ const works = [
     src: "/work-4.png",
     alt: "Técnico a trabalhar nos componentes internos",
     tag: "Reparação Especializada",
+    span: "col-span-1 row-span-1",
+  },
+    {
+    src: "/work-5.jpg",
+    alt: "Clipper desmontado para manutenção e limpeza",
+    tag: "Manutenção Preventiva",
     span: "col-span-1 row-span-1",
   },
 ];

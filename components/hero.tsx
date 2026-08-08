@@ -15,7 +15,8 @@ export default function Hero() {
       <div className="absolute inset-0 blueprint-bg opacity-40" />
 
       {/* Radial gradient center glow */}
-      <div className="absolute inset-0 bg-radial-gradient pointer-events-none"
+      <div
+        className="absolute inset-0 bg-radial-gradient pointer-events-none"
         style={{
           background:
             "radial-gradient(ellipse 80% 60% at 50% 50%, rgba(163,230,53,0.04) 0%, transparent 70%)",
@@ -40,20 +41,26 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 pt-24 pb-16 flex flex-col lg:flex-row items-center gap-12 lg:gap-0">
+      {/* Container Principal com Padding (px-6) e Max Width */}
+      <div className="w-full max-w-7xl mx-auto px-6 pt-24 pb-16 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8">
         {/* Text Content */}
         <div className="flex-1 text-center lg:text-left z-10">
-          {/* Badge */}
+          {/* Logo Redondo - Visível apenas no Mobile */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#a3e635]/20 bg-[#a3e635]/5 mb-8"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="flex justify-center mb-6 lg:hidden"
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-[#a3e635] animate-[pulseAccent_2s_ease-in-out_infinite]" />
-            <span className="text-[#a3e635] text-xs font-mono tracking-widest uppercase">
-              Oficina Certificada
-            </span>
+            <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-[#a3e635]/30 shadow-[0_0_20px_rgba(163,230,53,0.2)]">
+              <Image
+                src="/favicon.ico"
+                alt="Logo"
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
           </motion.div>
 
           {/* Main headline */}
@@ -87,7 +94,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="mt-3 text-base text-white/35 leading-relaxed max-w-md mx-auto lg:mx-0 text-pretty"
           >
-            Especializados em manutenção preventiva, reparação corretiva e planos
+            Especialista em manutenção preventiva, reparação corretiva e planos
             de manutenção para equipamento profissional de barbearia.
           </motion.p>
 
@@ -100,8 +107,6 @@ export default function Hero() {
           >
             <a
               href="/marcacao"
-              target="_blank"
-              rel="noopener noreferrer"
               className="group flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#a3e635] text-[#050505] font-semibold text-base hover:bg-[#bef264] transition-all duration-200 accent-glow"
             >
               <MessageCircle className="w-5 h-5" />
@@ -117,12 +122,12 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Hero Visual */}
+        {/* Hero Visual (colocado de volta dentro do container com px-6) */}
         <motion.div
           initial={{ opacity: 0, x: 60 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.9, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="flex-1 relative flex items-center justify-center lg:justify-end"
+          className="hidden lg:flex flex-1 relative items-center justify-end z-10"
         >
           {/* Glow behind clipper */}
           <div
@@ -144,7 +149,7 @@ export default function Hero() {
 
           <div className="float-animation relative z-10">
             <Image
-              src="/clipper-hero.png"
+              src="/favicon.ico"
               alt="Máquina de corte profissional"
               width={520}
               height={520}
@@ -154,12 +159,12 @@ export default function Hero() {
           </div>
 
           {/* Technical labels */}
-          <div className="absolute top-12 right-4 lg:right-12 text-[#a3e635]/40 font-mono text-[10px] text-right hidden md:block">
-            <div>BLADE ALIGNMENT</div>
+          {/* <div className="absolute top-12 right-4 lg:right-12 text-[#a3e635]/40 font-mono text-[10px] text-right hidden md:block">
+            <div>ALINHAMENTO DE LAMINAS</div>
             <div className="text-white/20 mt-0.5">± 0.01mm</div>
-          </div>
+          </div> */}
           <div className="absolute bottom-12 left-4 lg:left-8 text-[#a3e635]/40 font-mono text-[10px] hidden md:block">
-            <div>MOTOR RPM</div>
+            <div>MOTOR</div>
             <div className="text-white/20 mt-0.5">CALIBRADO</div>
           </div>
         </motion.div>
