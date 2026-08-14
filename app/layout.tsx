@@ -16,17 +16,18 @@ const mono = JetBrains_Mono({
 });
 
 const siteUrl = "https://labcustomsclipper.pt";
-const siteName = "LAB CUSTOMS CLIPPER";
+const siteName = "LAB Customs Clipper";
 const siteDescription =
-  "Manutenção, reparação, limpeza e afinação de máquinas de cortar cabelo e barba profissionais. Serviço especializado para barbeiros em Portugal.";
+  "Reparação e manutenção de clippers, trimmers e shavers profissionais em Portugal. Manutenção preventiva desde 8€, reparação de avarias e envio para a oficina.";
 const ogImage = "/opengraph-image";
+const mapsUrl = "https://maps.app.goo.gl/qz1c46oZSvkWxLCd8";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
 
   title: {
-    default: "Reparação e Manutenção | LAB CUSTOMS CLIPPER",
-    template: "%s | LAB CUSTOMS CLIPPER",
+    default: "Reparação e Manutenção de Clippers | LAB Customs Clipper",
+    template: "%s | LAB Customs Clipper",
   },
 
   description: siteDescription,
@@ -59,19 +60,29 @@ export const metadata: Metadata = {
     },
   },
 
+  // Keep this list aligned with real services and search language.
+  // Rankings should come from useful on-page content, not the meta keywords field.
   keywords: [
+    "reparação de máquinas de cortar cabelo",
+    "manutenção de máquinas de cortar cabelo",
     "reparação de clippers",
     "manutenção de clippers",
-    "manutenção de máquinas de cortar cabelo",
-    "reparação de máquinas de cortar cabelo",
+    "reparação de trimmers",
+    "manutenção de trimmers",
+    "reparação de shavers",
     "manutenção de máquinas de barbear",
-    "reparação de máquinas de barbear",
-    "limpeza de máquinas de corte",
-    "afinação de máquinas de corte",
-    "manutenção preventiva de máquinas",
+    "assistência técnica de máquinas de corte",
+    "manutenção preventiva de máquinas de corte",
+    "reparação de máquinas Wahl",
+    "reparação StyleCraft",
+    "reparação Gamma Più",
+    "reparação JRL",
+    "máquinas de barbear profissionais",
+    "equipamento profissional de barbearia",
+    "reparação de máquinas de barbear em Portugal",
+    "manutenção de clippers em Portugal",
     "clipper repair Portugal",
-    "barber equipment repair",
-    "LAB Customs Clipper",
+    "barber equipment repair Portugal",
   ],
 
   openGraph: {
@@ -79,21 +90,21 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName,
     locale: "pt_PT",
-    title: "Reparação e Manutenção | LAB CUSTOMS CLIPPER",
+    title: "Reparação e Manutenção de Clippers | LAB Customs Clipper",
     description: siteDescription,
     images: [
       {
         url: ogImage,
         width: 1200,
         height: 630,
-        alt: "LAB CUSTOMS CLIPPER — reparação e manutenção profissional de máquinas de corte",
+        alt: "LAB Customs Clipper — reparação e manutenção de máquinas profissionais de barbearia",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "Reparação e Manutenção | LAB CUSTOMS CLIPPER",
+    title: "Reparação e Manutenção de Clippers | LAB Customs Clipper",
     description: siteDescription,
     images: [ogImage],
   },
@@ -118,11 +129,69 @@ const structuredData = {
       image: `${siteUrl}${ogImage}`,
       logo: `${siteUrl}/favicon.ico`,
       telephone: "+351926463182",
+      priceRange: "€",
+      currenciesAccepted: "EUR",
       areaServed: {
         "@type": "Country",
         name: "Portugal",
       },
-      sameAs: ["https://www.instagram.com/labcustomsclipper/"],
+      hasMap: mapsUrl,
+      sameAs: [
+        "https://www.instagram.com/labcustomsclipper/",
+        "https://www.youtube.com/@iameduardovictor",
+      ],
+      knowsAbout: [
+        "reparação de máquinas de cortar cabelo",
+        "manutenção de clippers",
+        "manutenção preventiva",
+        "reparação de trimmers",
+        "reparação de shavers",
+        "equipamento profissional de barbearia",
+      ],
+      makesOffer: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Manutenção Preventiva de Máquinas de Corte",
+            description: "Limpeza técnica, lubrificação, afinação, alinhamento e testes de funcionamento.",
+          },
+          price: "8",
+          priceCurrency: "EUR",
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Manutenção Corretiva de Clippers, Trimmers e Shavers",
+            description: "Diagnóstico técnico e reparação de avarias em equipamento profissional.",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Envio de Equipamento para Manutenção",
+            description: "Receção, intervenção e devolução de equipamento enviado para a oficina.",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Plano de Prevenção",
+            description: "Manutenção preventiva regular para até 3 máquinas.",
+          },
+          price: "20",
+          priceCurrency: "EUR",
+          priceSpecification: {
+            "@type": "UnitPriceSpecification",
+            price: "20",
+            priceCurrency: "EUR",
+            unitText: "mês",
+          },
+        },
+      ],
     },
     {
       "@type": "WebSite",
