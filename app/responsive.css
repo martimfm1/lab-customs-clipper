@@ -40,12 +40,10 @@ select:focus-visible {
     overflow-wrap: anywhere;
   }
 
-  /* Better mobile reading measure. */
   section p {
     max-width: 68ch;
   }
 
-  /* Hero: keep the main decision visible without excessive decorative space. */
   #inicio {
     min-height: 100svh;
     min-height: 100dvh;
