@@ -24,7 +24,7 @@ export default function Hero() {
         >
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#a3e635]/20 bg-[#a3e635]/10 px-3.5 py-1.5 text-[11px] font-mono font-bold uppercase tracking-wider text-[#a3e635]">
             <span className="h-1.5 w-1.5 rounded-full bg-[#a3e635]" />
-            Manutenção especializada para profissionais
+            Manutenção especializada para profissionais da barbearia
           </div>
 
           <h1 className="text-balance text-5xl font-extrabold tracking-tighter text-white sm:text-7xl xl:text-8xl">
