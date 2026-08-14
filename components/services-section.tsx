@@ -14,6 +14,7 @@ const services = [
     items: ["Higienização técnica", "Lubrificação", "Ajustes de precisão", "Testes finais"],
     cta: "Marcar manutenção",
     message: "Olá! Preciso de manutenção preventiva para as minhas máquinas, pode ajudar-me?",
+    featured: false,
   },
   {
     icon: Wrench,
@@ -25,6 +26,7 @@ const services = [
     items: ["Diagnóstico técnico", "Reparação", "Componentes", "Testes finais"],
     cta: "Pedir orçamento",
     message: "Olá! O meu equipamento tem uma avaria e gostaria de pedir um orçamento para manutenção corretiva. Podem ajudar-me?",
+    featured: false,
   },
   {
     icon: Truck,
@@ -37,6 +39,7 @@ const services = [
     note: "A partir de 60€ em serviços, não pagas o envio de devolução.",
     cta: "Ver como enviar",
     message: "Olá! Quero enviar as minhas máquinas para manutenção. Como posso proceder com o envio?",
+    featured: false,
   },
   {
     icon: Star,
