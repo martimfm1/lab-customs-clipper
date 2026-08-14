@@ -1,0 +1,86 @@
+/* Responsive UX/UI layer — shared across the marketing site. */
+html { scroll-padding-top: 88px; }
+body { text-rendering: optimizeLegibility; }
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #a3e635;
+  outline-offset: 3px;
+}
+
+@media (max-width: 1023px) {
+  a[href="/marcacao"],
+  a[href^="https://wa.me/"],
+  button { min-height: 44px; }
+}
+
+@media (max-width: 767px) {
+  section { scroll-margin-top: 82px; }
+  h1, h2, h3, p { overflow-wrap: anywhere; }
+  section p { max-width: 68ch; }
+
+  #inicio {
+    min-height: 100svh;
+    min-height: 100dvh;
+    padding-top: max(6.5rem, env(safe-area-inset-top) + 5.5rem);
+    padding-bottom: max(4.5rem, env(safe-area-inset-bottom) + 3.5rem);
+  }
+
+  #inicio .scroll-indicator,
+  #inicio [data-scroll-indicator] { display: none; }
+
+  #servicos { padding-top: 4rem; padding-bottom: 4rem; }
+  #servicos .grid { gap: 0.875rem; }
+  #servicos article { padding: 1.125rem; border-radius: 1rem; }
+  #servicos article h3 { font-size: 1.05rem; }
+  #servicos article a { min-height: 48px; }
+
+  #trabalhos { padding-top: 4rem; padding-bottom: 4rem; }
+  #trabalhos .grid {
+    height: auto !important;
+    grid-template-rows: none !important;
+    gap: 0.75rem;
+  }
+  #trabalhos .grid > * { min-height: 190px; }
+  #trabalhos .grid > *[class*="row-span-2"] {
+    min-height: 260px;
+    grid-row: span 1 !important;
+  }
+  #trabalhos .grid + div a { width: 100%; min-height: 48px; }
+
+  #faq { padding-top: 4rem; padding-bottom: 4rem; }
+  #faq [data-slot="accordion-trigger"] { min-height: 56px; }
+
+  #contactos {
+    padding-bottom: max(5rem, env(safe-area-inset-bottom) + 3rem);
+  }
+  #contactos nav a,
+  #contactos > div a { min-height: 44px; }
+
+  section a[href="/marcacao"] { min-height: 52px; }
+}
+
+@media (min-width: 768px) and (max-width: 1279px) {
+  #servicos .grid { gap: 1rem; }
+  #trabalhos .grid { height: 34rem !important; }
+}
+
+@media (min-width: 1280px) {
+  section p { max-width: 72ch; }
+  #servicos article,
+  #trabalhos .grid > *,
+  #faq [data-slot="accordion-item"] { transition-duration: 220ms; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
