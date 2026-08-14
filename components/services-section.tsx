@@ -1,292 +1,150 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  Shield,
-  Wrench,
-  Star,
-  CheckCircle2,
-  MessageCircle,
-  Truck,
-  AlertCircle,
-  Package,
-} from "lucide-react";
-
-const WHATSAPP_NUMBER = "351926463182";
-
-function buildWhatsAppUrl(message: string): string {
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
-}
+import { CheckCircle2, MessageCircle, Shield, Star, Truck, Wrench } from "lucide-react";
 
 const services = [
   {
     icon: Shield,
-    tag: "Serviço 01",
     title: "Manutenção Preventiva",
-    subtitle: "Aumenta a vida útil do equipamento",
-    description:
-      "Intervenção regular para manter o equipamento no pico de desempenho, prevenindo avarias.",
-    priceTag: { value: "8€", label: "Por máquina" },
-    items: [
-      "Higienização técnica completa",
-      "Lubrificação de componentes",
-      "Ajustes de precisão",
-      "Testes de funcionamento",
-      "Alinhamento de lâminas",
-    ],
-    ctaLabel: "Marcar Manutenção",
-    whatsappMessage:
-      "Olá! Preciso de manutenção preventiva para as minhas máquinas, pode ajudar-me?",
+    subtitle: "Para manter a máquina no seu melhor.",
+    description: "",
+    price: "8€",
+    priceLabel: "por máquina",
+    items: ["Higienização técnica", "Lubrificação", "Ajustes de precisão", "Testes finais"],
+    cta: "Marcar manutenção",
+    message: "Olá! Preciso de manutenção preventiva para as minhas máquinas, pode ajudar-me?",
     featured: false,
   },
   {
     icon: Wrench,
-    tag: "Serviço 02",
     title: "Manutenção Corretiva",
-    subtitle: "Diagnóstico e reparação especializados",
-    description:
-      "Resolução de avarias e substituição de componentes danificados com garantia de qualidade.",
-    priceTag: { value: "Sob Consulta", label: "Orçamento p/ peças" },
-    items: [
-      "Diagnóstico técnico avançado",
-      "Reparação de motor",
-      "Substituição de componentes",
-      "Testes finais exaustivos",
-    ],
-    notes: "Componentes cotados separadamente.",
-    ctaLabel: "Pedir Orçamento",
-    whatsappMessage:
-      "Olá! O meu equipamento tem uma avaria e gostaria de pedir um orçamento para *Manutenção Corretiva*. Podem ajudar-me?",
+    subtitle: "Para máquinas com avaria ou perda de desempenho.",
+    description: "",
+    price: "Sob consulta",
+    priceLabel: "peças cotadas à parte",
+    items: ["Diagnóstico técnico", "Reparação", "Componentes", "Testes finais"],
+    cta: "Pedir orçamento",
+    message: "Olá! O meu equipamento tem uma avaria e gostaria de pedir um orçamento para manutenção corretiva. Podem ajudar-me?",
     featured: false,
   },
   {
     icon: Truck,
-    tag: "Serviço 03",
     title: "Envio para Manutenção",
-    subtitle: "Para barbeiros de todo o país",
-    description:
-      "Envia as tuas máquinas por correio ou transportadora. Recebemos, reparamos e devolvemos.",
-    priceTag: { value: "Nacional", label: "Envio & Retorno" },
-    items: [
-      "Atendimento a todo o país",
-      "Instruções de envio simples",
-      "Diagnóstico assim que chega",
-      "Devolução segura",
-    ],
-    notes: [
-      "A máquina deve ser enviada devidamente acondicionada, protegida e segura para evitar danos durante o transporte.",
-      "A partir de 60€ em serviços, o cliente fica isento de pagar o envio de devolução.",
-    ],
-    ctaLabel: "Enviar Equipamento",
-    whatsappMessage:
-      "Olá! Quero enviar as minhas máquinas para manutenção. Como posso proceder com o envio?",
+    subtitle: "Envia a máquina e tratamos do resto.",
+    description: "",
+    price: "Nacional",
+    priceLabel: "envio e retorno",
+    items: ["Atendimento em todo o país", "Instruções simples", "Diagnóstico à chegada", "Devolução segura"],
+    note: "A partir de 60€ em serviços, não pagas o envio de devolução.",
+    cta: "Ver como enviar",
+    message: "Olá! Quero enviar as minhas máquinas para manutenção. Como posso proceder com o envio?",
     featured: false,
   },
   {
     icon: Star,
-    tag: "Plano Premium",
     title: "Plano de Prevenção",
-    subtitle: "O plano mais inteligente",
-    description:
-      "Manutenção preventiva regular para até 3 máquinas. Maior durabilidade e redução de custos.",
-    priceTag: { value: "20€", label: "/mês • Até 3 máquinas" },
-    items: [
-      "Manutenção preventiva regular",
-      "Maior durabilidade garantida",
-      "Melhor desempenho consistente",
-      "Redução de custos futuros",
-      "Prioridade no atendimento",
-    ],
-    ctaLabel: "Aderir ao Plano",
-    whatsappMessage:
-      "Olá! Gostaria de aderir ao *Plano de Prevenção*. Podem ajudar-me?",
+    subtitle: "Para profissionais que querem evitar paragens.",
+    description: "Manutenção preventiva regular para até 3 máquinas com prioridade de atendimento.",
+    price: "20€",
+    priceLabel: "/mês • até 3 máquinas",
+    items: ["Manutenção regular", "Maior durabilidade", "Desempenho consistente", "Prioridade"],
+    cta: "Conhecer o plano",
+    message: "Olá! Gostaria de conhecer o Plano de Prevenção. Podem explicar-me como funciona?",
     featured: true,
   },
 ] as const;
 
+function whatsapp(message: string) {
+  return `https://wa.me/351926463182?text=${encodeURIComponent(message)}`;
+}
+
 export default function ServicesSection() {
   return (
-    <section
-      id="servicos"
-      className="py-24 relative overflow-hidden bg-zinc-950"
-    >
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#1f293710_1px,transparent_1px),linear-gradient(to_bottom,#1f293710_1px,transparent_1px)] bg-[size:4rem_4rem]" />
-      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#a3e635]/5 blur-[140px] rounded-full" />
-
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        {/* Header Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5 }}
-          className="mb-10 text-center max-w-3xl mx-auto"
-        >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#a3e635]/10 border border-[#a3e635]/20 text-[#a3e635] text-xs font-mono tracking-widest uppercase mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#a3e635] animate-pulse" />
-            Serviços Especializados
+    <section id="servicos" className="relative overflow-hidden bg-zinc-950 px-6 py-24 sm:py-28">
+      <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-3xl text-center">
+          <div className="inline-flex rounded-full border border-[#a3e635]/20 bg-[#a3e635]/10 px-3 py-1 text-[11px] font-mono font-bold uppercase tracking-widest text-[#a3e635]">
+            Escolhe o que precisas
           </div>
-          <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
-            Soluções para o teu equipamento.
+          <h2 className="mt-5 text-balance text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+            Uma solução clara para cada situação.
           </h2>
-          <p className="mt-4 text-zinc-400 text-base sm:text-lg leading-relaxed">
-            Manutenção de alta precisão e planos contínuos para garantir
-            performance impecável na tua barbearia.
+          <p className="mt-4 text-base leading-relaxed text-zinc-400 sm:text-lg">
+            Já sabes o que precisas? Escolhe abaixo. Não tens a certeza? Usa o formulário e explica-nos o problema.
           </p>
-        </motion.div>
+        </div>
 
-        {/* Services Grid */}
-        <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch"
-          id="plano"
-        >
+        <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {services.map((service, i) => {
             const Icon = service.icon;
-            const isFeatured = service.featured;
-
             return (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
+              <motion.article
+                key={service.title}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className={`group relative rounded-2xl p-6 lg:p-7 flex flex-col justify-between transition-all duration-300 ${
-                  isFeatured
-                    ? "bg-zinc-900/90 border-2 border-[#a3e635] shadow-[0_0_50px_rgba(163,230,53,0.12)] scale-[1.02] lg:scale-105 z-20"
-                    : "bg-zinc-900/40 border border-zinc-800/80 hover:border-zinc-700 hover:bg-zinc-900/60"
-                }`}
+                transition={{ duration: 0.45, delay: i * 0.06 }}
+                className={`relative flex flex-col rounded-2xl border p-6 ${service.featured ? "border-[#a3e635]/60 bg-[#a3e635]/[0.06] shadow-[0_0_45px_rgba(163,230,53,0.10)]" : "border-zinc-800 bg-zinc-900/45"}`}
               >
-                {isFeatured && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                    <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#a3e635] text-zinc-950 text-xs font-black tracking-wide uppercase shadow-lg shadow-[#a3e635]/20">
-                      <Star className="w-3 h-3 fill-zinc-950" /> Mais
-                      Recomendado
-                    </span>
-                  </div>
+                {service.featured && (
+                  <span className="absolute -top-3 left-5 inline-flex items-center gap-1.5 rounded-full bg-[#a3e635] px-3 py-1 text-[10px] font-black uppercase tracking-wider text-zinc-950">
+                    <Star className="h-3 w-3 fill-zinc-950" /> Recomendado
+                  </span>
                 )}
 
-                <div className="flex flex-col gap-5">
-                  <div className="flex items-center justify-between">
-                    <span
-                      className={`text-[11px] font-mono tracking-wider uppercase px-2.5 py-1 rounded-md ${
-                        isFeatured
-                          ? "bg-[#a3e635]/15 text-[#a3e635] font-semibold"
-                          : "bg-zinc-800/60 text-zinc-400"
-                      }`}
-                    >
-                      {service.tag}
-                    </span>
-                    <div
-                      className={`w-10 h-10 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110 ${
-                        isFeatured
-                          ? "bg-[#a3e635] text-zinc-950"
-                          : "bg-zinc-800/80 text-zinc-300 border border-zinc-700/50"
-                      }`}
-                    >
-                      <Icon className="w-5 h-5" />
-                    </div>
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950 text-[#a3e635]">
+                    <Icon className="h-5 w-5" />
                   </div>
-
-                  <div className="space-y-1.5">
-                    <h3 className="text-xl font-bold text-white tracking-tight leading-snug">
-                      {service.title}
-                    </h3>
-                    <p
-                      className={`text-xs font-medium leading-normal ${
-                        isFeatured ? "text-[#a3e635]" : "text-zinc-400"
-                      }`}
-                    >
-                      {service.subtitle}
-                    </p>
-                  </div>
-
-                  <p className="text-xs text-zinc-400/90 leading-relaxed min-h-[48px]">
-                    {service.description}
-                  </p>
-
-                  <div className="p-3.5 rounded-xl bg-zinc-950/60 border border-zinc-800/60 flex flex-col justify-center min-h-[68px]">
-                    <div className="flex items-baseline gap-1.5">
-                      <span
-                        className={`font-extrabold tracking-tight ${
-                          service.priceTag.value.includes("€")
-                            ? "text-3xl text-white"
-                            : "text-lg text-zinc-200"
-                        }`}
-                      >
-                        {service.priceTag.value}
-                      </span>
-                    </div>
-                    <span className="text-[11px] font-medium text-zinc-400 mt-0.5">
-                      {service.priceTag.label}
-                    </span>
+                  <div className="text-right">
+                    <div className="text-xl font-extrabold text-white">{service.price}</div>
+                    <div className="mt-0.5 text-[10px] font-mono uppercase tracking-wide text-zinc-500">{service.priceLabel}</div>
                   </div>
                 </div>
 
-                <div className="my-6 pt-5 border-t border-zinc-800/60 flex-1 flex flex-col justify-start">
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-zinc-500 mb-3 block">
-                    O que inclui:
-                  </span>
+                <h3 className="mt-6 text-xl font-bold tracking-tight text-white">{service.title}</h3>
+                <p className="mt-1.5 text-sm font-medium text-zinc-300">{service.subtitle}</p>
+                <p className="mt-3 text-xs leading-relaxed text-zinc-500">{service.description}</p>
+
+                <div className="my-5 border-t border-zinc-800 pt-5">
+                  <p className="mb-3 text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-600">Inclui</p>
                   <ul className="space-y-2.5">
-                    {service.items.map((item, j) => (
-                      <li key={j} className="flex items-start gap-2.5">
-                        <CheckCircle2
-                          className={`w-4 h-4 mt-0.5 shrink-0 ${
-                            isFeatured ? "text-[#a3e635]" : "text-zinc-500"
-                          }`}
-                        />
-                        <span className="text-xs text-zinc-300 leading-snug">
-                          {item}
-                        </span>
+                    {service.items.map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-xs text-zinc-300">
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#a3e635]" />
+                        {item}
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="flex flex-col gap-4">
-                  <div className="min-h-[48px] flex items-center">
-                    {"notes" in service && service.notes ? (
-                      <div className="w-full flex flex-col gap-2">
-                        {(Array.isArray(service.notes)
-                          ? service.notes
-                          : [service.notes]
-                        ).map((note, index) => (
-                          <div
-                            key={index}
-                            className="w-full flex items-start gap-2 p-2.5 rounded-xl border text-[11px] leading-tight font-medium bg-[#a3e635]/10 border-[#a3e635]/30 text-[#bef264]"
-                          >
-                            {index === 0 ? (
-                              <Package className="w-3.5 h-3.5 text-[#a3e635] shrink-0 mt-0.5" />
-                            ) : (
-                              <Truck className="w-3.5 h-3.5 text-[#a3e635] shrink-0 mt-0.5" />
-                            )}
-
-                            <span className="leading-snug">{note}</span>
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <div className="w-full h-px bg-transparent" />
-                    )}
+                {"note" in service && service.note && (
+                  <div className="mb-4 rounded-xl border border-[#a3e635]/20 bg-[#a3e635]/[0.06] px-3 py-2.5 text-[11px] font-medium leading-relaxed text-[#bef264]">
+                    {service.note}
                   </div>
+                )}
 
+                <div className="mt-auto pt-2">
                   <a
-                    href={buildWhatsAppUrl(service.whatsappMessage)}
+                    href={whatsapp(service.message)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl text-xs font-bold transition-all duration-200 active:scale-[0.98] ${
-                      isFeatured
-                        ? "bg-[#a3e635] text-zinc-950 hover:bg-[#bef264] hover:shadow-lg hover:shadow-[#a3e635]/20"
-                        : "bg-zinc-800/80 text-zinc-200 border border-zinc-700/60 hover:bg-zinc-800 hover:text-white hover:border-zinc-600"
-                    }`}
+                    className={`flex h-12 items-center justify-center gap-2 rounded-xl text-xs font-extrabold ${service.featured ? "bg-[#a3e635] text-zinc-950 hover:bg-[#b8f542]" : "border border-zinc-700 bg-zinc-800 text-zinc-100 hover:bg-zinc-700"} transition`}
                   >
-                    <MessageCircle className="w-4 h-4 shrink-0" />
-                    <span>{service.ctaLabel}</span>
+                    <MessageCircle className="h-4 w-4" />
+                    {service.cta}
                   </a>
                 </div>
-              </motion.div>
+              </motion.article>
             );
           })}
+        </div>
+
+        <div className="mx-auto mt-8 max-w-3xl rounded-2xl border border-zinc-800 bg-zinc-900/35 px-5 py-4 text-center">
+          <p className="text-xs leading-relaxed text-zinc-400">
+            Não sabes qual escolher? <a href="/marcacao" className="font-bold text-[#a3e635] hover:underline">Explica-nos o problema →</a> e tratamos de orientar o serviço certo.
+          </p>
         </div>
       </div>
     </section>
