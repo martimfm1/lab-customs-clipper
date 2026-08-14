@@ -24,7 +24,7 @@ export default function Hero() {
         >
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#a3e635]/20 bg-[#a3e635]/10 px-3.5 py-1.5 text-[11px] font-mono font-bold uppercase tracking-wider text-[#a3e635]">
             <span className="h-1.5 w-1.5 rounded-full bg-[#a3e635]" />
-            Manutenção especializada para profissionais da barbearia
+            Reparação e manutenção para profissionais da barbearia
           </div>
 
           <h1 className="text-balance text-5xl font-extrabold tracking-tighter text-white sm:text-7xl xl:text-8xl">
@@ -32,7 +32,7 @@ export default function Hero() {
           </h1>
 
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-zinc-300 sm:text-xl">
-            Reparação, manutenção preventiva e planos para máquinas profissionais de barbearia — com um processo simples e acompanhamento direto.
+            Reparação de clippers, trimmers e shavers, manutenção preventiva e planos para equipamento profissional de barbearia em Portugal — com diagnóstico técnico e acompanhamento direto.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -78,7 +78,7 @@ export default function Hero() {
           <div className="absolute h-52 w-52 rounded-full border border-[#a3e635]/15 sm:h-72 sm:w-72" />
           <Image
             src="/favicon.ico"
-            alt="Máquina de corte profissional"
+            alt="Clipper profissional para corte de cabelo e barba"
             width={480}
             height={480}
             priority
