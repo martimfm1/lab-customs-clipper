@@ -1,97 +1,55 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Wrench, Award, Microscope, HeartHandshake } from "lucide-react";
+import { Award, HeartHandshake, Microscope, Wrench } from "lucide-react";
 
-const stats = [
-  {
-    icon: Wrench,
-    value: "+50",
-    label: "Equipamentos Intervencionados",
-    desc: "Máquinas profissionais restauradas e otimizadas com precisão.",
-  },
-  {
-    icon: HeartHandshake,
-    value: "100%",
-    label: "Atendimento Personalizado",
-    desc: "Cada equipamento é tratado de forma individual e dedicada.",
-  },
-  {
-    icon: Microscope,
-    value: "PRO",
-    label: "Diagnóstico Técnico",
-    desc: "Análise aprofundada e rigorosa antes de qualquer intervenção.",
-  },
-  {
-    icon: Award,
-    value: "ESP",
-    label: "Serviço Especializado",
-    desc: "Foco exclusivo na manutenção de equipamento profissional.",
-  },
-];
+const proof = [
+  [Wrench, "+50", "equipamentos intervencionados", "Experiência prática com equipamento profissional."],
+  [HeartHandshake, "100%", "atendimento personalizado", "Cada caso é analisado individualmente."],
+  [Microscope, "PRO", "diagnóstico técnico", "Não avançamos às cegas: primeiro percebemos o problema."],
+  [Award, "90 dias", "garantia aplicável", "Garantia indicada para motores, placas de circuito e baterias, dentro das condições previstas."],
+] as const;
 
 export default function TrustSection() {
   return (
-    <section className="py-24 relative overflow-hidden bg-zinc-950">
-      {/* Background Grid Pattern & Ambient Glow */}
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#1f293710_1px,transparent_1px),linear-gradient(to_bottom,#1f293710_1px,transparent_1px)] bg-[size:4rem_4rem]" />
-      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-[#a3e635]/5 blur-[140px] rounded-full" />
+    <section className="bg-zinc-950 px-6 py-24 sm:py-28">
+      <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-3xl text-center">
+          <div className="inline-flex rounded-full border border-[#a3e635]/20 bg-[#a3e635]/10 px-3 py-1 text-[11px] font-mono font-bold uppercase tracking-widest text-[#a3e635]">
+            Razões para confiar
+          </div>
+          <h2 className="mt-5 text-balance text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+            O objetivo não é só reparar. É devolver-te confiança na máquina.
+          </h2>
+          <p className="mt-4 text-base leading-relaxed text-zinc-400 sm:text-lg">
+            Informação clara, diagnóstico técnico e cuidado no equipamento que usas todos os dias.
+          </p>
+        </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        {/* Section Label / Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5 }}
-          className="flex items-center justify-center gap-3 mb-16"
-        >
-          <div className="h-px w-12 bg-gradient-to-r from-transparent to-[#a3e635]/40" />
-          <span className="text-[#a3e635] text-xs font-mono font-bold tracking-widest uppercase bg-[#a3e635]/10 border border-[#a3e635]/20 px-3.5 py-1 rounded-full">
-            Confiança & Qualidade
-          </span>
-          <div className="h-px w-12 bg-gradient-to-l from-transparent to-[#a3e635]/40" />
-        </motion.div>
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {proof.map(([Icon, value, label, desc], i) => (
+            <motion.article
+              key={label}
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.4, delay: i * 0.06 }}
+              className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6"
+            >
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950 text-[#a3e635]">
+                <Icon className="h-5 w-5" />
+              </div>
+              <div className="mt-6 text-3xl font-extrabold tracking-tight text-white">{value}</div>
+              <h3 className="mt-1 text-sm font-bold text-zinc-200">{label}</h3>
+              <p className="mt-3 text-xs leading-relaxed text-zinc-500">{desc}</p>
+            </motion.article>
+          ))}
+        </div>
 
-        {/* Stats Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-          {stats.map((stat, i) => {
-            const Icon = stat.icon;
-            return (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                whileHover={{ y: -4 }}
-                className="relative p-6 rounded-2xl bg-zinc-900/60 border border-zinc-800/80 backdrop-blur-sm group hover:border-[#a3e635]/40 hover:bg-zinc-900/90 transition-all duration-300 shadow-lg shadow-black/20 overflow-hidden"
-              >
-                {/* Top Glowing Accent Line */}
-                <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-[#a3e635]/0 to-transparent group-hover:via-[#a3e635]/40 transition-all duration-500" />
-
-                {/* Icon Container */}
-                <div className="w-11 h-11 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center mb-5 group-hover:border-[#a3e635]/30 group-hover:bg-[#a3e635]/10 group-hover:scale-105 transition-all duration-300 shadow-md">
-                  <Icon className="w-5 h-5 text-[#a3e635] transition-transform duration-300 group-hover:rotate-6" />
-                </div>
-
-                {/* Metric Value */}
-                <div className="text-3xl font-extrabold text-white tracking-tight mb-1 group-hover:text-[#a3e635] transition-colors duration-300 font-mono">
-                  {stat.value}
-                </div>
-
-                {/* Label */}
-                <div className="text-sm font-bold text-zinc-200 mb-2 tracking-wide">
-                  {stat.label}
-                </div>
-
-                {/* Description */}
-                <div className="text-xs text-zinc-400 leading-relaxed font-normal">
-                  {stat.desc}
-                </div>
-              </motion.div>
-            );
-          })}
+        <div className="mx-auto mt-8 max-w-4xl rounded-2xl border border-zinc-800 bg-zinc-900/35 p-5 text-center sm:p-6">
+          <p className="text-xs leading-relaxed text-zinc-400">
+            Trabalhamos com <span className="font-bold text-zinc-200">Wahl, Style Craft, Gamma Piu, JRL</span> e outras marcas de equipamento profissional.
+          </p>
         </div>
       </div>
     </section>
