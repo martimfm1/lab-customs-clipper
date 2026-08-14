@@ -1,71 +1,41 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MessageCircle, ArrowRight, Sparkles } from "lucide-react";
-import { Button } from "./ui/button";
-
-const WHATSAPP_URL = "/marcacao";
+import { ArrowRight, CheckCircle2, MessageCircle } from "lucide-react";
 
 export default function CtaSection() {
   return (
-    <section className="py-28 sm:py-36 relative overflow-hidden bg-zinc-950">
-      {/* Background Grid Pattern & Ambient Glow */}
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#1f293710_1px,transparent_1px),linear-gradient(to_bottom,#1f293710_1px,transparent_1px)] bg-[size:4rem_4rem]" />
-      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[#a3e635]/5 blur-[160px] rounded-full" />
-
-      {/* Crosshair Accent Lines */}
-      <div className="pointer-events-none absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zinc-800/60 to-transparent" />
-      <div className="pointer-events-none absolute top-0 bottom-0 left-1/2 w-px bg-gradient-to-b from-transparent via-zinc-800/40 to-transparent" />
-
-      {/* Top & Bottom Borders */}
-      <div className="pointer-events-none absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
-
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        >
-          {/* Technical Badge Tag */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#a3e635]/10 border border-[#a3e635]/20 mb-8">
-            <Sparkles className="w-3.5 h-3.5 text-[#a3e635]" />
-            <span className="text-xs font-mono font-bold tracking-wider uppercase text-[#a3e635]">
-              Contacto & Agendamento
-            </span>
+    <section className="relative overflow-hidden border-y border-zinc-900 bg-zinc-950 px-6 py-24 sm:py-28">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(163,230,53,0.10),transparent_36%)]" />
+      <div className="relative z-10 mx-auto max-w-4xl text-center">
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-60px" }} transition={{ duration: 0.5 }}>
+          <div className="inline-flex rounded-full border border-[#a3e635]/20 bg-[#a3e635]/10 px-3.5 py-1.5 text-[11px] font-mono font-bold uppercase tracking-widest text-[#a3e635]">
+            Próximo passo
           </div>
 
-          {/* Main Headline */}
-          <h2 className="text-balance text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tighter text-white leading-tight mb-6">
-            PRONTO PARA DAR
-            <span className="block text-3xl sm:text-5xl lg:text-6xl font-light text-zinc-400 mt-2">
-              uma nova vida ao teu equipamento?
-            </span>
+          <h2 className="mx-auto mt-5 max-w-3xl text-balance text-4xl font-extrabold tracking-tight text-white sm:text-6xl">
+            Não precisas de saber qual é o serviço certo.
           </h2>
-
-          {/* Subtitle */}
-          <p className="text-zinc-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed text-pretty mb-10">
-            Fale connosco pelo WhatsApp. Respondemos rapidamente e orientamos
-            sobre o melhor serviço para o seu equipamento.
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg">
+            Explica o que a tua máquina está a fazer, escolhe um serviço da lista ou escreve vários problemas no mesmo pedido. Nós orientamos o resto.
           </p>
 
-          {/* Primary Action Button */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button
-              type="button"
-              size="lg"
-              onClick={() => {
-                window.location.href = WHATSAPP_URL;
-              }}
-              className="group inline-flex cursor-pointer items-center justify-center gap-2.5 h-13 px-8 rounded-xl bg-[#a3e635] text-zinc-950 font-bold text-sm hover:bg-[#b8f542] transition-all duration-300 shadow-[0_0_20px_rgba(163,230,53,0.2)] hover:shadow-[0_0_25px_rgba(163,230,53,0.35)] active:scale-[0.98]"
-            >
-              <MessageCircle className="w-4 h-4 shrink-0" />
-              <span>Falar no WhatsApp</span>
-              <ArrowRight className="w-4 h-4 shrink-0 transition-transform duration-200 group-hover:translate-x-1" />
-            </Button>
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <a href="/marcacao" className="group inline-flex h-14 w-full items-center justify-center gap-2.5 rounded-xl bg-[#a3e635] px-7 text-sm font-extrabold text-zinc-950 shadow-[0_0_30px_rgba(163,230,53,0.22)] transition hover:bg-[#b8f542] sm:w-auto">
+              <MessageCircle className="h-4 w-4" />
+              Explicar o meu caso
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </a>
+            <a href="#servicos" className="inline-flex h-14 w-full items-center justify-center rounded-xl border border-zinc-800 bg-zinc-900 px-7 text-sm font-semibold text-zinc-200 transition hover:bg-zinc-800 sm:w-auto">
+              Rever serviços
+            </a>
           </div>
 
+          <div className="mt-7 flex flex-wrap justify-center gap-x-6 gap-y-2 text-[11px] text-zinc-500">
+            <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-[#a3e635]" /> Pedido guiado</span>
+            <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-[#a3e635]" /> WhatsApp</span>
+            <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-[#a3e635]" /> Sem formulários longos</span>
+          </div>
         </motion.div>
       </div>
     </section>
