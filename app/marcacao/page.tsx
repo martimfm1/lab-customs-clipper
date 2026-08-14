@@ -227,7 +227,7 @@ export default function BookingMessagePage() {
                           <div className="flex items-center justify-between gap-3">
                             <div className="min-w-0">
                               <p className={`text-sm font-semibold truncate transition-colors ${isSelected ? "text-[#a3e635]" : "text-zinc-200"}`}>{s.label}</p>
-                              <p className="text-xs text-zinc-500 mt-0.5 truncate">{s.description}</p>
+                              <p className="text-[10px] inline text-zinc-500 mt-0.5 truncate">{s.description}</p>
                             </div>
                             <div className={`w-4 h-4 rounded-full border shrink-0 transition-all flex items-center justify-center ${isSelected ? "border-[#a3e635] bg-[#a3e635]" : "border-zinc-700 bg-zinc-900"}`}>
                               {isSelected && <svg viewBox="0 0 16 16" fill="none" className="w-full h-full p-0.5"><path d="M3 8l4 4 6-6" stroke="#09090b" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" /></svg>}
