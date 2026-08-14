@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MessageCircle } from "lucide-react";
+import { MapPin, MessageCircle } from "lucide-react";
 import Image from "next/image";
 
 function InstagramIcon({ className }: { className?: string }) {
@@ -45,6 +45,7 @@ function YoutubeIcon({ className }: { className?: string }) {
 
 const INSTAGRAM_URL = "https://www.instagram.com/labcustomsclipper/";
 const YOUTUBE_URL = "https://www.youtube.com/@iameduardovictor";
+const MAPS_URL = "https://maps.app.goo.gl/qz1c46oZSvkWxLCd8";
 
 export default function Footer() {
   return (
@@ -100,10 +101,13 @@ export default function Footer() {
                 ["Plano de Prevenção", "#plano"],
                 ["Trabalhos", "#trabalhos"],
                 ["FAQ", "#faq"],
+                ["Localização", MAPS_URL],
               ].map(([label, href]) => (
                 <a
                   key={href}
                   href={href}
+                  target={href.startsWith("http") ? "_blank" : undefined}
+                  rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
                   className="text-sm text-zinc-400 hover:text-[#a3e635] transition-colors duration-200 w-fit"
                 >
                   {label}
@@ -122,6 +126,21 @@ export default function Footer() {
               Contactos
             </h3>
             <div className="flex flex-col gap-3">
+              <a
+                href={MAPS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 rounded-xl border border-zinc-800 bg-zinc-900/40 px-3 py-2.5 text-sm text-zinc-300 hover:border-[#a3e635]/40 hover:bg-zinc-900/70 hover:text-white transition-all duration-200 group w-full max-w-xs"
+              >
+                <div className="w-9 h-9 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center group-hover:border-[#a3e635]/40 group-hover:bg-[#a3e635]/10 transition-all duration-200">
+                  <MapPin className="w-4 h-4 text-zinc-400 group-hover:text-[#a3e635] transition-colors" />
+                </div>
+                <div className="min-w-0">
+                  <span className="block text-[10px] font-mono uppercase tracking-widest text-zinc-500">Localização</span>
+                  <span className="block truncate font-semibold text-zinc-200 group-hover:text-white">Ver estabelecimento no Google Maps</span>
+                </div>
+              </a>
+
               <a
                 href="https://wa.me/351926463182"
                 target="_blank"
