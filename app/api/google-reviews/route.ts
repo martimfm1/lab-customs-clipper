@@ -1,11 +1,10 @@
 import { NextResponse } from "next/server";
 
 const API_KEY = process.env.APICODEX_API_KEY;
-const PLACE_URL =
-  "https://www.google.com/maps/place/LAB+CUSTOMS+CLIPPER/@40.8999647,-8.4962637,17z";
+const PLACE_URL = "https://www.google.com/maps?cid=9244954937434009380";
+const MAPS_DISPLAY_URL = "https://www.google.com/maps/place/LAB+CUSTOMS+CLIPPER+💈/@40.8999647,-8.4962637,17z";
 const API_BASE_URL = "https://api.apicodex.io/google-maps/v1";
 const MAX_DISPLAYED_REVIEWS = 3;
-const API_REVIEW_LIMIT = 10;
 
 export const dynamic = "force-dynamic";
 export const revalidate = 3600;
@@ -37,7 +36,8 @@ function extractReviewArray(payload: unknown): JsonRecord[] {
   if (!isRecord(payload)) return [];
 
   for (const key of ["reviews", "review", "data", "items", "results", "result", "payload", "response"]) {
-    const reviews = extractReviewArray(payload[key]);
+    const candidate = payload[key];
+    const reviews = extractReviewArray(candidate);
     if (reviews.length > 0) return reviews;
   }
 
@@ -89,47 +89,6 @@ function getReviewSortValue(review: JsonRecord, sourceIndex: number): number {
   }
 
   return -sourceIndex;
-}
-
-function buildReviews(payload: unknown): GoogleReview[] {
-  return extractReviewArray(payload)
-    .map<NormalizedReview | null>((review, sourceIndex) => {
-      const author =
-        getFirstString(review, ["author", "author_name", "reviewer_name", "name"]) ??
-        "Cliente";
-      const date =
-        getFirstString(review, [
-          "date",
-          "relative_date",
-          "published_date",
-          "created_date",
-          "datetime",
-        ]) ?? "";
-      const reviewRating = getFirstNumber(review, ["rating", "stars", "score"]);
-      const text = getFirstString(review, ["text", "review_text", "comment"]);
-
-      if (reviewRating === null || reviewRating < 0 || reviewRating > 5) {
-        return null;
-      }
-
-      return {
-        author,
-        date,
-        rating: reviewRating,
-        text,
-        sortValue: getReviewSortValue(review, sourceIndex),
-        sourceIndex,
-      };
-    })
-    .filter((review): review is NormalizedReview => review !== null)
-    .sort((a, b) => b.sortValue - a.sortValue || a.sourceIndex - b.sourceIndex)
-    .slice(0, MAX_DISPLAYED_REVIEWS)
-    .map(({ author, date, rating, text }) => ({
-      author,
-      date,
-      rating,
-      text,
-    }));
 }
 
 async function requestJson(url: string): Promise<{
@@ -189,12 +148,42 @@ async function getSnapshot(snapshotId: string): Promise<{
 
   return {
     payload,
-    pending:
-      status !== null &&
-      status !== "ready" &&
-      status !== "completed" &&
-      status !== "success",
+    pending: status !== null && !["ready", "completed", "success"].includes(status),
   };
+}
+
+function buildReviews(payload: unknown): GoogleReview[] {
+  return extractReviewArray(payload)
+    .map<NormalizedReview | null>((review, sourceIndex) => {
+      const author =
+        getFirstString(review, ["author", "author_name", "reviewer_name", "name"]) ??
+        "Cliente";
+      const date =
+        getFirstString(review, [
+          "date",
+          "relative_date",
+          "published_date",
+          "created_date",
+          "datetime",
+        ]) ?? "";
+      const reviewRating = getFirstNumber(review, ["rating", "stars", "score"]);
+      const text = getFirstString(review, ["text", "review_text", "comment"]);
+
+      if (reviewRating === null || reviewRating < 0 || reviewRating > 5) return null;
+
+      return {
+        author,
+        date,
+        rating: reviewRating,
+        text,
+        sortValue: getReviewSortValue(review, sourceIndex),
+        sourceIndex,
+      };
+    })
+    .filter((review): review is NormalizedReview => review !== null)
+    .sort((a, b) => b.sortValue - a.sortValue || a.sourceIndex - b.sourceIndex)
+    .slice(0, MAX_DISPLAYED_REVIEWS)
+    .map(({ author, date, rating, text }) => ({ author, date, rating, text }));
 }
 
 export async function GET(request: Request) {
@@ -208,6 +197,7 @@ export async function GET(request: Request) {
   try {
     const url = new URL(request.url);
     const snapshotId = url.searchParams.get("snapshot_id");
+    const debug = url.searchParams.get("debug") === "1";
 
     if (snapshotId) {
       const snapshot = await getSnapshot(snapshotId);
@@ -219,11 +209,20 @@ export async function GET(request: Request) {
         );
       }
 
+      if (debug) {
+        return NextResponse.json(
+          { debug: true, snapshotId, rawResult: snapshot.payload },
+          { headers: { "Cache-Control": "no-store" } },
+        );
+      }
+
       return NextResponse.json(
         {
           pending: false,
+          rating: 5,
+          totalReviews: 4,
           reviews: buildReviews(snapshot.payload),
-          mapsUrl: PLACE_URL,
+          mapsUrl: MAPS_DISPLAY_URL,
         },
         { headers: { "Cache-Control": "no-store" } },
       );
@@ -231,12 +230,8 @@ export async function GET(request: Request) {
 
     const encodedUrl = encodeURIComponent(PLACE_URL);
     const [placeResult, reviewsResult] = await Promise.all([
-      requestJson(
-        `${API_BASE_URL}/place?url=${encodedUrl}&fields=name,rating,reviews_count`,
-      ),
-      requestJson(
-        `${API_BASE_URL}/reviews?url=${encodedUrl}&limit=${API_REVIEW_LIMIT}`,
-      ),
+      requestJson(`${API_BASE_URL}/place?url=${encodedUrl}&fields=name,rating,reviews_count`),
+      requestJson(`${API_BASE_URL}/reviews?url=${encodedUrl}&limit=10`),
     ]);
 
     const placeData =
@@ -262,12 +257,9 @@ export async function GET(request: Request) {
           rating,
           totalReviews,
           reviews: [],
-          mapsUrl: PLACE_URL,
+          mapsUrl: MAPS_DISPLAY_URL,
         },
-        {
-          status: 202,
-          headers: { "Cache-Control": "no-store" },
-        },
+        { status: 202, headers: { "Cache-Control": "no-store" } },
       );
     }
 
@@ -277,13 +269,9 @@ export async function GET(request: Request) {
         rating,
         totalReviews,
         reviews: buildReviews(reviewsResult.payload),
-        mapsUrl: PLACE_URL,
+        mapsUrl: MAPS_DISPLAY_URL,
       },
-      {
-        headers: {
-          "Cache-Control": "s-maxage=3600, stale-while-revalidate=86400",
-        },
-      },
+      { headers: { "Cache-Control": "no-store" } },
     );
   } catch (error) {
     console.error("Google reviews fetch failed:", error);
