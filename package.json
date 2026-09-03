@@ -9,8 +9,7 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "format": "npx prettier --write .",
-    "qa": "pnpm lint && pnpm typecheck && pnpm build && pnpm format",
-    "update:google-rating": "node scripts/update-google-rating.mjs"
+    "qa": "pnpm lint && pnpm typecheck && pnpm build && pnpm format"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
