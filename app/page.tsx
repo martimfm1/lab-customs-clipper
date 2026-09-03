@@ -4,6 +4,7 @@ import TrustSection from "@/components/trust-section";
 import ServicesSection from "@/components/services-section";
 import ProcessSection from "@/components/process-section";
 import PortfolioSection from "@/components/portfolio-section";
+import GoogleReviewsSection from "@/components/google-reviews-section";
 import FaqSection from "@/components/faq-section";
 import CtaSection from "@/components/cta-section";
 import Footer from "@/components/footer";
@@ -17,6 +18,7 @@ export default function Home() {
       <ServicesSection />
       <ProcessSection />
       <PortfolioSection />
+      <GoogleReviewsSection />
       <FaqSection />
       <CtaSection />
       <Footer />
