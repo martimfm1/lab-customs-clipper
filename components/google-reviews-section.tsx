@@ -21,7 +21,7 @@ type GoogleReviewsResponse = {
 
 const fallbackData: GoogleReviewsResponse = {
   rating: 5,
-  totalReviews: 3,
+  totalReviews: 4,
   reviews: [
     { author: "Hiago Oliveira", date: "01/09/2026", rating: 5, text: "Recomendo de olhos fechados!!!!" },
     { author: "Ruben Teixeira", date: "02/09/2026", rating: 5, text: "Profissionalismo em pessoa !" },
@@ -67,7 +67,10 @@ export default function GoogleReviewsSection() {
           Number.isInteger(nextData.totalReviews) &&
           Array.isArray(nextData.reviews)
         ) {
-          setData(nextData);
+          setData({
+            ...nextData,
+            reviews: nextData.reviews.slice(0, 3),
+          });
         }
       } catch (error) {
         if (!(error instanceof DOMException && error.name === "AbortError")) {
