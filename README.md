@@ -39,7 +39,7 @@ Estes valores são utilizados na secção de confiança do site e no `AggregateR
 
 ### Scraper
 
-A atualização usa o [API Codex Google Maps Data API](https://apicodex.io/google-maps-data-api), que aceita diretamente uma URL pública do Google Maps e devolve `rating` e `reviews_count`. O plano gratuito anunciado atualmente inclui 1.000 créditos por mês, cerca de 40 pedidos/mês, sem cartão de crédito. citeturn100834view0
+A atualização usa o API Codex Google Maps Data API, que aceita diretamente uma URL pública do Google Maps e devolve `rating` e `reviews_count`. O plano gratuito anunciado inclui 1.000 créditos por mês, cerca de 40 pedidos/mês e não exige cartão de crédito.
 
 ### GitHub Actions
 
@@ -49,7 +49,7 @@ O workflow está em:
 .github/workflows/google-rating.yml
 ```
 
-Executa automaticamente uma vez por dia e também pode ser executado manualmente através do `workflow_dispatch`. O workflow só cria um commit quando o rating, o número de avaliações ou a data de atualização mudam.
+Executa automaticamente uma vez por dia e também pode ser executado manualmente através do `workflow_dispatch`. O workflow só cria um commit quando os dados gerados mudam.
 
 ### Secret obrigatório
 
