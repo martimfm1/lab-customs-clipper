@@ -7,6 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "typecheck": "tsc --noEmit",
+    "format": "npx prettier --write .",
+    "qa": "pnpm lint && pnpm typecheck && pnpm build && pnpm format",
     "update:google-rating": "node scripts/update-google-rating.mjs"
   },
   "dependencies": {
