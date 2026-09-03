@@ -13,7 +13,6 @@ type GoogleReview = {
 };
 
 type GoogleReviewsResponse = {
-  pending?: false;
   rating: number;
   totalReviews: number;
   reviews: GoogleReview[];
@@ -87,7 +86,6 @@ function isFullResponse(value: unknown): value is GoogleReviewsResponse {
   const data = value as Partial<GoogleReviewsResponse>;
 
   return (
-    data.pending !== true &&
     Number.isFinite(data.rating) &&
     Number.isInteger(data.totalReviews) &&
     Array.isArray(data.reviews) &&
