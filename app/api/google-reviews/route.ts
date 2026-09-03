@@ -6,8 +6,6 @@ const PLACE_URL =
 const API_BASE_URL = "https://api.apicodex.io/google-maps/v1";
 const MAX_DISPLAYED_REVIEWS = 3;
 
-// This endpoint must only execute when requested. The scraper can return a 202
-// snapshot and complete asynchronously, so running it during `next build` is unsafe.
 export const dynamic = "force-dynamic";
 export const revalidate = 3600;
 
@@ -100,16 +98,14 @@ function getReviewSortValue(review: JsonRecord, sourceIndex: number): number {
     }
   }
 
-  // API Codex normally returns reviews in recent-first order. Preserve that
-  // order when Google provides only a relative date such as “2 days ago”.
   return -sourceIndex;
 }
 
-async function sleep(milliseconds: number) {
-  await new Promise((resolve) => setTimeout(resolve, milliseconds));
-}
-
-async function requestJson(url: string): Promise<unknown> {
+async function requestJson(url: string): Promise<{
+  payload: unknown;
+  status: number;
+  snapshotId: string | null;
+}> {
   const response = await fetch(url, {
     headers: {
       "X-Api-Key": API_KEY as string,
@@ -119,59 +115,102 @@ async function requestJson(url: string): Promise<unknown> {
   });
 
   const payload = await response.json().catch(() => null);
+  const snapshotId =
+    isRecord(payload) && typeof payload.snapshot_id === "string"
+      ? payload.snapshot_id
+      : null;
 
-  if (response.status === 202 && isRecord(payload) && typeof payload.snapshot_id === "string") {
-    return waitForSnapshot(payload.snapshot_id);
-  }
+  if (!response.ok && response.status !== 202) {
+    const errorCode =
+      isRecord(payload) && typeof payload.error === "string" ? payload.error : null;
 
-  if (!response.ok) {
-    const errorCode = isRecord(payload) && typeof payload.error === "string" ? payload.error : null;
     throw new Error(
       `API Codex request failed with ${response.status}${errorCode ? ` (${errorCode})` : ""}`,
     );
   }
 
-  return payload;
+  return { payload, status: response.status, snapshotId };
 }
 
-async function waitForSnapshot(snapshotId: string): Promise<unknown> {
-  const maxAttempts = 8;
-  const pollDelay = 1500;
-  const encodedSnapshotId = encodeURIComponent(snapshotId);
-
-  for (let attempt = 0; attempt < maxAttempts; attempt += 1) {
-    const response = await fetch(
-      `${API_BASE_URL}/result?snapshot_id=${encodedSnapshotId}`,
-      {
-        headers: {
-          "X-Api-Key": API_KEY as string,
-          Accept: "application/json",
-        },
-        cache: "no-store",
+async function getSnapshot(snapshotId: string): Promise<{
+  payload: unknown;
+  pending: boolean;
+}> {
+  const response = await fetch(
+    `${API_BASE_URL}/result?snapshot_id=${encodeURIComponent(snapshotId)}`,
+    {
+      headers: {
+        "X-Api-Key": API_KEY as string,
+        Accept: "application/json",
       },
-    );
+      cache: "no-store",
+    },
+  );
 
-    const payload = await response.json().catch(() => null);
+  const payload = await response.json().catch(() => null);
 
-    if (!response.ok) {
-      throw new Error(`API Codex snapshot request failed with ${response.status}`);
-    }
-
-    const status = isRecord(payload) && typeof payload.status === "string" ? payload.status : null;
-
-    if (status === "ready" || status === "completed" || status === "success") {
-      return payload;
-    }
-
-    if (attempt < maxAttempts - 1) {
-      await sleep(pollDelay);
-    }
+  if (!response.ok) {
+    throw new Error(`API Codex snapshot request failed with ${response.status}`);
   }
 
-  throw new Error("API Codex review scrape timed out while waiting for the snapshot.");
+  const status =
+    isRecord(payload) && typeof payload.status === "string" ? payload.status : null;
+
+  return {
+    payload,
+    pending: status !== null && status !== "ready" && status !== "completed" && status !== "success",
+  };
 }
 
-export async function GET() {
+function buildReviews(payload: unknown): GoogleReview[] {
+  return extractReviewArray(payload)
+    .map<NormalizedReview | null>((review, sourceIndex) => {
+      const author =
+        getFirstString(review, ["author", "author_name", "reviewer_name", "name"]) ??
+        "Cliente";
+      const date =
+        getFirstString(review, [
+          "date",
+          "relative_date",
+          "published_date",
+          "created_date",
+          "datetime",
+        ]) ?? "";
+      const reviewRating = getFirstNumber(review, ["rating", "stars", "score"]);
+      const text = getFirstString(review, ["text", "review_text", "comment"]);
+
+      if (reviewRating === null || reviewRating < 0 || reviewRating > 5) {
+        return null;
+      }
+
+      return {
+        author,
+        date,
+        rating: reviewRating,
+        text,
+        sortValue: getReviewSortValue(review, sourceIndex),
+        sourceIndex,
+      };
+    })
+    .filter((review): review is NormalizedReview => review !== null)
+    .sort((a, b) => b.sortValue - a.sortValue || a.sourceIndex - b.sourceIndex)
+    .slice(0, MAX_DISPLAYED_REVIEWS)
+    .map(({ author, date, rating, text }) => ({
+      author,
+      date,
+      rating,
+      text,
+    }));
+}
+
+type GoogleReview = {
+  author: string;
+  date: string;
+  rating: number;
+  text: string | null;
+};
+
+export async function GET(request: Request) {
   if (!API_KEY) {
     return NextResponse.json(
       { error: "Google reviews service is not configured." },
@@ -180,19 +219,47 @@ export async function GET() {
   }
 
   try {
+    const url = new URL(request.url);
+    const snapshotId = url.searchParams.get("snapshot_id");
+
+    if (snapshotId) {
+      const snapshot = await getSnapshot(snapshotId);
+
+      if (snapshot.pending) {
+        return NextResponse.json(
+          { pending: true, snapshotId },
+          { status: 202, headers: { "Cache-Control": "no-store" } },
+        );
+      }
+
+      const reviews = buildReviews(snapshot.payload);
+
+      return NextResponse.json(
+        {
+          pending: false,
+          reviews,
+          mapsUrl: PLACE_URL,
+        },
+        { headers: { "Cache-Control": "no-store" } },
+      );
+    }
+
     const encodedUrl = encodeURIComponent(PLACE_URL);
-    const [placePayload, reviewsPayload] = await Promise.all([
+    const [placeResult, reviewsResult] = await Promise.all([
       requestJson(
         `${API_BASE_URL}/place?url=${encodedUrl}&fields=name,rating,reviews_count`,
       ),
-      requestJson(`${API_BASE_URL}/reviews?url=${encodedUrl}&limit=50`),
+      requestJson(
+        `${API_BASE_URL}/reviews?url=${encodedUrl}&limit=${MAX_DISPLAYED_REVIEWS}&days_limit=90`,
+      ),
     ]);
 
     const placeData =
-      isRecord(placePayload) && isRecord(placePayload.data) ? placePayload.data : {};
+      isRecord(placeResult.payload) && isRecord(placeResult.payload.data)
+        ? placeResult.payload.data
+        : {};
     const rating = Number(placeData.rating);
     const totalReviews = Number(placeData.reviews_count);
-    const rawReviews = extractReviewArray(reviewsPayload);
 
     if (!Number.isFinite(rating) || rating < 0 || rating > 5) {
       throw new Error("Invalid Google rating received.");
@@ -202,50 +269,29 @@ export async function GET() {
       throw new Error("Invalid Google review count received.");
     }
 
-    const reviews = rawReviews
-      .map<NormalizedReview | null>((review, sourceIndex) => {
-        const author =
-          getFirstString(review, ["author", "author_name", "reviewer_name", "name"]) ??
-          "Cliente";
-        const date =
-          getFirstString(review, [
-            "date",
-            "relative_date",
-            "published_date",
-            "created_date",
-            "datetime",
-          ]) ?? "";
-        const reviewRating = getFirstNumber(review, ["rating", "stars", "score"]);
-        const text = getFirstString(review, ["text", "review_text", "comment"]);
-
-        if (reviewRating === null || reviewRating < 0 || reviewRating > 5) {
-          return null;
-        }
-
-        return {
-          author,
-          date,
-          rating: reviewRating,
-          text,
-          sortValue: getReviewSortValue(review, sourceIndex),
-          sourceIndex,
-        };
-      })
-      .filter((review): review is NormalizedReview => review !== null)
-      .sort((a, b) => b.sortValue - a.sortValue || a.sourceIndex - b.sourceIndex)
-      .slice(0, MAX_DISPLAYED_REVIEWS)
-      .map(({ author, date, rating: reviewRating, text }) => ({
-        author,
-        date,
-        rating: reviewRating,
-        text,
-      }));
+    if (reviewsResult.status === 202 && reviewsResult.snapshotId) {
+      return NextResponse.json(
+        {
+          pending: true,
+          snapshotId: reviewsResult.snapshotId,
+          rating,
+          totalReviews,
+          reviews: [],
+          mapsUrl: PLACE_URL,
+        },
+        {
+          status: 202,
+          headers: { "Cache-Control": "no-store" },
+        },
+      );
+    }
 
     return NextResponse.json(
       {
+        pending: false,
         rating,
         totalReviews,
-        reviews,
+        reviews: buildReviews(reviewsResult.payload),
         mapsUrl: PLACE_URL,
       },
       {
