@@ -6,6 +6,9 @@ const PLACE_URL =
 const API_BASE_URL = "https://api.apicodex.io/google-maps/v1";
 const MAX_DISPLAYED_REVIEWS = 3;
 
+// This endpoint must only execute when requested. The scraper can return a 202
+// snapshot and complete asynchronously, so running it during `next build` is unsafe.
+export const dynamic = "force-dynamic";
 export const revalidate = 3600;
 
 type JsonRecord = Record<string, unknown>;
@@ -33,8 +36,7 @@ function extractReviewArray(payload: unknown): JsonRecord[] {
   }
 
   for (const key of ["reviews", "data", "items", "results"]) {
-    const value = payload[key];
-    const reviews = extractReviewArray(value);
+    const reviews = extractReviewArray(payload[key]);
 
     if (reviews.length > 0) {
       return reviews;
@@ -98,8 +100,8 @@ function getReviewSortValue(review: JsonRecord, sourceIndex: number): number {
     }
   }
 
-  // API Codex normally returns reviews in Google’s recent-first order.
-  // Keep that order when Google provides a relative date such as “2 days ago”.
+  // API Codex normally returns reviews in recent-first order. Preserve that
+  // order when Google provides only a relative date such as “2 days ago”.
   return -sourceIndex;
 }
 
@@ -186,7 +188,8 @@ export async function GET() {
       requestJson(`${API_BASE_URL}/reviews?url=${encodedUrl}&limit=50`),
     ]);
 
-    const placeData = isRecord(placePayload) && isRecord(placePayload.data) ? placePayload.data : {};
+    const placeData =
+      isRecord(placePayload) && isRecord(placePayload.data) ? placePayload.data : {};
     const rating = Number(placeData.rating);
     const totalReviews = Number(placeData.reviews_count);
     const rawReviews = extractReviewArray(reviewsPayload);
@@ -215,11 +218,7 @@ export async function GET() {
         const reviewRating = getFirstNumber(review, ["rating", "stars", "score"]);
         const text = getFirstString(review, ["text", "review_text", "comment"]);
 
-        if (
-          reviewRating === null ||
-          reviewRating < 0 ||
-          reviewRating > 5
-        ) {
+        if (reviewRating === null || reviewRating < 0 || reviewRating > 5) {
           return null;
         }
 
