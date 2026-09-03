@@ -4,8 +4,6 @@ import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 import GoogleReviewCta from "@/components/google-review-cta";
 
-const googleRating = 5;
-
 const googleReviews = [
   {
     author: "Hiago Oliveira",
@@ -26,6 +24,12 @@ const googleReviews = [
     text: null,
   },
 ] as const;
+
+const googleRating =
+  googleReviews.length > 0
+    ? googleReviews.reduce((total, review) => total + review.rating, 0) /
+      googleReviews.length
+    : 0;
 
 function ReviewStars({ rating }: { rating: number }) {
   return (
@@ -57,7 +61,7 @@ export default function GoogleReviewsSection() {
         >
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-[#a3e635]/20 bg-[#a3e635]/10 px-3 py-1 text-[11px] font-mono font-bold uppercase tracking-widest text-[#a3e635]">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#a3e635] animate-pulse" />
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#a3e635]" />
               Opiniões verificadas
             </div>
             <h2 className="mt-5 text-balance text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
@@ -77,7 +81,9 @@ export default function GoogleReviewsSection() {
             <span className="text-sm font-bold text-white">
               {googleRating.toFixed(1)}
             </span>
-            <span className="text-sm text-zinc-500">no Google</span>
+            <span className="text-sm text-zinc-500">
+              no Google · {googleReviews.length} avaliações
+            </span>
           </div>
         </motion.div>
 
