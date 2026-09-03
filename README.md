@@ -1,165 +1,35 @@
-# LAB Customs Clipper
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-Website oficial da LAB Customs Clipper, oficina especializada em manutenção, reparação e otimização de equipamento profissional de barbearia em Portugal.
+## Getting Started
 
-**Produção:** https://labcustomsclipper.pt
-
-## O que o site inclui
-
-- Landing page orientada para conversão e marcação de serviços.
-- Serviços de manutenção preventiva, reparação e envio de equipamento.
-- Formulário de marcação em `/marcacao`.
-- Informação de garantia, processo e equipamentos compatíveis.
-- Links para WhatsApp, Instagram, YouTube e Google Maps.
-- SEO técnico com metadata, canonical, sitemap, robots e structured data.
-- Open Graph image e assets PWA.
-- UI responsiva, mobile-first e preparada para desktop.
-- Componentes baseados em shadcn/Base UI, Tailwind CSS e Framer Motion.
-
-## Google Rating dinâmico
-
-O rating e o número de avaliações do Google são atualizados automaticamente através de um scraper de terceiros, sem usar a Google Places API.
-
-Os valores consumidos pelo site ficam em:
-
-```text
-lib/google-rating.ts
-```
-
-O ficheiro expõe:
-
-```ts
-export const googleRating = 5;
-export const googleReviewCount = 4;
-export const googleRatingUpdatedAt = "...";
-export const googleMapsUrl = "...";
-```
-
-Estes valores são utilizados na secção de confiança do site e no `AggregateRating` do JSON-LD.
-
-### Scraper
-
-A atualização usa o API Codex Google Maps Data API, que aceita diretamente uma URL pública do Google Maps e devolve `rating` e `reviews_count`. O plano gratuito anunciado inclui 1.000 créditos por mês, cerca de 40 pedidos/mês e não exige cartão de crédito.
-
-### GitHub Actions
-
-O workflow está em:
-
-```text
-.github/workflows/google-rating.yml
-```
-
-Executa automaticamente uma vez por dia e também pode ser executado manualmente através do `workflow_dispatch`. O workflow só cria um commit quando os dados gerados mudam.
-
-### Secret obrigatório
-
-No GitHub, adicionar o secret:
-
-```text
-APICODEX_API_KEY
-```
-
-O valor é usado exclusivamente pela GitHub Action. Nunca colocar a chave no frontend, no `.env` versionado ou no código público.
-
-### Execução manual local
+First, run the development server:
 
 ```bash
-APICODEX_API_KEY="a_tua_chave" pnpm update:google-rating
-```
-
-No Windows PowerShell:
-
-```powershell
-$env:APICODEX_API_KEY="a_tua_chave"
-pnpm update:google-rating
-```
-
-## Desenvolvimento
-
-Instalar dependências:
-
-```bash
-pnpm install
-```
-
-Servidor local:
-
-```bash
+npm run dev
+# or
+yarn dev
+# or
 pnpm dev
+# or
+bun dev
 ```
 
-Abrir `http://localhost:3000`.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Build de produção:
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-```bash
-pnpm build
-```
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing-fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-Lint:
+## Learn More
 
-```bash
-pnpm lint
-```
+To learn more about Next.js, take a look at the following resources:
 
-## Stack
 
-- Next.js 16
-- React 19
-- TypeScript
-- Tailwind CSS 4
-- shadcn/Base UI
-- Framer Motion
-- Lucide React
-- pnpm
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Segurança
 
-- Chaves de terceiros apenas em GitHub Actions secrets.
-- Nenhum segredo é enviado para o browser.
-- O workflow tem `contents: write` apenas para atualizar o ficheiro de dados gerado.
-- O scraper valida a resposta antes de substituir os valores publicados.
-- Em caso de falha do scraper, o site mantém os últimos valores conhecidos.
+## Deploy on Vercel
 
-## Deploy
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-O projeto está preparado para deploy na Vercel. Uma atualização automática do rating gera um commit no `main`, permitindo que o deploy automático publique os novos dados.
-
-## Estrutura relevante
-
-```text
-app/
-├── layout.tsx
-├── page.tsx
-└── marcacao/
-
-components/
-├── hero.tsx
-├── trust-section.tsx
-├── services-section.tsx
-├── process-section.tsx
-├── portfolio-section.tsx
-├── faq-section.tsx
-├── cta-section.tsx
-├── footer.tsx
-└── ui/
-
-lib/
-├── google-rating.ts
-└── utils.ts
-
-scripts/
-└── update-google-rating.mjs
-
-.github/
-└── workflows/
-    └── google-rating.yml
-```
-
-## Conteúdo empresarial
-
-A manutenção preventiva está definida desde **8€ por máquina**. Para serviços acima de **60€**, o cliente fica isento do pagamento do envio de devolução. A garantia publicada é de **90 dias** para motores, placas de circuito e baterias, não cobrindo quedas, impactos ou intervenções fora da oficina.
-
-## Licença
-
-Projeto privado da LAB Customs Clipper.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
