@@ -160,7 +160,8 @@ const structuredData = {
           itemOffered: {
             "@type": "Service",
             name: "Manutenção Preventiva de Máquinas de Corte",
-            description: "Limpeza técnica, lubrificação, afinação, alinhamento e testes de funcionamento.",
+            description:
+              "Limpeza técnica, lubrificação, afinação, alinhamento e testes de funcionamento.",
           },
           price: "8",
           priceCurrency: "EUR",
@@ -170,7 +171,8 @@ const structuredData = {
           itemOffered: {
             "@type": "Service",
             name: "Manutenção Corretiva de Clippers, Trimmers e Shavers",
-            description: "Diagnóstico técnico e reparação de avarias em equipamento profissional.",
+            description:
+              "Diagnóstico técnico e reparação de avarias em equipamento profissional.",
           },
         },
         {
@@ -178,7 +180,8 @@ const structuredData = {
           itemOffered: {
             "@type": "Service",
             name: "Envio de Equipamento para Manutenção",
-            description: "Receção, intervenção e devolução de equipamento enviado para a oficina.",
+            description:
+              "Receção, intervenção e devolução de equipamento enviado para a oficina.",
           },
         },
         {

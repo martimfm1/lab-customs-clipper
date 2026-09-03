@@ -43,7 +43,10 @@ function ReviewStars({ rating }: { rating: number }) {
 
 export default function GoogleReviewsSection() {
   return (
-    <section id="avaliacoes" className="relative overflow-hidden border-y border-zinc-900 bg-zinc-950 px-6 py-24 sm:py-28">
+    <section
+      id="avaliacoes"
+      className="relative overflow-hidden border-y border-zinc-900 bg-zinc-950 px-6 py-24 sm:py-28"
+    >
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -90,7 +93,11 @@ export default function GoogleReviewsSection() {
             >
               <ReviewStars rating={review.rating} />
               <p className="mt-5 flex-1 text-sm leading-7 text-zinc-300">
-                {review.text ? <>&ldquo;{review.text}&rdquo;</> : "Sem comentário escrito."}
+                {review.text ? (
+                  <>&ldquo;{review.text}&rdquo;</>
+                ) : (
+                  "Sem comentário escrito."
+                )}
               </p>
               <div className="mt-6 flex items-center gap-3 border-t border-white/10 pt-4">
                 <div className="flex h-9 w-9 items-center justify-center rounded-full bg-zinc-800 text-sm font-bold text-zinc-200">

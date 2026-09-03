@@ -61,7 +61,10 @@ const works = [
 
 export default function PortfolioSection() {
   return (
-    <section id="trabalhos" className="py-24 relative overflow-hidden bg-zinc-950">
+    <section
+      id="trabalhos"
+      className="py-24 relative overflow-hidden bg-zinc-950"
+    >
       {/* Grid Pattern & Ambient Glow */}
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#1f293710_1px,transparent_1px),linear-gradient(to_bottom,#1f293710_1px,transparent_1px)] bg-[size:4rem_4rem]" />
       <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#a3e635]/5 blur-[140px] rounded-full" />
@@ -83,7 +86,8 @@ export default function PortfolioSection() {
             Trabalhos Realizados.
           </h2>
           <p className="mt-4 text-zinc-400 text-base sm:text-lg leading-relaxed">
-            Uma amostra da nossa precisão, rigor técnico e atenção ao detalhe em cada equipamento.
+            Uma amostra da nossa precisão, rigor técnico e atenção ao detalhe em
+            cada equipamento.
           </p>
         </motion.div>
 
@@ -134,7 +138,9 @@ export default function PortfolioSection() {
             className="group flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-zinc-900/80 text-zinc-200 border border-zinc-800 hover:bg-zinc-800 hover:text-white hover:border-zinc-700 transition-all duration-200 shadow-md active:scale-[0.98]"
           >
             <InstagramIcon className="w-4 h-4 text-[#a3e635] shrink-0" />
-            <span className="text-xs font-bold tracking-wide">Ver Trabalhos no Instagram</span>
+            <span className="text-xs font-bold tracking-wide">
+              Ver Trabalhos no Instagram
+            </span>
             <ExternalLink className="w-3.5 h-3.5 text-zinc-400 group-hover:text-white transition-colors shrink-0" />
           </a>
         </motion.div>

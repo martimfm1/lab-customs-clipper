@@ -13,7 +13,10 @@ export default function Loading() {
       role="status"
     >
       {/* Blueprint grid */}
-      <div className="absolute inset-0 blueprint-bg opacity-60 pointer-events-none" aria-hidden="true" />
+      <div
+        className="absolute inset-0 blueprint-bg opacity-60 pointer-events-none"
+        aria-hidden="true"
+      />
 
       {/* Ambient radial glow */}
       <div
@@ -26,10 +29,11 @@ export default function Loading() {
       />
 
       <div className="relative z-10 flex flex-col items-center gap-10">
-
         {/* ── Gear / Spinner ── */}
-        <div className="relative w-32 h-32 flex items-center justify-center" aria-hidden="true">
-
+        <div
+          className="relative w-32 h-32 flex items-center justify-center"
+          aria-hidden="true"
+        >
           {/* Outer rotating ring */}
           <motion.svg
             viewBox="0 0 120 120"
@@ -38,7 +42,9 @@ export default function Loading() {
             transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
           >
             <circle
-              cx="60" cy="60" r="54"
+              cx="60"
+              cy="60"
+              r="54"
               fill="none"
               stroke="rgba(163,230,53,0.12)"
               strokeWidth="1"
@@ -56,7 +62,9 @@ export default function Loading() {
                   y1={60 + inner * Math.sin(angle)}
                   x2={60 + outer * Math.cos(angle)}
                   y2={60 + outer * Math.sin(angle)}
-                  stroke={isMajor ? "rgba(163,230,53,0.5)" : "rgba(163,230,53,0.2)"}
+                  stroke={
+                    isMajor ? "rgba(163,230,53,0.5)" : "rgba(163,230,53,0.2)"
+                  }
                   strokeWidth={isMajor ? 1.5 : 0.8}
                 />
               );
@@ -71,7 +79,9 @@ export default function Loading() {
             transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
           >
             <circle
-              cx="60" cy="60" r="42"
+              cx="60"
+              cy="60"
+              r="42"
               fill="none"
               stroke="rgba(163,230,53,0.2)"
               strokeWidth="1.5"
@@ -155,7 +165,6 @@ export default function Loading() {
             transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
           />
         </motion.div>
-
       </div>
     </main>
   );

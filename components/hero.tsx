@@ -1,7 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2, MessageCircle, ShieldCheck, Wrench } from "lucide-react";
+import {
+  ArrowRight,
+  CheckCircle2,
+  MessageCircle,
+  ShieldCheck,
+  Wrench,
+} from "lucide-react";
 import Image from "next/image";
 
 const trustPoints = [
@@ -12,7 +18,10 @@ const trustPoints = [
 
 export default function Hero() {
   return (
-    <section id="inicio" className="relative overflow-hidden bg-zinc-950 px-6 pb-20 pt-28 sm:px-8 sm:pb-24 sm:pt-32">
+    <section
+      id="inicio"
+      className="relative overflow-hidden bg-zinc-950 px-6 pb-20 pt-28 sm:px-8 sm:pb-24 sm:pt-32"
+    >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_75%_35%,rgba(163,230,53,0.10),transparent_30%),linear-gradient(to_right,#1f293710_1px,transparent_1px),linear-gradient(to_bottom,#1f293710_1px,transparent_1px)] bg-[size:auto,4rem_4rem,4rem_4rem]" />
 
       <div className="relative z-10 mx-auto grid min-h-[78dvh] max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10">
@@ -32,7 +41,9 @@ export default function Hero() {
           </h1>
 
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-zinc-300 sm:text-xl">
-            Reparação de clippers, trimmers e shavers, manutenção preventiva e planos para equipamento profissional de barbearia em Portugal — com diagnóstico técnico e acompanhamento direto.
+            Reparação de clippers, trimmers e shavers, manutenção preventiva e
+            planos para equipamento profissional de barbearia em Portugal — com
+            diagnóstico técnico e acompanhamento direto.
           </p>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -54,7 +65,10 @@ export default function Hero() {
 
           <div className="mt-8 grid gap-3 sm:grid-cols-3">
             {trustPoints.map((point) => (
-              <div key={point} className="flex items-start gap-2 text-xs leading-relaxed text-zinc-400">
+              <div
+                key={point}
+                className="flex items-start gap-2 text-xs leading-relaxed text-zinc-400"
+              >
                 <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#a3e635]" />
                 <span>{point}</span>
               </div>
@@ -62,8 +76,14 @@ export default function Hero() {
           </div>
 
           <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-zinc-900 pt-5 text-[11px] font-mono uppercase tracking-wider text-zinc-600">
-            <span className="inline-flex items-center gap-2"><ShieldCheck className="h-3.5 w-3.5 text-[#a3e635]" /> Processo acompanhado</span>
-            <span className="inline-flex items-center gap-2"><Wrench className="h-3.5 w-3.5 text-[#a3e635]" /> Diagnóstico técnico</span>
+            <span className="inline-flex items-center gap-2">
+              <ShieldCheck className="h-3.5 w-3.5 text-[#a3e635]" /> Processo
+              acompanhado
+            </span>
+            <span className="inline-flex items-center gap-2">
+              <Wrench className="h-3.5 w-3.5 text-[#a3e635]" /> Diagnóstico
+              técnico
+            </span>
           </div>
         </motion.div>
 
@@ -85,8 +105,12 @@ export default function Hero() {
             className="relative z-10 w-[280px] object-contain drop-shadow-[0_20px_45px_rgba(163,230,53,0.20)] sm:w-[360px] lg:w-[460px]"
           />
           <div className="absolute bottom-5 left-1/2 z-20 -translate-x-1/2 rounded-xl border border-zinc-800 bg-zinc-900/90 px-4 py-2.5 text-center backdrop-blur-md">
-            <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#a3e635]">Engenharia de precisão</div>
-            <div className="mt-1 text-xs text-zinc-400">Preparada para uso profissional</div>
+            <div className="text-[10px] font-mono font-bold uppercase tracking-widest text-[#a3e635]">
+              Engenharia de precisão
+            </div>
+            <div className="mt-1 text-xs text-zinc-400">
+              Preparada para uso profissional
+            </div>
           </div>
         </motion.div>
       </div>

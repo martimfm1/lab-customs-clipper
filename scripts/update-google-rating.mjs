@@ -20,7 +20,9 @@ const response = await fetch(ENDPOINT, {
 
 if (!response.ok) {
   const body = await response.text();
-  throw new Error(`API Codex request failed (${response.status}): ${body.slice(0, 500)}`);
+  throw new Error(
+    `API Codex request failed (${response.status}): ${body.slice(0, 500)}`,
+  );
 }
 
 const payload = await response.json();
@@ -29,7 +31,9 @@ const rating = Number(place?.rating);
 const reviewCount = Number(place?.reviews_count);
 
 if (!Number.isFinite(rating) || rating < 0 || rating > 5) {
-  throw new Error(`Invalid Google rating returned: ${JSON.stringify(place?.rating)}`);
+  throw new Error(
+    `Invalid Google rating returned: ${JSON.stringify(place?.rating)}`,
+  );
 }
 
 if (!Number.isInteger(reviewCount) || reviewCount < 0) {

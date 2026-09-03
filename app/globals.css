@@ -112,7 +112,9 @@ body {
 
 /* Glow effects */
 .accent-glow {
-  box-shadow: 0 0 20px rgba(163, 230, 53, 0.15), 0 0 60px rgba(163, 230, 53, 0.05);
+  box-shadow:
+    0 0 20px rgba(163, 230, 53, 0.15),
+    0 0 60px rgba(163, 230, 53, 0.05);
 }
 
 .text-glow {
@@ -129,8 +131,13 @@ body {
 
 /* Animated gradient border */
 @keyframes borderGlow {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.8; }
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
 }
 
 .border-glow {
@@ -138,22 +145,36 @@ body {
 }
 
 .border-glow::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: -1px;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, rgba(163, 230, 53, 0.4), transparent 50%, rgba(163, 230, 53, 0.2));
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  background: linear-gradient(
+    135deg,
+    rgba(163, 230, 53, 0.4),
+    transparent 50%,
+    rgba(163, 230, 53, 0.2)
+  );
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
   mask-composite: exclude;
   animation: borderGlow 3s ease-in-out infinite;
 }
 
 /* Floating animation */
 @keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  33% { transform: translateY(-12px) rotate(1deg); }
-  66% { transform: translateY(-6px) rotate(-0.5deg); }
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-12px) rotate(1deg);
+  }
+  66% {
+    transform: translateY(-6px) rotate(-0.5deg);
+  }
 }
 
 .float-animation {
@@ -162,16 +183,31 @@ body {
 
 /* Scan line animation */
 @keyframes scan {
-  0% { transform: translateY(-100%); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { transform: translateY(100vh); opacity: 0; }
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
 }
 
 /* Pulse accent */
 @keyframes pulseAccent {
-  0%, 100% { opacity: 0.6; }
-  50% { opacity: 1; }
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 :root {

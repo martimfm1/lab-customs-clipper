@@ -96,7 +96,10 @@ export default function NotFound() {
       />
 
       {/* Blueprint grid */}
-      <div className="absolute inset-0 blueprint-bg opacity-60 pointer-events-none" aria-hidden="true" />
+      <div
+        className="absolute inset-0 blueprint-bg opacity-60 pointer-events-none"
+        aria-hidden="true"
+      />
 
       {/* Radial accent glow */}
       <div
@@ -131,7 +134,12 @@ export default function NotFound() {
                 "linear-gradient(to bottom, transparent 40%, rgba(163,230,53,0.08) 50%, transparent 60%)",
             }}
             animate={{ y: ["-100%", "200%"] }}
-            transition={{ duration: 3, repeat: Infinity, ease: "linear", repeatDelay: 1.5 }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "linear",
+              repeatDelay: 1.5,
+            }}
             aria-hidden="true"
           />
         </motion.div>
@@ -140,7 +148,12 @@ export default function NotFound() {
         <motion.div
           initial={{ scale: 0, rotate: -20 }}
           animate={{ scale: 1, rotate: 0 }}
-          transition={{ duration: 0.5, delay: 0.2, type: "spring", stiffness: 200 }}
+          transition={{
+            duration: 0.5,
+            delay: 0.2,
+            type: "spring",
+            stiffness: 200,
+          }}
           className="mb-8 p-4 rounded-2xl border border-[rgba(163,230,53,0.2)] bg-[rgba(163,230,53,0.06)] accent-glow"
         >
           <Wrench className="w-7 h-7 text-[#a3e635]" />
@@ -178,17 +191,23 @@ export default function NotFound() {
             <span className="w-2 h-2 rounded-full bg-[#a3e635] inline-block" />
             <span className="ml-1 text-[#71717a]">diagnostico.log</span>
           </div>
-          <p><span className="text-[#a3e635]">STATUS</span> — 404 NOT_FOUND</p>
+          <p>
+            <span className="text-[#a3e635]">STATUS</span> — 404 NOT_FOUND
+          </p>
           <p>
             <span className="text-[#a3e635]">ROTA</span> — {pathname || "/"}
           </p>
-          <p><span className="text-[#a3e635]">SISTEMA</span> — LAB Customs Clipper v1.0</p>
+          <p>
+            <span className="text-[#a3e635]">SISTEMA</span> — LAB Customs
+            Clipper v1.0
+          </p>
           <motion.p
             animate={{ opacity: [1, 0, 1] }}
             transition={{ duration: 1.2, repeat: Infinity }}
             className="mt-1"
           >
-            <span className="text-[#a3e635]">CURSOR</span> — <span className="text-white">_</span>
+            <span className="text-[#a3e635]">CURSOR</span> —{" "}
+            <span className="text-white">_</span>
           </motion.p>
         </motion.div>
 

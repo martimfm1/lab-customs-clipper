@@ -2,13 +2,37 @@
 
 import { motion } from "framer-motion";
 import { Award, HeartHandshake, Microscope, Star, Wrench } from "lucide-react";
-import { googleRating, googleReviewCount, googleMapsUrl } from "@/lib/google-rating";
+import {
+  googleRating,
+  googleReviewCount,
+  googleMapsUrl,
+} from "@/lib/google-rating";
 
 const proof = [
-  [Wrench, "+50", "equipamentos intervencionados", "Experiência prática com equipamento profissional."],
-  [HeartHandshake, "100%", "atendimento personalizado", "Cada caso é analisado individualmente."],
-  [Microscope, "PRO", "diagnóstico técnico", "Não avançamos às cegas: primeiro percebemos o problema."],
-  [Award, "90 dias", "garantia aplicável", "Garantia indicada para motores, placas de circuito e baterias, dentro das condições previstas."],
+  [
+    Wrench,
+    "+50",
+    "equipamentos intervencionados",
+    "Experiência prática com equipamento profissional.",
+  ],
+  [
+    HeartHandshake,
+    "100%",
+    "atendimento personalizado",
+    "Cada caso é analisado individualmente.",
+  ],
+  [
+    Microscope,
+    "PRO",
+    "diagnóstico técnico",
+    "Não avançamos às cegas: primeiro percebemos o problema.",
+  ],
+  [
+    Award,
+    "90 dias",
+    "garantia aplicável",
+    "Garantia indicada para motores, placas de circuito e baterias, dentro das condições previstas.",
+  ],
 ] as const;
 
 export default function TrustSection() {
@@ -23,7 +47,8 @@ export default function TrustSection() {
             O objetivo não é só reparar. É devolver-te confiança na máquina.
           </h2>
           <p className="mt-4 text-base leading-relaxed text-zinc-400 sm:text-lg">
-            Informação clara, diagnóstico técnico e cuidado no equipamento que usas todos os dias.
+            Informação clara, diagnóstico técnico e cuidado no equipamento que
+            usas todos os dias.
           </p>
         </div>
 
@@ -40,9 +65,13 @@ export default function TrustSection() {
               <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950 text-[#a3e635]">
                 <Icon className="h-5 w-5" />
               </div>
-              <div className="mt-6 text-3xl font-extrabold tracking-tight text-white">{value}</div>
+              <div className="mt-6 text-3xl font-extrabold tracking-tight text-white">
+                {value}
+              </div>
               <h3 className="mt-1 text-sm font-bold text-zinc-200">{label}</h3>
-              <p className="mt-3 text-xs leading-relaxed text-zinc-500">{desc}</p>
+              <p className="mt-3 text-xs leading-relaxed text-zinc-500">
+                {desc}
+              </p>
             </motion.article>
           ))}
         </div>
@@ -78,7 +107,11 @@ export default function TrustSection() {
 
         <div className="mx-auto mt-8 max-w-4xl rounded-2xl border border-zinc-800 bg-zinc-900/35 p-5 text-center sm:p-6">
           <p className="text-xs leading-relaxed text-zinc-400">
-            Trabalhamos com <span className="font-bold text-zinc-200">Wahl, Style Craft, Gamma Piu, JRL</span> e outras marcas de equipamento profissional.
+            Trabalhamos com{" "}
+            <span className="font-bold text-zinc-200">
+              Wahl, Style Craft, Gamma Piu, JRL
+            </span>{" "}
+            e outras marcas de equipamento profissional.
           </p>
         </div>
       </div>

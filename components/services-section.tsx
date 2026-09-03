@@ -1,7 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CheckCircle2, MessageCircle, Shield, Star, Truck, Wrench } from "lucide-react";
+import {
+  CheckCircle2,
+  MessageCircle,
+  Shield,
+  Star,
+  Truck,
+  Wrench,
+} from "lucide-react";
 
 const services = [
   {
@@ -11,9 +18,15 @@ const services = [
     description: "",
     price: "8€",
     priceLabel: "por máquina",
-    items: ["Higienização técnica", "Lubrificação", "Ajustes de precisão", "Testes finais"],
+    items: [
+      "Higienização técnica",
+      "Lubrificação",
+      "Ajustes de precisão",
+      "Testes finais",
+    ],
     cta: "Marcar manutenção",
-    message: "Olá! Preciso de manutenção preventiva para as minhas máquinas, pode ajudar-me?",
+    message:
+      "Olá! Preciso de manutenção preventiva para as minhas máquinas, pode ajudar-me?",
     featured: false,
   },
   {
@@ -25,7 +38,8 @@ const services = [
     priceLabel: "peças cotadas à parte",
     items: ["Diagnóstico técnico", "Reparação", "Componentes", "Testes finais"],
     cta: "Pedir orçamento",
-    message: "Olá! O meu equipamento tem uma avaria e gostaria de pedir um orçamento para manutenção corretiva. Podem ajudar-me?",
+    message:
+      "Olá! O meu equipamento tem uma avaria e gostaria de pedir um orçamento para manutenção corretiva. Podem ajudar-me?",
     featured: false,
   },
   {
@@ -35,22 +49,35 @@ const services = [
     description: "",
     price: "Nacional",
     priceLabel: "envio e retorno",
-    items: ["Atendimento em todo o país", "Instruções simples", "Diagnóstico à chegada", "Devolução segura"],
+    items: [
+      "Atendimento em todo o país",
+      "Instruções simples",
+      "Diagnóstico à chegada",
+      "Devolução segura",
+    ],
     note: "A partir de 60€ em serviços, não pagas o envio de devolução.",
     cta: "Ver como enviar",
-    message: "Olá! Quero enviar as minhas máquinas para manutenção. Como posso proceder com o envio?",
+    message:
+      "Olá! Quero enviar as minhas máquinas para manutenção. Como posso proceder com o envio?",
     featured: false,
   },
   {
     icon: Star,
     title: "Plano de Prevenção",
     subtitle: "Para profissionais que querem evitar paragens.",
-    description: "Manutenção preventiva regular para até 3 máquinas com prioridade de atendimento.",
+    description:
+      "Manutenção preventiva regular para até 3 máquinas com prioridade de atendimento.",
     price: "20€",
     priceLabel: "/mês • até 3 máquinas",
-    items: ["Manutenção regular", "Maior durabilidade", "Desempenho consistente", "Prioridade"],
+    items: [
+      "Manutenção regular",
+      "Maior durabilidade",
+      "Desempenho consistente",
+      "Prioridade",
+    ],
     cta: "Conhecer o plano",
-    message: "Olá! Gostaria de conhecer o Plano de Prevenção. Podem explicar-me como funciona?",
+    message:
+      "Olá! Gostaria de conhecer o Plano de Prevenção. Podem explicar-me como funciona?",
     featured: true,
   },
 ] as const;
@@ -61,7 +88,10 @@ function whatsapp(message: string) {
 
 export default function ServicesSection() {
   return (
-    <section id="servicos" className="relative overflow-hidden bg-zinc-950 px-6 py-24 sm:py-28">
+    <section
+      id="servicos"
+      className="relative overflow-hidden bg-zinc-950 px-6 py-24 sm:py-28"
+    >
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto max-w-3xl text-center">
           <div className="inline-flex rounded-full border border-[#a3e635]/20 bg-[#a3e635]/10 px-3 py-1 text-[11px] font-mono font-bold uppercase tracking-widest text-[#a3e635]">
@@ -71,7 +101,8 @@ export default function ServicesSection() {
             Uma solução clara para cada situação.
           </h2>
           <p className="mt-4 text-base leading-relaxed text-zinc-400 sm:text-lg">
-            Já sabes o que precisas? Escolhe abaixo. Não tens a certeza? Usa o formulário e explica-nos o problema.
+            Já sabes o que precisas? Escolhe abaixo. Não tens a certeza? Usa o
+            formulário e explica-nos o problema.
           </p>
         </div>
 
@@ -98,20 +129,35 @@ export default function ServicesSection() {
                     <Icon className="h-5 w-5" />
                   </div>
                   <div className="text-right">
-                    <div className="text-xl font-extrabold text-white">{service.price}</div>
-                    <div className="mt-0.5 text-[10px] font-mono uppercase tracking-wide text-zinc-500">{service.priceLabel}</div>
+                    <div className="text-xl font-extrabold text-white">
+                      {service.price}
+                    </div>
+                    <div className="mt-0.5 text-[10px] font-mono uppercase tracking-wide text-zinc-500">
+                      {service.priceLabel}
+                    </div>
                   </div>
                 </div>
 
-                <h3 className="mt-6 text-xl font-bold tracking-tight text-white">{service.title}</h3>
-                <p className="mt-1.5 text-sm font-medium text-zinc-300">{service.subtitle}</p>
-                <p className="mt-3 text-xs leading-relaxed text-zinc-500">{service.description}</p>
+                <h3 className="mt-6 text-xl font-bold tracking-tight text-white">
+                  {service.title}
+                </h3>
+                <p className="mt-1.5 text-sm font-medium text-zinc-300">
+                  {service.subtitle}
+                </p>
+                <p className="mt-3 text-xs leading-relaxed text-zinc-500">
+                  {service.description}
+                </p>
 
                 <div className="my-5 border-t border-zinc-800 pt-5">
-                  <p className="mb-3 text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-600">Inclui</p>
+                  <p className="mb-3 text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-600">
+                    Inclui
+                  </p>
                   <ul className="space-y-2.5">
                     {service.items.map((item) => (
-                      <li key={item} className="flex items-start gap-2 text-xs text-zinc-300">
+                      <li
+                        key={item}
+                        className="flex items-start gap-2 text-xs text-zinc-300"
+                      >
                         <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[#a3e635]" />
                         {item}
                       </li>
@@ -143,7 +189,14 @@ export default function ServicesSection() {
 
         <div className="mx-auto mt-8 max-w-3xl rounded-2xl border border-zinc-800 bg-zinc-900/35 px-5 py-4 text-center">
           <p className="text-xs leading-relaxed text-zinc-400">
-            Não sabes qual escolher? <a href="/marcacao" className="font-bold text-[#a3e635] hover:underline">Explica-nos o problema →</a> e tratamos de orientar o serviço certo.
+            Não sabes qual escolher?{" "}
+            <a
+              href="/marcacao"
+              className="font-bold text-[#a3e635] hover:underline"
+            >
+              Explica-nos o problema →
+            </a>{" "}
+            e tratamos de orientar o serviço certo.
           </p>
         </div>
       </div>

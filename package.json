@@ -9,7 +9,7 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "format": "npx prettier --write .",
-    "qa": "pnpm lint && pnpm typecheck && pnpm build && pnpm format",
+    "qa": "pnpm lint && pnpm typecheck && pnpm build",
     "update:google-rating": "node scripts/update-google-rating.mjs"
   },
   "dependencies": {

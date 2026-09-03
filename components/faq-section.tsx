@@ -2,7 +2,12 @@
 
 import { motion } from "framer-motion";
 import { Plus } from "lucide-react";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./ui/accordion";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "./ui/accordion";
 
 const faqs = [
   {
@@ -43,24 +48,45 @@ export default function FaqSection() {
             As dúvidas que normalmente travam a decisão.
           </h2>
           <p className="mt-4 text-base leading-relaxed text-zinc-400 sm:text-lg">
-            Respostas diretas sobre preço, prazo, envio, garantia e tipo de equipamento.
+            Respostas diretas sobre preço, prazo, envio, garantia e tipo de
+            equipamento.
           </p>
         </div>
 
         <Accordion className="mt-10 flex flex-col gap-3">
           {faqs.map((faq, i) => (
-            <motion.div key={faq.q} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-30px" }} transition={{ duration: 0.35, delay: i * 0.04 }}>
-              <AccordionItem value={`faq-${i}`} className="overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/40 transition-all duration-300 data-[state=open]:border-[#a3e635]/50 data-[state=open]:bg-[#a3e635]/[0.045] data-[state=open]:shadow-[0_0_32px_rgba(163,230,53,0.08)]">
-                <AccordionTrigger hideChevron className="group/faq-trigger flex w-full items-center justify-between gap-4 px-5 py-5 text-left text-sm font-semibold text-zinc-200 transition-colors duration-300 hover:no-underline hover:text-white sm:px-6">
-                  <span className="transition-colors duration-300 group-aria-expanded/faq-trigger:text-[#bef264]">{faq.q}</span>
+            <motion.div
+              key={faq.q}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-30px" }}
+              transition={{ duration: 0.35, delay: i * 0.04 }}
+            >
+              <AccordionItem
+                value={`faq-${i}`}
+                className="overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/40 transition-all duration-300 data-[state=open]:border-[#a3e635]/50 data-[state=open]:bg-[#a3e635]/[0.045] data-[state=open]:shadow-[0_0_32px_rgba(163,230,53,0.08)]"
+              >
+                <AccordionTrigger
+                  hideChevron
+                  className="group/faq-trigger flex w-full items-center justify-between gap-4 px-5 py-5 text-left text-sm font-semibold text-zinc-200 transition-colors duration-300 hover:no-underline hover:text-white sm:px-6"
+                >
+                  <span className="transition-colors duration-300 group-aria-expanded/faq-trigger:text-[#bef264]">
+                    {faq.q}
+                  </span>
                   <span className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-400 transition-all duration-300 group-aria-expanded/faq-trigger:border-[#a3e635]/50 group-aria-expanded/faq-trigger:bg-[#a3e635]/10 group-aria-expanded/faq-trigger:text-[#a3e635] group-aria-expanded/faq-trigger:shadow-[0_0_18px_rgba(163,230,53,0.18)]">
                     <Plus className="h-4 w-4 transition-transform duration-300 ease-out group-aria-expanded/faq-trigger:rotate-45" />
                   </span>
                 </AccordionTrigger>
                 <AccordionContent className="px-5 pb-5 sm:px-6">
-                  <motion.div initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.2 }}>
+                  <motion.div
+                    initial={{ opacity: 0, y: -4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
                     <div className="mb-4 h-px bg-gradient-to-r from-transparent via-[#a3e635]/40 to-transparent" />
-                    <p className="text-xs leading-relaxed text-zinc-400 sm:text-sm">{faq.a}</p>
+                    <p className="text-xs leading-relaxed text-zinc-400 sm:text-sm">
+                      {faq.a}
+                    </p>
                   </motion.div>
                 </AccordionContent>
               </AccordionItem>
@@ -69,9 +95,16 @@ export default function FaqSection() {
         </Accordion>
 
         <div className="mt-8 rounded-2xl border border-[#a3e635]/20 bg-[#a3e635]/[0.05] p-5 text-center">
-          <p className="text-sm font-bold text-white">Não encontraste a resposta?</p>
-          <p className="mt-1 text-xs text-zinc-400">Explica-nos o teu caso e respondemos com o próximo passo.</p>
-          <a href="/marcacao" className="mt-4 inline-flex h-11 items-center justify-center rounded-xl bg-[#a3e635] px-5 text-xs font-extrabold text-zinc-950 hover:bg-[#b8f542]">
+          <p className="text-sm font-bold text-white">
+            Não encontraste a resposta?
+          </p>
+          <p className="mt-1 text-xs text-zinc-400">
+            Explica-nos o teu caso e respondemos com o próximo passo.
+          </p>
+          <a
+            href="/marcacao"
+            className="mt-4 inline-flex h-11 items-center justify-center rounded-xl bg-[#a3e635] px-5 text-xs font-extrabold text-zinc-950 hover:bg-[#b8f542]"
+          >
             Explicar o meu caso
           </a>
         </div>
