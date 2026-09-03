@@ -2,9 +2,10 @@ import { NextResponse } from "next/server";
 
 const API_KEY = process.env.APICODEX_API_KEY;
 const PLACE_URL =
-  "https://www.google.com/maps/place/LAB+CUSTOMS+CLIPPER+%F0%9F%92%88/@40.8999647,-8.4962637,17z/data=!3m1!4b1!4m6!3m5!1s0xd2381406921df33a:0x804cad88a23f6f24!8m2!3d40.8999647!4d-8.4962637!16s%2Fg%2F11wggfh50p!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDgzMS4wIKXMDSoASAFQAw%3D%3D";
+  "https://www.google.com/maps/place/LAB+CUSTOMS+CLIPPER/@40.8999647,-8.4962637,17z";
 const API_BASE_URL = "https://api.apicodex.io/google-maps/v1";
 const MAX_DISPLAYED_REVIEWS = 3;
+const API_REVIEW_LIMIT = 10;
 
 export const dynamic = "force-dynamic";
 export const revalidate = 3600;
@@ -18,6 +19,13 @@ type NormalizedReview = {
   text: string | null;
   sortValue: number;
   sourceIndex: number;
+};
+
+type GoogleReview = {
+  author: string;
+  date: string;
+  rating: number;
+  text: string | null;
 };
 
 function isRecord(value: unknown): value is JsonRecord {
@@ -83,6 +91,47 @@ function getReviewSortValue(review: JsonRecord, sourceIndex: number): number {
   return -sourceIndex;
 }
 
+function buildReviews(payload: unknown): GoogleReview[] {
+  return extractReviewArray(payload)
+    .map<NormalizedReview | null>((review, sourceIndex) => {
+      const author =
+        getFirstString(review, ["author", "author_name", "reviewer_name", "name"]) ??
+        "Cliente";
+      const date =
+        getFirstString(review, [
+          "date",
+          "relative_date",
+          "published_date",
+          "created_date",
+          "datetime",
+        ]) ?? "";
+      const reviewRating = getFirstNumber(review, ["rating", "stars", "score"]);
+      const text = getFirstString(review, ["text", "review_text", "comment"]);
+
+      if (reviewRating === null || reviewRating < 0 || reviewRating > 5) {
+        return null;
+      }
+
+      return {
+        author,
+        date,
+        rating: reviewRating,
+        text,
+        sortValue: getReviewSortValue(review, sourceIndex),
+        sourceIndex,
+      };
+    })
+    .filter((review): review is NormalizedReview => review !== null)
+    .sort((a, b) => b.sortValue - a.sortValue || a.sourceIndex - b.sourceIndex)
+    .slice(0, MAX_DISPLAYED_REVIEWS)
+    .map(({ author, date, rating, text }) => ({
+      author,
+      date,
+      rating,
+      text,
+    }));
+}
+
 async function requestJson(url: string): Promise<{
   payload: unknown;
   status: number;
@@ -93,7 +142,7 @@ async function requestJson(url: string): Promise<{
       "X-Api-Key": API_KEY as string,
       Accept: "application/json",
     },
-    next: { revalidate: 3600 },
+    cache: "no-store",
   });
 
   const payload = await response.json().catch(() => null);
@@ -148,54 +197,6 @@ async function getSnapshot(snapshotId: string): Promise<{
   };
 }
 
-function buildReviews(payload: unknown): GoogleReview[] {
-  return extractReviewArray(payload)
-    .map<NormalizedReview | null>((review, sourceIndex) => {
-      const author =
-        getFirstString(review, ["author", "author_name", "reviewer_name", "name"]) ??
-        "Cliente";
-      const date =
-        getFirstString(review, [
-          "date",
-          "relative_date",
-          "published_date",
-          "created_date",
-          "datetime",
-        ]) ?? "";
-      const reviewRating = getFirstNumber(review, ["rating", "stars", "score"]);
-      const text = getFirstString(review, ["text", "review_text", "comment"]);
-
-      if (reviewRating === null || reviewRating < 0 || reviewRating > 5) {
-        return null;
-      }
-
-      return {
-        author,
-        date,
-        rating: reviewRating,
-        text,
-        sortValue: getReviewSortValue(review, sourceIndex),
-        sourceIndex,
-      };
-    })
-    .filter((review): review is NormalizedReview => review !== null)
-    .sort((a, b) => b.sortValue - a.sortValue || a.sourceIndex - b.sourceIndex)
-    .slice(0, MAX_DISPLAYED_REVIEWS)
-    .map(({ author, date, rating, text }) => ({
-      author,
-      date,
-      rating,
-      text,
-    }));
-}
-
-type GoogleReview = {
-  author: string;
-  date: string;
-  rating: number;
-  text: string | null;
-};
-
 export async function GET(request: Request) {
   if (!API_KEY) {
     return NextResponse.json(
@@ -207,7 +208,6 @@ export async function GET(request: Request) {
   try {
     const url = new URL(request.url);
     const snapshotId = url.searchParams.get("snapshot_id");
-    const debug = url.searchParams.get("debug") === "1";
 
     if (snapshotId) {
       const snapshot = await getSnapshot(snapshotId);
@@ -219,23 +219,10 @@ export async function GET(request: Request) {
         );
       }
 
-      if (debug) {
-        return NextResponse.json(
-          {
-            debug: true,
-            snapshotId,
-            rawResult: snapshot.payload,
-          },
-          { headers: { "Cache-Control": "no-store" } },
-        );
-      }
-
-      const reviews = buildReviews(snapshot.payload);
-
       return NextResponse.json(
         {
           pending: false,
-          reviews,
+          reviews: buildReviews(snapshot.payload),
           mapsUrl: PLACE_URL,
         },
         { headers: { "Cache-Control": "no-store" } },
@@ -248,7 +235,7 @@ export async function GET(request: Request) {
         `${API_BASE_URL}/place?url=${encodedUrl}&fields=name,rating,reviews_count`,
       ),
       requestJson(
-        `${API_BASE_URL}/reviews?url=${encodedUrl}&limit=${MAX_DISPLAYED_REVIEWS}&days_limit=90`,
+        `${API_BASE_URL}/reviews?url=${encodedUrl}&limit=${API_REVIEW_LIMIT}`,
       ),
     ]);
 
