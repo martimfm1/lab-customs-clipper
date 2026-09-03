@@ -110,7 +110,11 @@ function isCompletedSnapshotResponse(
 
   const data = value as Partial<Extract<SnapshotReviewsResponse, { pending: false }>>;
 
-  return data.pending === false && Array.isArray(data.reviews) && typeof data.mapsUrl === "string";
+  return (
+    data.pending === false &&
+    Array.isArray(data.reviews) &&
+    typeof data.mapsUrl === "string"
+  );
 }
 
 export default function GoogleReviewsSection() {
@@ -120,13 +124,6 @@ export default function GoogleReviewsSection() {
     const controller = new AbortController();
     let pollAttempts = 0;
     let pollTimer: ReturnType<typeof setTimeout> | null = null;
-
-    const applyReviews = (reviews: GoogleReview[]) => {
-      setData((current) => ({
-        ...current,
-        reviews: reviews.slice(0, 3),
-      }));
-    };
 
     const pollSnapshot = async (snapshotId: string): Promise<void> => {
       if (controller.signal.aborted || pollAttempts >= MAX_POLL_ATTEMPTS) return;
