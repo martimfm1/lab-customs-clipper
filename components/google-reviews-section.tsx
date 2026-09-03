@@ -231,7 +231,7 @@ export default function GoogleReviewsSection() {
             </h2>
             <p className="mt-4 text-base leading-relaxed text-zinc-400 sm:text-lg">
               O que dizem as pessoas que já confiaram o seu equipamento à LAB
-              Customs Clipper?
+              CUSTOMS CLIPPER?
             </p>
           </div>
 
