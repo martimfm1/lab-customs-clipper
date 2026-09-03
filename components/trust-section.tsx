@@ -1,12 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Award, HeartHandshake, Microscope, Star, Wrench } from "lucide-react";
-import {
-  googleRating,
-  googleReviewCount,
-  googleMapsUrl,
-} from "@/lib/google-rating";
+import { Award, HeartHandshake, Microscope, Wrench } from "lucide-react";
 
 const proof = [
   [
