@@ -24,32 +24,112 @@ function isRecord(value: unknown): value is JsonRecord {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
-function extractReviewArray(payload: unknown): JsonRecord[] {
+function isReviewLike(value: JsonRecord): boolean {
+  return [
+    "author",
+    "author_name",
+    "reviewer_name",
+    "rating",
+    "stars",
+    "score",
+    "text",
+    "review_text",
+    "comment",
+  ].some((key) => key in value);
+}
+
+function extractReviewArray(payload: unknown, depth = 0): JsonRecord[] {
+  if (depth > 8 || payload == null) {
+    return [];
+  }
+
+  if (typeof payload === "string") {
+    try {
+      return extractReviewArray(JSON.parse(payload), depth + 1);
+    } catch {
+      return [];
+    }
+  }
+
   if (Array.isArray(payload)) {
-    return payload.filter(isRecord);
+    const records = payload.filter(isRecord);
+
+    if (records.some(isReviewLike)) {
+      return records;
+    }
+
+    for (const item of payload) {
+      const nested = extractReviewArray(item, depth + 1);
+
+      if (nested.length > 0) {
+        return nested;
+      }
+    }
+
+    return [];
   }
 
   if (!isRecord(payload)) {
     return [];
   }
 
-  for (const key of ["reviews", "data", "items", "results"]) {
-    const reviews = extractReviewArray(payload[key]);
+  const preferredKeys = [
+    "reviews",
+    "review",
+    "data",
+    "result",
+    "items",
+    "results",
+    "payload",
+    "response",
+  ];
 
-    if (reviews.length > 0) {
-      return reviews;
+  for (const key of preferredKeys) {
+    const nested = extractReviewArray(payload[key], depth + 1);
+
+    if (nested.length > 0) {
+      return nested;
+    }
+  }
+
+  for (const value of Object.values(payload)) {
+    const nested = extractReviewArray(value, depth + 1);
+
+    if (nested.length > 0) {
+      return nested;
     }
   }
 
   return [];
 }
 
+function getNestedString(value: unknown, keys: string[]): string | null {
+  if (typeof value === "string" && value.trim()) {
+    return value.trim();
+  }
+
+  if (!isRecord(value)) {
+    return null;
+  }
+
+  for (const key of keys) {
+    const nested = value[key];
+
+    if (typeof nested === "string" && nested.trim()) {
+      return nested.trim();
+    }
+  }
+
+  return null;
+}
+
 function getFirstString(review: JsonRecord, keys: string[]): string | null {
   for (const key of keys) {
     const value = review[key];
+    const stringValue = getNestedString(value, ["name", "text", "value"]);
 
-    if (typeof value === "string" && value.trim()) {
-      return value.trim();
+    if (stringValue) {
+      return stringValue;
     }
   }
 
@@ -85,6 +165,7 @@ function getReviewSortValue(review: JsonRecord, sourceIndex: number): number {
 
   const dateString = getFirstString(review, [
     "date",
+    "relative_date",
     "published_date",
     "created_date",
     "datetime",
@@ -158,7 +239,7 @@ async function getSnapshot(snapshotId: string): Promise<{
 
   return {
     payload,
-    pending: status !== null && status !== "ready" && status !== "completed" && status !== "success",
+    pending: status !== null && !["ready", "completed", "success"].includes(status),
   };
 }
 
@@ -237,6 +318,8 @@ export async function GET(request: Request) {
       return NextResponse.json(
         {
           pending: false,
+          rating: null,
+          totalReviews: null,
           reviews,
           mapsUrl: PLACE_URL,
         },
