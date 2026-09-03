@@ -98,10 +98,6 @@ export default function GoogleReviewsSection() {
           ))}
         </div>
 
-        <div className="mt-5 text-center text-xs text-zinc-600">
-          A mostrar as avaliações disponíveis neste snapshot · atualizado em {googleReviews.lastUpdated}
-        </div>
-
         <div className="mt-8 flex flex-col items-center justify-between gap-5 rounded-2xl border border-zinc-800 bg-zinc-900/35 p-5 sm:flex-row sm:p-6">
           <p className="text-center text-sm text-zinc-400 sm:text-left">
             A tua experiência também pode ajudar outros profissionais.

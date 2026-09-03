@@ -20,9 +20,6 @@ importers:
       framer-motion:
         specifier: ^12.43.0
         version: 12.43.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      google-reviews-widget:
-        specifier: ^1.0.4
-        version: 1.0.4(react@19.2.4)
       lucide-react:
         specifier: ^1.28.0
         version: 1.28.0(react@19.2.4)
@@ -1684,11 +1681,6 @@ packages:
   globalthis@1.0.4:
     resolution: {integrity: sha512-DpLKbNU4WylpxJykQujfCcwYWiV/Jhm50Goo0wrVILAv5jOr9d+H+UR3PhSCD2rCCEIg0uc+G+muBTwD54JhDQ==}
     engines: {node: '>= 0.4'}
-
-  google-reviews-widget@1.0.4:
-    resolution: {integrity: sha512-46X0NKuODHHRP6Bogn189OFZZi6z8PQD7yzEO6DePu1OGOxcJ4qpyZCT3VJ7AJHqJLEdX9z0OFD+/JoQJ9hCeA==}
-    peerDependencies:
-      react: '>=16.8.0'
 
   gopd@1.2.0:
     resolution: {integrity: sha512-ZUKRh6/kUFoAiTAtTYPZJ3hw9wNxx+BIBOijnlG9PnrJsCcSjs1wyyD6vJpaYtgnzDrKYRSqf3OO6Rfa93xsRg==}
@@ -4712,10 +4704,6 @@ snapshots:
     dependencies:
       define-properties: 1.2.1
       gopd: 1.2.0
-
-  google-reviews-widget@1.0.4(react@19.2.4):
-    dependencies:
-      react: 19.2.4
 
   gopd@1.2.0: {}
 
