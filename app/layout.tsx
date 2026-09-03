@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import "./responsive.css";
+import { googleRating, googleReviewCount } from "@/lib/google-rating";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -60,8 +61,6 @@ export const metadata: Metadata = {
     },
   },
 
-  // Keep this list aligned with real services and search language.
-  // Rankings should come from useful on-page content, not the meta keywords field.
   keywords: [
     "reparação de máquinas de cortar cabelo",
     "manutenção de máquinas de cortar cabelo",
@@ -136,6 +135,13 @@ const structuredData = {
         name: "Portugal",
       },
       hasMap: mapsUrl,
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: googleRating,
+        reviewCount: googleReviewCount,
+        bestRating: 5,
+        worstRating: 1,
+      },
       sameAs: [
         "https://www.instagram.com/labcustomsclipper/",
         "https://www.youtube.com/@iameduardovictor",
