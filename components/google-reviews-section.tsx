@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import GoogleReviewCta from "@/components/google-review-cta";
 import GoogleReviewsWidgetSection from "@/components/google-reviews-widget";
