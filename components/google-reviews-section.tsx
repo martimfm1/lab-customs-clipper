@@ -13,6 +13,7 @@ type GoogleReview = {
 };
 
 type GoogleReviewsResponse = {
+  pending?: false;
   rating: number;
   totalReviews: number;
   reviews: GoogleReview[];
@@ -28,13 +29,36 @@ type PendingReviewsResponse = {
   mapsUrl?: string;
 };
 
+type SnapshotReviewsResponse =
+  | PendingReviewsResponse
+  | {
+      pending: false;
+      reviews: GoogleReview[];
+      mapsUrl: string;
+    };
+
 const fallbackData: GoogleReviewsResponse = {
   rating: 5,
   totalReviews: 4,
   reviews: [
-    { author: "Hiago Oliveira", date: "01/09/2026", rating: 5, text: "Recomendo de olhos fechados!!!!" },
-    { author: "Ruben Teixeira", date: "02/09/2026", rating: 5, text: "Profissionalismo em pessoa !" },
-    { author: "Rafael Andrade", date: "02/09/2026", rating: 5, text: null },
+    {
+      author: "Hiago Oliveira",
+      date: "01/09/2026",
+      rating: 5,
+      text: "Recomendo de olhos fechados!!!!",
+    },
+    {
+      author: "Ruben Teixeira",
+      date: "02/09/2026",
+      rating: 5,
+      text: "Profissionalismo em pessoa !",
+    },
+    {
+      author: "Rafael Andrade",
+      date: "02/09/2026",
+      rating: 5,
+      text: null,
+    },
   ],
   mapsUrl:
     "https://www.google.com/maps/place/LAB+CUSTOMS+CLIPPER+%F0%9F%92%88/@40.8999647,-8.4962637,17z/data=!3m1!4b1!4m6!3m5!1s0xd2381406921df33a:0x804cad88a23f6f24!8m2!3d40.8999647!4d-8.4962637!16s%2Fg%2F11wggfh50p!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDgzMS4wIKXMDSoASAFQAw%3D%3D",
@@ -57,12 +81,13 @@ function ReviewStars({ rating }: { rating: number }) {
   );
 }
 
-function isCompleteResponse(value: unknown): value is GoogleReviewsResponse {
+function isFullResponse(value: unknown): value is GoogleReviewsResponse {
   if (!value || typeof value !== "object") return false;
 
   const data = value as Partial<GoogleReviewsResponse>;
 
   return (
+    data.pending !== true &&
     Number.isFinite(data.rating) &&
     Number.isInteger(data.totalReviews) &&
     Array.isArray(data.reviews) &&
@@ -78,6 +103,16 @@ function isPendingResponse(value: unknown): value is PendingReviewsResponse {
   return data.pending === true && typeof data.snapshotId === "string";
 }
 
+function isCompletedSnapshotResponse(
+  value: unknown,
+): value is Extract<SnapshotReviewsResponse, { pending: false }> {
+  if (!value || typeof value !== "object") return false;
+
+  const data = value as Partial<Extract<SnapshotReviewsResponse, { pending: false }>>;
+
+  return data.pending === false && Array.isArray(data.reviews) && typeof data.mapsUrl === "string";
+}
+
 export default function GoogleReviewsSection() {
   const [data, setData] = useState<GoogleReviewsResponse>(fallbackData);
 
@@ -85,6 +120,13 @@ export default function GoogleReviewsSection() {
     const controller = new AbortController();
     let pollAttempts = 0;
     let pollTimer: ReturnType<typeof setTimeout> | null = null;
+
+    const applyReviews = (reviews: GoogleReview[]) => {
+      setData((current) => ({
+        ...current,
+        reviews: reviews.slice(0, 3),
+      }));
+    };
 
     const pollSnapshot = async (snapshotId: string): Promise<void> => {
       if (controller.signal.aborted || pollAttempts >= MAX_POLL_ATTEMPTS) return;
@@ -103,11 +145,12 @@ export default function GoogleReviewsSection() {
 
         const payload = (await response.json()) as unknown;
 
-        if (isCompleteResponse(payload)) {
-          setData({
-            ...payload,
+        if (isCompletedSnapshotResponse(payload)) {
+          setData((current) => ({
+            ...current,
             reviews: payload.reviews.slice(0, 3),
-          });
+            mapsUrl: payload.mapsUrl || current.mapsUrl,
+          }));
           return;
         }
 
@@ -133,7 +176,7 @@ export default function GoogleReviewsSection() {
 
         const payload = (await response.json()) as unknown;
 
-        if (isCompleteResponse(payload)) {
+        if (isFullResponse(payload)) {
           setData({
             ...payload,
             reviews: payload.reviews.slice(0, 3),
@@ -142,14 +185,14 @@ export default function GoogleReviewsSection() {
         }
 
         if (response.status === 202 && isPendingResponse(payload)) {
-          if (typeof payload.rating === "number" && typeof payload.totalReviews === "number") {
-            setData((current) => ({
-              ...current,
-              rating: payload.rating ?? current.rating,
-              totalReviews: payload.totalReviews ?? current.totalReviews,
-              mapsUrl: payload.mapsUrl ?? current.mapsUrl,
-            }));
-          }
+          setData((current) => ({
+            ...current,
+            ...(typeof payload.rating === "number" ? { rating: payload.rating } : {}),
+            ...(typeof payload.totalReviews === "number"
+              ? { totalReviews: payload.totalReviews }
+              : {}),
+            ...(typeof payload.mapsUrl === "string" ? { mapsUrl: payload.mapsUrl } : {}),
+          }));
 
           void pollSnapshot(payload.snapshotId);
         }
