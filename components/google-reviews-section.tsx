@@ -19,6 +19,15 @@ type GoogleReviewsResponse = {
   mapsUrl: string;
 };
 
+type PendingReviewsResponse = {
+  pending: true;
+  snapshotId: string;
+  rating?: number;
+  totalReviews?: number;
+  reviews?: GoogleReview[];
+  mapsUrl?: string;
+};
+
 const fallbackData: GoogleReviewsResponse = {
   rating: 5,
   totalReviews: 4,
@@ -30,6 +39,9 @@ const fallbackData: GoogleReviewsResponse = {
   mapsUrl:
     "https://www.google.com/maps/place/LAB+CUSTOMS+CLIPPER+%F0%9F%92%88/@40.8999647,-8.4962637,17z/data=!3m1!4b1!4m6!3m5!1s0xd2381406921df33a:0x804cad88a23f6f24!8m2!3d40.8999647!4d-8.4962637!16s%2Fg%2F11wggfh50p!18m1!1e1?entry=ttu&g_ep=EgoyMDI2MDgzMS4wIKXMDSoASAFQAw%3D%3D",
 };
+
+const POLL_INTERVAL_MS = 5000;
+const MAX_POLL_ATTEMPTS = 24;
 
 function ReviewStars({ rating }: { rating: number }) {
   return (
@@ -45,43 +57,115 @@ function ReviewStars({ rating }: { rating: number }) {
   );
 }
 
+function isCompleteResponse(value: unknown): value is GoogleReviewsResponse {
+  if (!value || typeof value !== "object") return false;
+
+  const data = value as Partial<GoogleReviewsResponse>;
+
+  return (
+    Number.isFinite(data.rating) &&
+    Number.isInteger(data.totalReviews) &&
+    Array.isArray(data.reviews) &&
+    typeof data.mapsUrl === "string"
+  );
+}
+
+function isPendingResponse(value: unknown): value is PendingReviewsResponse {
+  if (!value || typeof value !== "object") return false;
+
+  const data = value as Partial<PendingReviewsResponse>;
+
+  return data.pending === true && typeof data.snapshotId === "string";
+}
+
 export default function GoogleReviewsSection() {
   const [data, setData] = useState<GoogleReviewsResponse>(fallbackData);
 
   useEffect(() => {
     const controller = new AbortController();
+    let pollAttempts = 0;
+    let pollTimer: ReturnType<typeof setTimeout> | null = null;
 
-    async function loadReviews() {
+    const pollSnapshot = async (snapshotId: string): Promise<void> => {
+      if (controller.signal.aborted || pollAttempts >= MAX_POLL_ATTEMPTS) return;
+
+      pollAttempts += 1;
+
+      try {
+        const response = await fetch(
+          `/api/google-reviews?snapshot_id=${encodeURIComponent(snapshotId)}`,
+          {
+            signal: controller.signal,
+            headers: { Accept: "application/json" },
+            cache: "no-store",
+          },
+        );
+
+        const payload = (await response.json()) as unknown;
+
+        if (isCompleteResponse(payload)) {
+          setData({
+            ...payload,
+            reviews: payload.reviews.slice(0, 3),
+          });
+          return;
+        }
+
+        if (response.status === 202 && isPendingResponse(payload)) {
+          pollTimer = setTimeout(() => {
+            void pollSnapshot(payload.snapshotId);
+          }, POLL_INTERVAL_MS);
+        }
+      } catch (error) {
+        if (!(error instanceof DOMException && error.name === "AbortError")) {
+          console.error("Unable to poll Google reviews:", error);
+        }
+      }
+    };
+
+    const loadReviews = async (): Promise<void> => {
       try {
         const response = await fetch("/api/google-reviews", {
           signal: controller.signal,
           headers: { Accept: "application/json" },
+          cache: "no-store",
         });
 
-        if (!response.ok) return;
+        const payload = (await response.json()) as unknown;
 
-        const nextData = (await response.json()) as GoogleReviewsResponse;
-
-        if (
-          Number.isFinite(nextData.rating) &&
-          Number.isInteger(nextData.totalReviews) &&
-          Array.isArray(nextData.reviews)
-        ) {
+        if (isCompleteResponse(payload)) {
           setData({
-            ...nextData,
-            reviews: nextData.reviews.slice(0, 3),
+            ...payload,
+            reviews: payload.reviews.slice(0, 3),
           });
+          return;
+        }
+
+        if (response.status === 202 && isPendingResponse(payload)) {
+          if (typeof payload.rating === "number" && typeof payload.totalReviews === "number") {
+            setData((current) => ({
+              ...current,
+              rating: payload.rating ?? current.rating,
+              totalReviews: payload.totalReviews ?? current.totalReviews,
+              mapsUrl: payload.mapsUrl ?? current.mapsUrl,
+            }));
+          }
+
+          void pollSnapshot(payload.snapshotId);
         }
       } catch (error) {
         if (!(error instanceof DOMException && error.name === "AbortError")) {
           console.error("Unable to load Google reviews:", error);
         }
       }
-    }
+    };
 
     void loadReviews();
 
-    return () => controller.abort();
+    return () => {
+      controller.abort();
+      if (pollTimer) clearTimeout(pollTimer);
+    };
   }, []);
 
   const { rating: googleRating, totalReviews, reviews: googleReviews, mapsUrl } = data;
