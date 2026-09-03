@@ -294,7 +294,7 @@ export async function GET(request: Request) {
       },
       {
         headers: {
-          "s-maxage=3600, stale-while-revalidate=86400": "",
+          "Cache-Control": "s-maxage=3600, stale-while-revalidate=86400",
         },
       },
     );
