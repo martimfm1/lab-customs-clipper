@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Award, HeartHandshake, Microscope, Wrench } from "lucide-react";
+import { Award, HeartHandshake, Microscope, Star, Wrench } from "lucide-react";
+import { googleRating, googleReviewCount, googleMapsUrl } from "@/lib/google-rating";
 
 const proof = [
   [Wrench, "+50", "equipamentos intervencionados", "Experiência prática com equipamento profissional."],
@@ -45,6 +46,35 @@ export default function TrustSection() {
             </motion.article>
           ))}
         </div>
+
+        <motion.a
+          href={googleMapsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.4, delay: 0.18 }}
+          className="group mx-auto mt-8 flex max-w-2xl items-center justify-between gap-4 rounded-2xl border border-zinc-800 bg-zinc-900/55 p-5 transition hover:border-[#a3e635]/35 hover:bg-zinc-900/75 sm:p-6"
+          aria-label={`Ver ${googleRating.toFixed(1)} estrelas e ${googleReviewCount} avaliações no Google Maps`}
+        >
+          <div className="flex min-w-0 items-center gap-4">
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-[#a3e635]/20 bg-[#a3e635]/10 text-[#a3e635]">
+              <Star className="h-5 w-5 fill-current" aria-hidden="true" />
+            </div>
+            <div className="min-w-0 text-left">
+              <p className="text-[10px] font-mono font-bold uppercase tracking-widest text-zinc-500">
+                Google
+              </p>
+              <p className="mt-1 truncate text-sm font-bold text-zinc-100">
+                {googleRating.toFixed(1)} / 5 · {googleReviewCount} avaliações
+              </p>
+            </div>
+          </div>
+          <span className="shrink-0 text-xs font-semibold text-zinc-400 transition-colors group-hover:text-[#a3e635]">
+            Ver avaliações
+          </span>
+        </motion.a>
 
         <div className="mx-auto mt-8 max-w-4xl rounded-2xl border border-zinc-800 bg-zinc-900/35 p-5 text-center sm:p-6">
           <p className="text-xs leading-relaxed text-zinc-400">
