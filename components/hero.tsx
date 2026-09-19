@@ -12,7 +12,7 @@ import Image from "next/image";
 
 const trustPoints = [
   "Wahl, Style Craft, Gamma Piu, JRL e outras",
-  "Manutenção preventiva desde 8€ / máquina",
+  "Manutenção preventiva desde 10€ / máquina",
   "Atendimento personalizado antes de qualquer intervenção",
 ];
 
