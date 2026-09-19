@@ -16,7 +16,7 @@ const services = [
     title: "Manutenção Preventiva",
     subtitle: "Para manter a máquina no seu melhor.",
     description: "",
-    price: "8€",
+    price: "10€",
     priceLabel: "por máquina",
     items: [
       "Higienização técnica",
