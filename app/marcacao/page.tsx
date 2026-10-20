@@ -42,6 +42,8 @@ type ServiceId = (typeof PRESET_SERVICES)[number]["id"] | "";
 function buildMessage(
   name: string,
   location: string,
+  machineBrand: string,
+  machineModel: string,
   service: string,
   serviceId: ServiceId,
   problem: string,
@@ -49,15 +51,22 @@ function buildMessage(
 ): string {
   const n = name.trim();
   const zone = location.trim();
+  const brand = machineBrand.trim();
+  const model = machineModel.trim();
   const s = service.trim();
   const p = problem.trim();
+  const needsMachineDetails =
+    mode === "custom" || serviceId === "preventiva" || serviceId === "corretiva";
 
   if (!n || !zone || !s) return "";
+  if (needsMachineDetails && (!brand || !model)) return "";
 
   if (mode === "custom") {
     return [
       `Olá! O meu nome é *${n}* - ${zone}.`,
       `Preciso de ajuda com o seguinte pedido:`,
+      `Marca da máquina: *${brand}*`,
+      `Modelo da máquina: *${model}*`,
       s,
       p ? `\nProblemas / detalhes:\n${p}` : "",
       "",
@@ -82,6 +91,8 @@ function buildMessage(
   return [
     `Olá! O meu nome é *${n}* - ${zone}.`,
     `Gostaria de marcar *${s}*.`,
+    `Marca da máquina: *${brand}*`,
+    `Modelo da máquina: *${model}*`,
     p ? `\nProblema / avaria:\n${p}` : "",
     "",
     "Quando é que têm disponibilidade?",
@@ -93,6 +104,8 @@ function buildMessage(
 export default function BookingMessagePage() {
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
+  const [machineBrand, setMachineBrand] = useState("");
+  const [machineModel, setMachineModel] = useState("");
   const [mode, setMode] = useState<ServiceMode>("preset");
   const [selectedId, setSelectedId] = useState<ServiceId>("");
   const [customService, setCustomService] = useState("");
@@ -106,11 +119,39 @@ export default function BookingMessagePage() {
   }, [mode, selectedId, customService]);
 
   const activeServiceId: ServiceId = mode === "preset" ? selectedId : "";
+  const needsMachineDetails =
+    mode === "custom" ||
+    activeServiceId === "preventiva" ||
+    activeServiceId === "corretiva";
   const message = useMemo(
-    () => buildMessage(name, location, service, activeServiceId, problem, mode),
-    [name, location, service, activeServiceId, problem, mode],
+    () =>
+      buildMessage(
+        name,
+        location,
+        machineBrand,
+        machineModel,
+        service,
+        activeServiceId,
+        problem,
+        mode,
+      ),
+    [
+      name,
+      location,
+      machineBrand,
+      machineModel,
+      service,
+      activeServiceId,
+      problem,
+      mode,
+    ],
   );
-  const isReady = name.trim().length > 0 && location.trim().length > 0 && service.trim().length > 0;
+  const isReady =
+    name.trim().length > 0 &&
+    location.trim().length > 0 &&
+    service.trim().length > 0 &&
+    (!needsMachineDetails ||
+      (machineBrand.trim().length > 0 && machineModel.trim().length > 0));
 
   const handleWhatsApp = () => {
     if (!isReady) return;
@@ -255,6 +296,60 @@ export default function BookingMessagePage() {
                 className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3.5 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-[#a3e635]/50 focus:ring-1 focus:ring-[#a3e635]/20 transition-all duration-200"
               />
             </div>
+
+            {(mode === "custom" ||
+              selectedId === "preventiva" ||
+              selectedId === "corretiva") && (
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div className="space-y-2">
+                  <label
+                    htmlFor="machine-brand"
+                    className="flex items-center gap-2 text-[11px] font-mono uppercase tracking-wider text-zinc-400"
+                  >
+                    <Wrench className="w-3.5 h-3.5 shrink-0 text-[#a3e635]" />
+                    Marca da máquina
+                  </label>
+                  <input
+                    id="machine-brand"
+                    type="text"
+                    autoComplete="off"
+                    placeholder="Ex: Wahl"
+                    aria-label="Marca da máquina"
+                    value={machineBrand}
+                    onChange={(e) => setMachineBrand(e.target.value)}
+                    maxLength={100}
+                    required
+                    className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3.5 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-[#a3e635]/50 focus:ring-1 focus:ring-[#a3e635]/20 transition-all duration-200"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label
+                    htmlFor="machine-model"
+                    className="flex items-center gap-2 text-[11px] font-mono uppercase tracking-wider text-zinc-400"
+                  >
+                    <Wrench className="w-3.5 h-3.5 shrink-0 text-[#a3e635]" />
+                    Modelo da máquina
+                  </label>
+                  <input
+                    id="machine-model"
+                    type="text"
+                    autoComplete="off"
+                    placeholder="Ex: Magic Clip"
+                    aria-label="Modelo da máquina"
+                    value={machineModel}
+                    onChange={(e) => setMachineModel(e.target.value)}
+                    maxLength={120}
+                    required
+                    className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3.5 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-[#a3e635]/50 focus:ring-1 focus:ring-[#a3e635]/20 transition-all duration-200"
+                  />
+                </div>
+                {mode === "custom" && (
+                  <p className="sm:col-span-2 text-[10px] font-mono text-zinc-600">
+                    Se tiveres mais do que uma máquina, indica as restantes no campo do pedido.
+                  </p>
+                )}
+              </div>
+            )}
 
             <div className="space-y-3">
               <div className="flex items-center justify-between gap-2">
@@ -472,7 +567,10 @@ export default function BookingMessagePage() {
 
             {!isReady && (
               <p className="text-center text-[11px] font-mono text-zinc-600">
-                Preenche o teu nome, a tua zona e indica o serviço ou pedido que precisas
+                {needsMachineDetails &&
+                (!machineBrand.trim() || !machineModel.trim())
+                  ? "Indica também a marca e o modelo da máquina."
+                  : "Preenche o teu nome, a tua zona e indica o serviço ou pedido que precisas"}
               </p>
             )}
             {isReady && (
