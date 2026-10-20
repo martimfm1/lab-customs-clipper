@@ -41,20 +41,22 @@ type ServiceId = (typeof PRESET_SERVICES)[number]["id"] | "";
 
 function buildMessage(
   name: string,
+  location: string,
   service: string,
   serviceId: ServiceId,
   problem: string,
   mode: ServiceMode,
 ): string {
   const n = name.trim();
+  const zone = location.trim();
   const s = service.trim();
   const p = problem.trim();
 
-  if (!n || !s) return "";
+  if (!n || !zone || !s) return "";
 
   if (mode === "custom") {
     return [
-      `Olá! O meu nome é *${n}*.`,
+      `Olá! O meu nome é *${n}* - ${zone}.`,
       `Preciso de ajuda com o seguinte pedido:`,
       s,
       p ? `\nProblemas / detalhes:\n${p}` : "",
@@ -67,7 +69,7 @@ function buildMessage(
 
   if (serviceId === "premium") {
     return [
-      `Olá! O meu nome é *${n}*.`,
+      `Olá! O meu nome é *${n}* - ${zone}.`,
       `Gostaria de aderir ao *${s}*.`,
       p ? `\nProblema / necessidade:\n${p}` : "",
       "",
@@ -78,7 +80,7 @@ function buildMessage(
   }
 
   return [
-    `Olá! O meu nome é *${n}*.`,
+    `Olá! O meu nome é *${n}* - ${zone}.`,
     `Gostaria de marcar *${s}*.`,
     p ? `\nProblema / avaria:\n${p}` : "",
     "",
@@ -90,6 +92,7 @@ function buildMessage(
 
 export default function BookingMessagePage() {
   const [name, setName] = useState("");
+  const [location, setLocation] = useState("");
   const [mode, setMode] = useState<ServiceMode>("preset");
   const [selectedId, setSelectedId] = useState<ServiceId>("");
   const [customService, setCustomService] = useState("");
@@ -104,10 +107,10 @@ export default function BookingMessagePage() {
 
   const activeServiceId: ServiceId = mode === "preset" ? selectedId : "";
   const message = useMemo(
-    () => buildMessage(name, service, activeServiceId, problem, mode),
-    [name, service, activeServiceId, problem, mode],
+    () => buildMessage(name, location, service, activeServiceId, problem, mode),
+    [name, location, service, activeServiceId, problem, mode],
   );
-  const isReady = name.trim().length > 0 && service.trim().length > 0;
+  const isReady = name.trim().length > 0 && location.trim().length > 0 && service.trim().length > 0;
 
   const handleWhatsApp = () => {
     if (!isReady) return;
@@ -234,6 +237,21 @@ export default function BookingMessagePage() {
                 aria-label="O teu nome"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3.5 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-[#a3e635]/50 focus:ring-1 focus:ring-[#a3e635]/20 transition-all duration-200"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label className="flex items-center gap-2 text-[11px] font-mono uppercase tracking-wider text-zinc-400">
+                <User className="w-3.5 h-3.5 shrink-0 text-[#a3e635]" />A tua zona
+              </label>
+              <input
+                type="text"
+                autoComplete="address-level2"
+                placeholder="Ex: Santa Maria da Feira"
+                aria-label="A tua zona"
+                value={location}
+                onChange={(e) => setLocation(e.target.value)}
                 className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3.5 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-[#a3e635]/50 focus:ring-1 focus:ring-[#a3e635]/20 transition-all duration-200"
               />
             </div>
@@ -454,7 +472,7 @@ export default function BookingMessagePage() {
 
             {!isReady && (
               <p className="text-center text-[11px] font-mono text-zinc-600">
-                Preenche o teu nome e indica o serviço ou pedido que precisas
+                Preenche o teu nome, a tua zona e indica o serviço ou pedido que precisas
               </p>
             )}
             {isReady && (
