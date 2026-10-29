@@ -35,7 +35,7 @@ export default function TrustSection() {
     <section className="bg-zinc-950 px-6 py-24 sm:py-28">
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto max-w-3xl text-center">
-          <div className="inline-flex rounded-full border border-[#a3e635]/20 bg-[#a3e635]/10 px-3 py-1 text-[11px] font-mono font-bold uppercase tracking-widest text-[#a3e635]">
+          <div className="inline-flex rounded-full border border-[#a855f7]/20 bg-[#a855f7]/10 px-3 py-1 text-[11px] font-mono font-bold uppercase tracking-widest text-[#a855f7]">
             Razões para confiar
           </div>
           <h2 className="mt-5 text-balance text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
@@ -57,7 +57,7 @@ export default function TrustSection() {
               transition={{ duration: 0.4, delay: i * 0.06 }}
               className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6"
             >
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950 text-[#a3e635]">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950 text-[#a855f7]">
                 <Icon className="h-5 w-5" />
               </div>
               <div className="mt-6 text-3xl font-extrabold tracking-tight text-white">

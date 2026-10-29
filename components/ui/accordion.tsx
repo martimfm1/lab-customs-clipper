@@ -39,7 +39,7 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "group/accordion-trigger relative flex flex-1 items-center justify-between rounded-xl text-left font-medium transition-all outline-none cursor-pointer select-none focus-visible:ring-2 focus-visible:ring-[#a3e635]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#09090b] aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-4 **:data-[slot=accordion-trigger-icon]:text-muted-foreground",
+          "group/accordion-trigger relative flex flex-1 items-center justify-between rounded-xl text-left font-medium transition-all outline-none cursor-pointer select-none focus-visible:ring-2 focus-visible:ring-[#a855f7]/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#09090b] aria-disabled:pointer-events-none aria-disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-4 **:data-[slot=accordion-trigger-icon]:text-muted-foreground",
           className,
         )}
         {...props}

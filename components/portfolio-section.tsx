@@ -67,7 +67,7 @@ export default function PortfolioSection() {
     >
       {/* Grid Pattern & Ambient Glow */}
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#1f293710_1px,transparent_1px),linear-gradient(to_bottom,#1f293710_1px,transparent_1px)] bg-[size:4rem_4rem]" />
-      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#a3e635]/5 blur-[140px] rounded-full" />
+      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#a855f7]/5 blur-[140px] rounded-full" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Header Section */}
@@ -78,8 +78,8 @@ export default function PortfolioSection() {
           transition={{ duration: 0.5 }}
           className="mb-16 text-center max-w-3xl mx-auto"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#a3e635]/10 border border-[#a3e635]/20 text-[#a3e635] text-xs font-mono tracking-widest uppercase mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#a3e635] animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#a855f7]/10 border border-[#a855f7]/20 text-[#a855f7] text-xs font-mono tracking-widest uppercase mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#a855f7] animate-pulse" />
             Portfólio & Galeria
           </div>
           <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-white">
@@ -100,7 +100,7 @@ export default function PortfolioSection() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true, margin: "-60px" }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className={`relative group rounded-2xl overflow-hidden bg-zinc-900 border border-zinc-800/80 hover:border-[#a3e635]/40 transition-all duration-300 hover:shadow-[0_0_30px_rgba(163,230,53,0.1)] cursor-pointer ${work.span}`}
+              className={`relative group rounded-2xl overflow-hidden bg-zinc-900 border border-zinc-800/80 hover:border-[#a855f7]/40 transition-all duration-300 hover:shadow-[0_0_30px_rgba(168,85,247,0.1)] cursor-pointer ${work.span}`}
             >
               <Image
                 src={work.src}
@@ -115,7 +115,7 @@ export default function PortfolioSection() {
 
               {/* Tag Badge */}
               <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-5 translate-y-2 opacity-90 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-between">
-                <span className="px-2.5 py-1 rounded-md bg-zinc-950/80 border border-[#a3e635]/30 text-[#a3e635] text-[11px] font-mono font-semibold tracking-wide uppercase backdrop-blur-md shadow-md">
+                <span className="px-2.5 py-1 rounded-md bg-zinc-950/80 border border-[#a855f7]/30 text-[#a855f7] text-[11px] font-mono font-semibold tracking-wide uppercase backdrop-blur-md shadow-md">
                   {work.tag}
                 </span>
               </div>
@@ -137,7 +137,7 @@ export default function PortfolioSection() {
             rel="noopener noreferrer"
             className="group flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-zinc-900/80 text-zinc-200 border border-zinc-800 hover:bg-zinc-800 hover:text-white hover:border-zinc-700 transition-all duration-200 shadow-md active:scale-[0.98]"
           >
-            <InstagramIcon className="w-4 h-4 text-[#a3e635] shrink-0" />
+            <InstagramIcon className="w-4 h-4 text-[#a855f7] shrink-0" />
             <span className="text-xs font-bold tracking-wide">
               Ver Trabalhos no Instagram
             </span>

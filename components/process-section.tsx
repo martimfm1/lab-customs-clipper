@@ -71,7 +71,7 @@ export default function ProcessSection() {
               className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-5"
             >
               <div className="flex items-start justify-between gap-4">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950 text-[#a3e635]">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950 text-[#a855f7]">
                   <Icon className="h-5 w-5" />
                 </div>
                 <span className="text-[11px] font-mono font-bold text-zinc-600">
@@ -86,7 +86,7 @@ export default function ProcessSection() {
           ))}
         </div>
 
-        <div className="mt-10 flex flex-col items-center justify-between gap-4 rounded-2xl border border-[#a3e635]/15 bg-[#a3e635]/[0.04] p-5 sm:flex-row sm:p-6">
+        <div className="mt-10 flex flex-col items-center justify-between gap-4 rounded-2xl border border-[#a855f7]/15 bg-[#a855f7]/[0.04] p-5 sm:flex-row sm:p-6">
           <div>
             <p className="text-sm font-bold text-white">
               Ainda tens dúvidas antes de enviar?
@@ -98,7 +98,7 @@ export default function ProcessSection() {
           </div>
           <a
             href="/marcacao"
-            className="inline-flex h-11 items-center justify-center rounded-xl bg-[#a3e635] px-5 text-xs font-extrabold text-zinc-950 transition hover:bg-[#b8f542]"
+            className="inline-flex h-11 items-center justify-center rounded-xl bg-[#a855f7] px-5 text-xs font-extrabold text-zinc-950 transition hover:bg-[#c084fc]"
           >
             Explicar o meu caso
           </a>

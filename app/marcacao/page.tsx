@@ -180,22 +180,22 @@ export default function BookingMessagePage() {
   return (
     <div className="relative min-h-screen overflow-hidden bg-zinc-950">
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#1f293710_1px,transparent_1px),linear-gradient(to_bottom,#1f293710_1px,transparent_1px)] bg-[size:4rem_4rem]" />
-      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#a3e635]/5 blur-[160px] rounded-full" />
+      <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-[#a855f7]/5 blur-[160px] rounded-full" />
 
       <div className="relative z-10 mx-auto grid min-h-screen w-full max-w-7xl grid-cols-1 gap-0 lg:grid-cols-2">
         <div className="hidden lg:flex flex-col justify-between px-16 py-16 border-r border-zinc-800/80">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-xs font-mono text-zinc-500 hover:text-[#a3e635] transition-colors"
+            className="inline-flex items-center gap-2 text-xs font-mono text-zinc-500 hover:text-[#a855f7] transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>VOLTAR AO INÍCIO</span>
           </Link>
 
           <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#a3e635]/10 border border-[#a3e635]/20">
-              <Sparkles className="w-3.5 h-3.5 text-[#a3e635]" />
-              <span className="text-xs font-mono font-bold tracking-wider uppercase text-[#a3e635]">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#a855f7]/10 border border-[#a855f7]/20">
+              <Sparkles className="w-3.5 h-3.5 text-[#a855f7]" />
+              <span className="text-xs font-mono font-bold tracking-wider uppercase text-[#a855f7]">
                 Marcação Direta
               </span>
             </div>
@@ -220,7 +220,7 @@ export default function BookingMessagePage() {
                   key={s.id}
                   className="flex items-center gap-3 text-xs font-mono text-zinc-500"
                 >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#a3e635]/60 shrink-0" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#a855f7]/60 shrink-0" />
                   {s.label}
                 </div>
               ))}
@@ -236,15 +236,15 @@ export default function BookingMessagePage() {
           <div className="lg:hidden mb-8 space-y-6">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-xs font-mono text-zinc-500 hover:text-[#a3e635] transition-colors"
+              className="inline-flex items-center gap-2 text-xs font-mono text-zinc-500 hover:text-[#a855f7] transition-colors"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
               <span>VOLTAR AO INÍCIO</span>
             </Link>
             <div>
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#a3e635]/10 border border-[#a3e635]/20 mb-4">
-                <Sparkles className="w-3.5 h-3.5 text-[#a3e635]" />
-                <span className="text-xs font-mono font-bold tracking-wider uppercase text-[#a3e635]">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#a855f7]/10 border border-[#a855f7]/20 mb-4">
+                <Sparkles className="w-3.5 h-3.5 text-[#a855f7]" />
+                <span className="text-xs font-mono font-bold tracking-wider uppercase text-[#a855f7]">
                   Marcação
                 </span>
               </div>
@@ -267,7 +267,7 @@ export default function BookingMessagePage() {
           >
             <div className="space-y-2">
               <label className="flex items-center gap-2 text-[11px] font-mono uppercase tracking-wider text-zinc-400">
-                <User className="w-3.5 h-3.5 shrink-0 text-[#a3e635]" />O teu
+                <User className="w-3.5 h-3.5 shrink-0 text-[#a855f7]" />O teu
                 nome
               </label>
               <input
@@ -278,13 +278,13 @@ export default function BookingMessagePage() {
                 aria-label="O teu nome"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3.5 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-[#a3e635]/50 focus:ring-1 focus:ring-[#a3e635]/20 transition-all duration-200"
+                className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3.5 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-[#a855f7]/50 focus:ring-1 focus:ring-[#a855f7]/20 transition-all duration-200"
               />
             </div>
 
             <div className="space-y-2">
               <label className="flex items-center gap-2 text-[11px] font-mono uppercase tracking-wider text-zinc-400">
-                <User className="w-3.5 h-3.5 shrink-0 text-[#a3e635]" />A tua zona
+                <User className="w-3.5 h-3.5 shrink-0 text-[#a855f7]" />A tua zona
               </label>
               <input
                 type="text"
@@ -293,7 +293,7 @@ export default function BookingMessagePage() {
                 aria-label="A tua zona"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
-                className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3.5 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-[#a3e635]/50 focus:ring-1 focus:ring-[#a3e635]/20 transition-all duration-200"
+                className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3.5 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-[#a855f7]/50 focus:ring-1 focus:ring-[#a855f7]/20 transition-all duration-200"
               />
             </div>
 
@@ -306,7 +306,7 @@ export default function BookingMessagePage() {
                     htmlFor="machine-brand"
                     className="flex items-center gap-2 text-[11px] font-mono uppercase tracking-wider text-zinc-400"
                   >
-                    <Wrench className="w-3.5 h-3.5 shrink-0 text-[#a3e635]" />
+                    <Wrench className="w-3.5 h-3.5 shrink-0 text-[#a855f7]" />
                     Marca da máquina
                   </label>
                   <input
@@ -319,7 +319,7 @@ export default function BookingMessagePage() {
                     onChange={(e) => setMachineBrand(e.target.value)}
                     maxLength={100}
                     required
-                    className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3.5 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-[#a3e635]/50 focus:ring-1 focus:ring-[#a3e635]/20 transition-all duration-200"
+                    className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3.5 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-[#a855f7]/50 focus:ring-1 focus:ring-[#a855f7]/20 transition-all duration-200"
                   />
                 </div>
                 <div className="space-y-2">
@@ -327,7 +327,7 @@ export default function BookingMessagePage() {
                     htmlFor="machine-model"
                     className="flex items-center gap-2 text-[11px] font-mono uppercase tracking-wider text-zinc-400"
                   >
-                    <Wrench className="w-3.5 h-3.5 shrink-0 text-[#a3e635]" />
+                    <Wrench className="w-3.5 h-3.5 shrink-0 text-[#a855f7]" />
                     Modelo da máquina
                   </label>
                   <input
@@ -340,7 +340,7 @@ export default function BookingMessagePage() {
                     onChange={(e) => setMachineModel(e.target.value)}
                     maxLength={120}
                     required
-                    className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3.5 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-[#a3e635]/50 focus:ring-1 focus:ring-[#a3e635]/20 transition-all duration-200"
+                    className="w-full rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3.5 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-[#a855f7]/50 focus:ring-1 focus:ring-[#a855f7]/20 transition-all duration-200"
                   />
                 </div>
                 {mode === "custom" && (
@@ -354,7 +354,7 @@ export default function BookingMessagePage() {
             <div className="space-y-3">
               <div className="flex items-center justify-between gap-2">
                 <label className="flex items-center gap-2 text-[11px] font-mono uppercase tracking-wider text-zinc-400">
-                  <Scissors className="w-3.5 h-3.5 shrink-0 text-[#a3e635]" />O
+                  <Scissors className="w-3.5 h-3.5 shrink-0 text-[#a855f7]" />O
                   que precisas?
                 </label>
 
@@ -362,14 +362,14 @@ export default function BookingMessagePage() {
                   <button
                     type="button"
                     onClick={() => handleModeSwitch("preset")}
-                    className={`px-3 py-1 rounded-md text-[10px] font-mono transition-all duration-200 cursor-pointer ${mode === "preset" ? "bg-[#a3e635] text-zinc-950 font-bold" : "text-zinc-500 hover:text-zinc-300"}`}
+                    className={`px-3 py-1 rounded-md text-[10px] font-mono transition-all duration-200 cursor-pointer ${mode === "preset" ? "bg-[#a855f7] text-zinc-950 font-bold" : "text-zinc-500 hover:text-zinc-300"}`}
                   >
                     Lista
                   </button>
                   <button
                     type="button"
                     onClick={() => handleModeSwitch("custom")}
-                    className={`flex items-center gap-1.5 px-3 py-1 rounded-md text-[10px] font-mono transition-all duration-200 cursor-pointer ${mode === "custom" ? "bg-[#a3e635] text-zinc-950 font-bold" : "text-zinc-500 hover:text-zinc-300"}`}
+                    className={`flex items-center gap-1.5 px-3 py-1 rounded-md text-[10px] font-mono transition-all duration-200 cursor-pointer ${mode === "custom" ? "bg-[#a855f7] text-zinc-950 font-bold" : "text-zinc-500 hover:text-zinc-300"}`}
                   >
                     <PenLine className="w-3 h-3" />
                     Outro
@@ -394,12 +394,12 @@ export default function BookingMessagePage() {
                           key={s.id}
                           type="button"
                           onClick={() => setSelectedId(s.id)}
-                          className={`w-full text-left rounded-xl border px-4 py-3.5 transition-all duration-200 cursor-pointer active:scale-[0.99] ${isSelected ? "border-[#a3e635]/50 bg-[#a3e635]/10 shadow-[0_0_15px_rgba(163,230,53,0.1)]" : "border-zinc-800/80 bg-zinc-950/50 hover:border-zinc-700 hover:bg-zinc-900"}`}
+                          className={`w-full text-left rounded-xl border px-4 py-3.5 transition-all duration-200 cursor-pointer active:scale-[0.99] ${isSelected ? "border-[#a855f7]/50 bg-[#a855f7]/10 shadow-[0_0_15px_rgba(168,85,247,0.1)]" : "border-zinc-800/80 bg-zinc-950/50 hover:border-zinc-700 hover:bg-zinc-900"}`}
                         >
                           <div className="flex items-center justify-between gap-3">
                             <div className="min-w-0">
                               <p
-                                className={`text-sm font-semibold truncate transition-colors ${isSelected ? "text-[#a3e635]" : "text-zinc-200"}`}
+                                className={`text-sm font-semibold truncate transition-colors ${isSelected ? "text-[#a855f7]" : "text-zinc-200"}`}
                               >
                                 {s.label}
                               </p>
@@ -408,7 +408,7 @@ export default function BookingMessagePage() {
                               </p>
                             </div>
                             <div
-                              className={`w-4 h-4 rounded-full border shrink-0 transition-all flex items-center justify-center ${isSelected ? "border-[#a3e635] bg-[#a3e635]" : "border-zinc-700 bg-zinc-900"}`}
+                              className={`w-4 h-4 rounded-full border shrink-0 transition-all flex items-center justify-center ${isSelected ? "border-[#a855f7] bg-[#a855f7]" : "border-zinc-700 bg-zinc-900"}`}
                             >
                               {isSelected && (
                                 <svg
@@ -447,7 +447,7 @@ export default function BookingMessagePage() {
                       rows={5}
                       maxLength={1200}
                       aria-label="Descreve o teu pedido"
-                      className="w-full resize-none rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3.5 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-[#a3e635]/50 focus:ring-1 focus:ring-[#a3e635]/20 transition-all duration-200"
+                      className="w-full resize-none rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3.5 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-[#a855f7]/50 focus:ring-1 focus:ring-[#a855f7]/20 transition-all duration-200"
                     />
                     <div className="mt-1 flex items-center justify-between px-1">
                       <p className="text-[10px] font-mono text-zinc-600">
@@ -473,7 +473,7 @@ export default function BookingMessagePage() {
                   >
                     <div className="mt-3 space-y-2">
                       <label className="flex items-center gap-2 text-[11px] font-mono uppercase tracking-wider text-zinc-400">
-                        <Wrench className="w-3.5 h-3.5 shrink-0 text-[#a3e635]" />
+                        <Wrench className="w-3.5 h-3.5 shrink-0 text-[#a855f7]" />
                         Qual é o problema?
                         <span className="normal-case tracking-normal text-zinc-600">
                           opcional
@@ -492,7 +492,7 @@ export default function BookingMessagePage() {
                         rows={4}
                         maxLength={800}
                         aria-label="Descreve o problema"
-                        className="w-full resize-none rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3.5 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-[#a3e635]/50 focus:ring-1 focus:ring-[#a3e635]/20 transition-all duration-200"
+                        className="w-full resize-none rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3.5 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-[#a855f7]/50 focus:ring-1 focus:ring-[#a855f7]/20 transition-all duration-200"
                       />
                       <div className="flex items-center justify-between px-1">
                         <p className="text-[10px] font-mono text-zinc-600">
@@ -535,7 +535,7 @@ export default function BookingMessagePage() {
                       title="Copiar mensagem"
                     >
                       {copied ? (
-                        <Check className="w-3.5 h-3.5 text-[#a3e635]" />
+                        <Check className="w-3.5 h-3.5 text-[#a855f7]" />
                       ) : (
                         <Copy className="w-3.5 h-3.5" />
                       )}
@@ -554,7 +554,7 @@ export default function BookingMessagePage() {
               type="button"
               onClick={handleWhatsApp}
               disabled={!isReady}
-              className="group w-full flex items-center justify-center gap-2.5 h-13 rounded-xl bg-[#a3e635] text-zinc-950 font-bold text-sm hover:bg-[#b8f542] disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 shadow-[0_0_20px_rgba(163,230,53,0.15)] hover:shadow-[0_0_25px_rgba(163,230,53,0.3)] active:scale-[0.98] cursor-pointer"
+              className="group w-full flex items-center justify-center gap-2.5 h-13 rounded-xl bg-[#a855f7] text-zinc-950 font-bold text-sm hover:bg-[#c084fc] disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 shadow-[0_0_20px_rgba(168,85,247,0.15)] hover:shadow-[0_0_25px_rgba(168,85,247,0.3)] active:scale-[0.98] cursor-pointer"
             >
               <MessageCircle className="w-4 h-4 shrink-0" />
               <span>

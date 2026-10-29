@@ -16,7 +16,7 @@ function ReviewStars({ rating }: { rating: number }) {
           key={index}
           className={`h-4 w-4 ${
             index < Math.round(rating)
-              ? "fill-[#a3e635] text-[#a3e635]"
+              ? "fill-[#a855f7] text-[#a855f7]"
               : "text-zinc-700"
           }`}
           aria-hidden="true"
@@ -41,8 +41,8 @@ export default function GoogleReviewsSection() {
           className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between"
         >
           <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#a3e635]/20 bg-[#a3e635]/10 px-3 py-1 text-[11px] font-mono font-bold uppercase tracking-widest text-[#a3e635]">
-              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#a3e635]" />
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#a855f7]/20 bg-[#a855f7]/10 px-3 py-1 text-[11px] font-mono font-bold uppercase tracking-widest text-[#a855f7]">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#a855f7]" />
               Google Reviews
             </div>
             <h2 className="mt-5 text-balance text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
@@ -58,10 +58,10 @@ export default function GoogleReviewsSection() {
             href={googleMapsUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex shrink-0 items-center gap-3 rounded-2xl border border-zinc-800 bg-zinc-900/45 px-4 py-3 transition hover:border-[#a3e635]/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a3e635]"
+            className="flex shrink-0 items-center gap-3 rounded-2xl border border-zinc-800 bg-zinc-900/45 px-4 py-3 transition hover:border-[#a855f7]/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a855f7]"
             aria-label={`Ver ${googleReviews.rating.toFixed(1)} estrelas e ${googleReviews.totalReviews} avaliações no Google`}
           >
-            <Star className="h-5 w-5 fill-[#a3e635] text-[#a3e635]" aria-hidden="true" />
+            <Star className="h-5 w-5 fill-[#a855f7] text-[#a855f7]" aria-hidden="true" />
             <span className="text-sm font-bold text-white">
               {googleReviews.rating.toFixed(1)}
             </span>
@@ -79,7 +79,7 @@ export default function GoogleReviewsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.45, delay: index * 0.06 }}
-              className="flex min-h-56 flex-col rounded-2xl border border-zinc-800 bg-zinc-900/45 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#a3e635]/30 hover:shadow-[0_0_30px_rgba(163,230,53,0.08)]"
+              className="flex min-h-56 flex-col rounded-2xl border border-zinc-800 bg-zinc-900/45 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-[#a855f7]/30 hover:shadow-[0_0_30px_rgba(168,85,247,0.08)]"
             >
               <ReviewStars rating={review.rating} />
               <p className="mt-5 flex-1 text-sm leading-7 text-zinc-300">

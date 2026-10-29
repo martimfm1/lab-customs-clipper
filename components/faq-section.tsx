@@ -64,7 +64,7 @@ export default function FaqSection() {
             >
               <AccordionItem
                 value={`faq-${i}`}
-                className="overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/40 transition-all duration-300 data-[state=open]:border-[#a3e635]/50 data-[state=open]:bg-[#a3e635]/[0.045] data-[state=open]:shadow-[0_0_32px_rgba(163,230,53,0.08)]"
+                className="overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/40 transition-all duration-300 data-[state=open]:border-[#a855f7]/50 data-[state=open]:bg-[#a855f7]/[0.045] data-[state=open]:shadow-[0_0_32px_rgba(168,85,247,0.08)]"
               >
                 <AccordionTrigger
                   hideChevron
@@ -73,7 +73,7 @@ export default function FaqSection() {
                   <span className="transition-colors duration-300 group-aria-expanded/faq-trigger:text-[#bef264]">
                     {faq.q}
                   </span>
-                  <span className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-400 transition-all duration-300 group-aria-expanded/faq-trigger:border-[#a3e635]/50 group-aria-expanded/faq-trigger:bg-[#a3e635]/10 group-aria-expanded/faq-trigger:text-[#a3e635] group-aria-expanded/faq-trigger:shadow-[0_0_18px_rgba(163,230,53,0.18)]">
+                  <span className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-400 transition-all duration-300 group-aria-expanded/faq-trigger:border-[#a855f7]/50 group-aria-expanded/faq-trigger:bg-[#a855f7]/10 group-aria-expanded/faq-trigger:text-[#a855f7] group-aria-expanded/faq-trigger:shadow-[0_0_18px_rgba(168,85,247,0.18)]">
                     <Plus className="h-4 w-4 transition-transform duration-300 ease-out group-aria-expanded/faq-trigger:rotate-45" />
                   </span>
                 </AccordionTrigger>
@@ -83,7 +83,7 @@ export default function FaqSection() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <div className="mb-4 h-px bg-gradient-to-r from-transparent via-[#a3e635]/40 to-transparent" />
+                    <div className="mb-4 h-px bg-gradient-to-r from-transparent via-[#a855f7]/40 to-transparent" />
                     <p className="text-xs leading-relaxed text-zinc-400 sm:text-sm">
                       {faq.a}
                     </p>
@@ -94,7 +94,7 @@ export default function FaqSection() {
           ))}
         </Accordion>
 
-        <div className="mt-8 rounded-2xl border border-[#a3e635]/20 bg-[#a3e635]/[0.05] p-5 text-center">
+        <div className="mt-8 rounded-2xl border border-[#a855f7]/20 bg-[#a855f7]/[0.05] p-5 text-center">
           <p className="text-sm font-bold text-white">
             Não encontraste a resposta?
           </p>
@@ -103,7 +103,7 @@ export default function FaqSection() {
           </p>
           <a
             href="/marcacao"
-            className="mt-4 inline-flex h-11 items-center justify-center rounded-xl bg-[#a3e635] px-5 text-xs font-extrabold text-zinc-950 hover:bg-[#b8f542]"
+            className="mt-4 inline-flex h-11 items-center justify-center rounded-xl bg-[#a855f7] px-5 text-xs font-extrabold text-zinc-950 hover:bg-[#c084fc]"
           >
             Explicar o meu caso
           </a>

@@ -54,7 +54,7 @@ export default function Footer() {
       className="bg-zinc-950 border-t border-zinc-800/80 relative overflow-hidden"
     >
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#1f293710_1px,transparent_1px),linear-gradient(to_bottom,#1f293710_1px,transparent_1px)] bg-[size:4rem_4rem]" />
-      <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-[#a3e635]/5 blur-[120px] rounded-full" />
+      <div className="pointer-events-none absolute bottom-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-[#a855f7]/5 blur-[120px] rounded-full" />
 
       <div className="max-w-7xl mx-auto px-6 py-16 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
@@ -110,7 +110,7 @@ export default function Footer() {
                   rel={
                     href.startsWith("http") ? "noopener noreferrer" : undefined
                   }
-                  className="text-sm text-zinc-400 hover:text-[#a3e635] transition-colors duration-200 w-fit"
+                  className="text-sm text-zinc-400 hover:text-[#a855f7] transition-colors duration-200 w-fit"
                 >
                   {label}
                 </a>
@@ -133,10 +133,10 @@ export default function Footer() {
                 href="https://wa.me/351926463182"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 text-sm text-zinc-400 hover:text-[#a3e635] transition-colors group w-fit"
+                className="flex items-center gap-3 text-sm text-zinc-400 hover:text-[#a855f7] transition-colors group w-fit"
               >
-                <div className="w-9 h-9 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center group-hover:border-[#a3e635]/40 group-hover:bg-zinc-800/80 transition-all duration-200">
-                  <MessageCircle className="w-4 h-4 text-zinc-400 group-hover:text-[#a3e635] transition-colors" />
+                <div className="w-9 h-9 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center group-hover:border-[#a855f7]/40 group-hover:bg-zinc-800/80 transition-all duration-200">
+                  <MessageCircle className="w-4 h-4 text-zinc-400 group-hover:text-[#a855f7] transition-colors" />
                 </div>
                 <span>WhatsApp</span>
               </a>
@@ -144,10 +144,10 @@ export default function Footer() {
                 href={INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 text-sm text-zinc-400 hover:text-[#a3e635] transition-colors group w-fit"
+                className="flex items-center gap-3 text-sm text-zinc-400 hover:text-[#a855f7] transition-colors group w-fit"
               >
-                <div className="w-9 h-9 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center group-hover:border-[#a3e635]/40 group-hover:bg-zinc-800/80 transition-all duration-200">
-                  <InstagramIcon className="w-4 h-4 text-zinc-400 group-hover:text-[#a3e635] transition-colors" />
+                <div className="w-9 h-9 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center group-hover:border-[#a855f7]/40 group-hover:bg-zinc-800/80 transition-all duration-200">
+                  <InstagramIcon className="w-4 h-4 text-zinc-400 group-hover:text-[#a855f7] transition-colors" />
                 </div>
                 <span>Instagram</span>
               </a>
@@ -155,10 +155,10 @@ export default function Footer() {
                 href={YOUTUBE_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 text-sm text-zinc-400 hover:text-[#a3e635] transition-colors group w-fit"
+                className="flex items-center gap-3 text-sm text-zinc-400 hover:text-[#a855f7] transition-colors group w-fit"
               >
-                <div className="w-9 h-9 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center group-hover:border-[#a3e635]/40 group-hover:bg-zinc-800/80 transition-all duration-200">
-                  <YoutubeIcon className="w-4 h-4 text-zinc-400 group-hover:text-[#a3e635] transition-colors" />
+                <div className="w-9 h-9 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center group-hover:border-[#a855f7]/40 group-hover:bg-zinc-800/80 transition-all duration-200">
+                  <YoutubeIcon className="w-4 h-4 text-zinc-400 group-hover:text-[#a855f7] transition-colors" />
                 </div>
                 <span>YouTube</span>
               </a>
@@ -169,10 +169,10 @@ export default function Footer() {
                 href={MAPS_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 rounded-xl border border-zinc-800 bg-zinc-900/40 px-3 py-2.5 text-sm text-zinc-300 hover:border-[#a3e635]/40 hover:bg-zinc-900/70 hover:text-white transition-all duration-200 group w-full max-w-xs"
+                className="flex items-center gap-3 rounded-xl border border-zinc-800 bg-zinc-900/40 px-3 py-2.5 text-sm text-zinc-300 hover:border-[#a855f7]/40 hover:bg-zinc-900/70 hover:text-white transition-all duration-200 group w-full max-w-xs"
               >
-                <div className="w-9 h-9 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center group-hover:border-[#a3e635]/40 group-hover:bg-[#a3e635]/10 transition-all duration-200">
-                  <MapPin className="w-4 h-4 text-zinc-400 group-hover:text-[#a3e635] transition-colors" />
+                <div className="w-9 h-9 rounded-xl bg-zinc-900 border border-zinc-800 flex items-center justify-center group-hover:border-[#a855f7]/40 group-hover:bg-[#a855f7]/10 transition-all duration-200">
+                  <MapPin className="w-4 h-4 text-zinc-400 group-hover:text-[#a855f7] transition-colors" />
                 </div>
                 <div className="min-w-0">
                   <span className="block text-[10px] font-mono uppercase tracking-widest text-zinc-500">
@@ -198,7 +198,7 @@ export default function Footer() {
               href="https://silentra.me/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs text-zinc-400 hover:text-[#a3e635] font-medium transition-colors"
+              className="text-xs text-zinc-400 hover:text-[#a855f7] font-medium transition-colors"
             >
               Silentra
             </a>

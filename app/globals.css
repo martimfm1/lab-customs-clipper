@@ -14,9 +14,9 @@
   --color-card: #111111;
   --color-card-hover: #161616;
 
-  --color-accent: #a3e635;
-  --color-accent-dim: rgba(163, 230, 53, 0.12);
-  --color-accent-glow: rgba(163, 230, 53, 0.25);
+  --color-accent: #a855f7;
+  --color-accent-dim: rgba(168, 85, 247, 0.12);
+  --color-accent-glow: rgba(168, 85, 247, 0.25);
 
   --color-foreground: #ffffff;
   --color-muted: #a1a1aa;
@@ -24,7 +24,7 @@
 
   --color-border: rgba(255, 255, 255, 0.08);
   --color-border-hover: rgba(255, 255, 255, 0.16);
-  --color-border-accent: rgba(163, 230, 53, 0.3);
+  --color-border-accent: rgba(168, 85, 247, 0.3);
 
   --radius-sm: 0.5rem;
   --radius-md: 0.75rem;
@@ -86,39 +86,39 @@ body {
   background: #0a0a0a;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(163, 230, 53, 0.3);
+  background: rgba(168, 85, 247, 0.3);
   border-radius: 3px;
 }
 
 /* Selection */
 ::selection {
-  background: rgba(163, 230, 53, 0.2);
+  background: rgba(168, 85, 247, 0.2);
   color: #ffffff;
 }
 
 /* Hexagon background pattern */
 .hex-bg {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='70' viewBox='0 0 60 70'%3E%3Cpolygon points='30,2 58,17 58,53 30,68 2,53 2,17' fill='none' stroke='rgba(163,230,53,0.04)' stroke-width='1'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='70' viewBox='0 0 60 70'%3E%3Cpolygon points='30,2 58,17 58,53 30,68 2,53 2,17' fill='none' stroke='rgba(168,85,247,0.04)' stroke-width='1'/%3E%3C/svg%3E");
   background-size: 60px 70px;
 }
 
 /* Blueprint grid */
 .blueprint-bg {
   background-image:
-    linear-gradient(rgba(163, 230, 53, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(163, 230, 53, 0.025) 1px, transparent 1px);
+    linear-gradient(rgba(168, 85, 247, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(168, 85, 247, 0.025) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
 /* Glow effects */
 .accent-glow {
   box-shadow:
-    0 0 20px rgba(163, 230, 53, 0.15),
-    0 0 60px rgba(163, 230, 53, 0.05);
+    0 0 20px rgba(168, 85, 247, 0.15),
+    0 0 60px rgba(168, 85, 247, 0.05);
 }
 
 .text-glow {
-  text-shadow: 0 0 30px rgba(163, 230, 53, 0.4);
+  text-shadow: 0 0 30px rgba(168, 85, 247, 0.4);
 }
 
 /* Glass card */
@@ -152,9 +152,9 @@ body {
   padding: 1px;
   background: linear-gradient(
     135deg,
-    rgba(163, 230, 53, 0.4),
+    rgba(168, 85, 247, 0.4),
     transparent 50%,
-    rgba(163, 230, 53, 0.2)
+    rgba(168, 85, 247, 0.2)
   );
   mask:
     linear-gradient(#fff 0 0) content-box,
