@@ -23,7 +23,7 @@ export default function Loading() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 55% 45% at 50% 50%, rgba(163,230,53,0.05) 0%, transparent 70%)",
+            "radial-gradient(ellipse 55% 45% at 50% 50%, rgba(168,85,247,0.05) 0%, transparent 70%)",
         }}
         aria-hidden="true"
       />
@@ -46,7 +46,7 @@ export default function Loading() {
               cy="60"
               r="54"
               fill="none"
-              stroke="rgba(163,230,53,0.12)"
+              stroke="rgba(168,85,247,0.12)"
               strokeWidth="1"
             />
             {/* tick marks */}
@@ -63,7 +63,7 @@ export default function Loading() {
                   x2={60 + outer * Math.cos(angle)}
                   y2={60 + outer * Math.sin(angle)}
                   stroke={
-                    isMajor ? "rgba(163,230,53,0.5)" : "rgba(163,230,53,0.2)"
+                    isMajor ? "rgba(168,85,247,0.5)" : "rgba(168,85,247,0.2)"
                   }
                   strokeWidth={isMajor ? 1.5 : 0.8}
                 />
@@ -83,7 +83,7 @@ export default function Loading() {
               cy="60"
               r="42"
               fill="none"
-              stroke="rgba(163,230,53,0.2)"
+              stroke="rgba(168,85,247,0.2)"
               strokeWidth="1.5"
               strokeDasharray="6 4"
             />
@@ -106,7 +106,7 @@ export default function Loading() {
                   y1={60 + 16 * Math.sin(rad)}
                   x2={60 + RADIUS * Math.cos(rad)}
                   y2={60 + RADIUS * Math.sin(rad)}
-                  stroke="#a3e635"
+                  stroke="#a855f7"
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeOpacity={0.25 + 0.75 * (i / BLADE_COUNT)}
@@ -117,11 +117,11 @@ export default function Loading() {
 
           {/* Centre dot */}
           <motion.div
-            className="relative z-10 w-8 h-8 rounded-full bg-[rgba(163,230,53,0.12)] border border-[rgba(163,230,53,0.4)] flex items-center justify-center"
+            className="relative z-10 w-8 h-8 rounded-full bg-[rgba(168,85,247,0.12)] border border-[rgba(168,85,247,0.4)] flex items-center justify-center"
             animate={{ scale: [1, 1.15, 1] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           >
-            <div className="w-2 h-2 rounded-full bg-[#a3e635]" />
+            <div className="w-2 h-2 rounded-full bg-[#a855f7]" />
           </motion.div>
         </div>
 
@@ -131,7 +131,7 @@ export default function Loading() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="font-mono text-[10px] tracking-[0.3em] uppercase text-[#a3e635] mb-1"
+            className="font-mono text-[10px] tracking-[0.3em] uppercase text-[#a855f7] mb-1"
           >
             LAB Customs
           </motion.p>
@@ -160,7 +160,7 @@ export default function Loading() {
           aria-hidden="true"
         >
           <motion.div
-            className="h-full bg-[#a3e635] rounded-full"
+            className="h-full bg-[#a855f7] rounded-full"
             animate={{ x: ["-100%", "100%"] }}
             transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
           />
