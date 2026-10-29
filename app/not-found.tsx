@@ -52,7 +52,7 @@ export default function NotFound() {
         if (p.y > canvas.height) p.y = 0;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(163, 230, 53, ${p.alpha})`;
+        ctx.fillStyle = `rgba(168, 85, 247, ${p.alpha})`;
         ctx.fill();
       }
       // draw faint connecting lines
@@ -65,7 +65,7 @@ export default function NotFound() {
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = `rgba(163, 230, 53, ${0.06 * (1 - dist / 120)})`;
+            ctx.strokeStyle = `rgba(168, 85, 247, ${0.06 * (1 - dist / 120)})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -106,7 +106,7 @@ export default function NotFound() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(163,230,53,0.04) 0%, transparent 70%)",
+            "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(168,85,247,0.04) 0%, transparent 70%)",
         }}
         aria-hidden="true"
       />
@@ -121,7 +121,7 @@ export default function NotFound() {
         >
           <span
             className="font-mono text-[clamp(7rem,20vw,11rem)] font-black leading-none text-glow"
-            style={{ color: "#a3e635", letterSpacing: "-0.04em" }}
+            style={{ color: "#a855f7", letterSpacing: "-0.04em" }}
             aria-hidden="true"
           >
             404
@@ -131,7 +131,7 @@ export default function NotFound() {
             className="absolute inset-0 pointer-events-none"
             style={{
               background:
-                "linear-gradient(to bottom, transparent 40%, rgba(163,230,53,0.08) 50%, transparent 60%)",
+                "linear-gradient(to bottom, transparent 40%, rgba(168,85,247,0.08) 50%, transparent 60%)",
             }}
             animate={{ y: ["-100%", "200%"] }}
             transition={{
@@ -154,9 +154,9 @@ export default function NotFound() {
             type: "spring",
             stiffness: 200,
           }}
-          className="mb-8 p-4 rounded-2xl border border-[rgba(163,230,53,0.2)] bg-[rgba(163,230,53,0.06)] accent-glow"
+          className="mb-8 p-4 rounded-2xl border border-[rgba(168,85,247,0.2)] bg-[rgba(168,85,247,0.06)] accent-glow"
         >
-          <Wrench className="w-7 h-7 text-[#a3e635]" />
+          <Wrench className="w-7 h-7 text-[#a855f7]" />
         </motion.div>
 
         <motion.h1
@@ -188,17 +188,17 @@ export default function NotFound() {
           <div className="flex items-center gap-2 mb-3">
             <span className="w-2 h-2 rounded-full bg-red-500 inline-block" />
             <span className="w-2 h-2 rounded-full bg-yellow-400 inline-block" />
-            <span className="w-2 h-2 rounded-full bg-[#a3e635] inline-block" />
+            <span className="w-2 h-2 rounded-full bg-[#a855f7] inline-block" />
             <span className="ml-1 text-[#71717a]">diagnostico.log</span>
           </div>
           <p>
-            <span className="text-[#a3e635]">STATUS</span> — 404 NOT_FOUND
+            <span className="text-[#a855f7]">STATUS</span> — 404 NOT_FOUND
           </p>
           <p>
-            <span className="text-[#a3e635]">ROTA</span> — {pathname || "/"}
+            <span className="text-[#a855f7]">ROTA</span> — {pathname || "/"}
           </p>
           <p>
-            <span className="text-[#a3e635]">SISTEMA</span> — LAB Customs
+            <span className="text-[#a855f7]">SISTEMA</span> — LAB Customs
             Clipper v1.0
           </p>
           <motion.p
@@ -206,7 +206,7 @@ export default function NotFound() {
             transition={{ duration: 1.2, repeat: Infinity }}
             className="mt-1"
           >
-            <span className="text-[#a3e635]">CURSOR</span> —{" "}
+            <span className="text-[#a855f7]">CURSOR</span> —{" "}
             <span className="text-white">_</span>
           </motion.p>
         </motion.div>
@@ -218,7 +218,7 @@ export default function NotFound() {
         >
           <Link
             href="/"
-            className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-semibold text-sm text-[#050505] bg-[#a3e635] hover:bg-[#b5f046] transition-all duration-200 accent-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a3e635] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050505]"
+            className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl font-semibold text-sm text-[#050505] bg-[#a855f7] hover:bg-[#b5f046] transition-all duration-200 accent-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a855f7] focus-visible:ring-offset-2 focus-visible:ring-offset-[#050505]"
           >
             <ArrowLeft className="w-4 h-4" />
             Voltar ao início
