@@ -46,7 +46,7 @@ export default function Navigation() {
             <div className="flex items-center gap-2">
               <a
                 href="/marcacao"
-                className="hidden h-10 items-center gap-2 rounded-xl bg-[#a3e635] px-4 text-xs font-extrabold text-zinc-950 shadow-[0_0_22px_rgba(163,230,53,0.18)] transition hover:bg-[#b8f542] sm:flex"
+                className="hidden h-10 items-center gap-2 rounded-xl bg-[#a855f7] px-4 text-xs font-extrabold text-zinc-950 shadow-[0_0_22px_rgba(168,85,247,0.18)] transition hover:bg-[#c084fc] sm:flex"
               >
                 <MessageCircle className="h-4 w-4" />
                 Marcar serviço
@@ -89,7 +89,7 @@ export default function Navigation() {
                   <a
                     href="/marcacao"
                     onClick={() => setMenuOpen(false)}
-                    className="mt-2 flex h-12 items-center justify-center gap-2 rounded-xl bg-[#a3e635] text-sm font-extrabold text-zinc-950"
+                    className="mt-2 flex h-12 items-center justify-center gap-2 rounded-xl bg-[#a855f7] text-sm font-extrabold text-zinc-950"
                   >
                     <MessageCircle className="h-4 w-4" />
                     Marcar serviço
