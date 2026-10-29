@@ -29,7 +29,7 @@ export default function OpenGraphImage() {
           position: "absolute",
           inset: 0,
           backgroundImage:
-            "linear-gradient(rgba(163,230,53,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(163,230,53,0.035) 1px, transparent 1px)",
+            "linear-gradient(rgba(168,85,247,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(168,85,247,0.035) 1px, transparent 1px)",
           backgroundSize: "40px 40px",
         }}
       />
@@ -51,7 +51,7 @@ export default function OpenGraphImage() {
             <polygon
               points="45,2 87,26 87,78 45,102 3,78 3,26"
               fill="none"
-              stroke="#a3e635"
+              stroke="#a855f7"
               strokeOpacity="0.035"
               strokeWidth="1"
             />
@@ -69,7 +69,7 @@ export default function OpenGraphImage() {
           right: -170,
           top: -30,
           borderRadius: "50%",
-          background: "rgba(163,230,53,0.08)",
+          background: "rgba(168,85,247,0.08)",
           filter: "blur(100px)",
         }}
       />
@@ -81,7 +81,7 @@ export default function OpenGraphImage() {
           left: -120,
           bottom: -140,
           borderRadius: "50%",
-          background: "rgba(163,230,53,0.045)",
+          background: "rgba(168,85,247,0.045)",
           filter: "blur(80px)",
         }}
       />
@@ -102,7 +102,7 @@ export default function OpenGraphImage() {
           top: 28,
           width: 110,
           height: 3,
-          background: "#a3e635",
+          background: "#a855f7",
         }}
       />
       <div
@@ -112,7 +112,7 @@ export default function OpenGraphImage() {
           bottom: 28,
           width: 110,
           height: 3,
-          background: "rgba(163,230,53,0.35)",
+          background: "rgba(168,85,247,0.35)",
         }}
       />
 
@@ -136,7 +136,7 @@ export default function OpenGraphImage() {
             fontSize: 17,
             fontWeight: 700,
             letterSpacing: "0.16em",
-            color: "#a3e635",
+            color: "#a855f7",
           }}
         >
           <span
@@ -144,8 +144,8 @@ export default function OpenGraphImage() {
               width: 9,
               height: 9,
               borderRadius: "50%",
-              background: "#a3e635",
-              boxShadow: "0 0 16px rgba(163,230,53,0.8)",
+              background: "#a855f7",
+              boxShadow: "0 0 16px rgba(168,85,247,0.8)",
             }}
           />
           LAB // CUSTOMS CLIPPER
@@ -223,7 +223,7 @@ export default function OpenGraphImage() {
             letterSpacing: "0.08em",
           }}
         >
-          <span style={{ color: "#a3e635" }}>●</span>
+          <span style={{ color: "#a855f7" }}>●</span>
           <span>PRECISÃO // 0.01MM</span>
           <span>·</span>
           <span>EST. 2026 // PORTUGAL</span>
@@ -258,7 +258,7 @@ export default function OpenGraphImage() {
             width: 255,
             height: 255,
             borderRadius: "50%",
-            border: "1px solid rgba(163,230,53,0.18)",
+            border: "1px solid rgba(168,85,247,0.18)",
           }}
         />
         <div
@@ -267,8 +267,8 @@ export default function OpenGraphImage() {
             width: 160,
             height: 160,
             borderRadius: "50%",
-            background: "rgba(163,230,53,0.055)",
-            boxShadow: "0 0 90px rgba(163,230,53,0.12)",
+            background: "rgba(168,85,247,0.055)",
+            boxShadow: "0 0 90px rgba(168,85,247,0.12)",
           }}
         />
 
@@ -279,7 +279,7 @@ export default function OpenGraphImage() {
             width: 370,
             height: 1,
             background:
-              "linear-gradient(90deg, transparent, rgba(163,230,53,0.18), transparent)",
+              "linear-gradient(90deg, transparent, rgba(168,85,247,0.18), transparent)",
           }}
         />
         <div
@@ -288,7 +288,7 @@ export default function OpenGraphImage() {
             width: 1,
             height: 370,
             background:
-              "linear-gradient(180deg, transparent, rgba(163,230,53,0.18), transparent)",
+              "linear-gradient(180deg, transparent, rgba(168,85,247,0.18), transparent)",
           }}
         />
 
@@ -467,7 +467,7 @@ export default function OpenGraphImage() {
           {/* Green blade accent */}
           <path
             d="M68 47 H142"
-            stroke="#a3e635"
+            stroke="#a855f7"
             strokeWidth="2.5"
             strokeOpacity="0.9"
             filter="url(#greenGlow)"
@@ -579,7 +579,7 @@ export default function OpenGraphImage() {
             cx="105"
             cy="118"
             r="29"
-            fill="#a3e635"
+            fill="#a855f7"
             opacity="0.08"
             filter="url(#greenGlow)"
           />
@@ -590,7 +590,7 @@ export default function OpenGraphImage() {
             cy="118"
             r="24"
             fill="none"
-            stroke="#a3e635"
+            stroke="#a855f7"
             strokeOpacity="0.75"
             strokeWidth="2"
             filter="url(#greenGlow)"
@@ -619,7 +619,7 @@ export default function OpenGraphImage() {
           {/* Power icon */}
           <path
             d="M105 108 V119"
-            stroke="#a3e635"
+            stroke="#a855f7"
             strokeWidth="2.5"
             strokeLinecap="round"
             filter="url(#greenGlow)"
@@ -631,7 +631,7 @@ export default function OpenGraphImage() {
       A8 8 0 1 0 111 111
     "
             fill="none"
-            stroke="#a3e635"
+            stroke="#a855f7"
             strokeWidth="2.5"
             strokeLinecap="round"
             filter="url(#greenGlow)"
@@ -647,7 +647,7 @@ export default function OpenGraphImage() {
             width="54"
             height="3"
             rx="1.5"
-            fill="#a3e635"
+            fill="#a855f7"
             opacity="0.85"
             filter="url(#greenGlow)"
           />
@@ -670,7 +670,7 @@ export default function OpenGraphImage() {
 
           <path
             d="M76 207 H134"
-            stroke="#a3e635"
+            stroke="#a855f7"
             strokeOpacity="0.35"
             strokeWidth="1.5"
           />
@@ -799,7 +799,7 @@ export default function OpenGraphImage() {
             color: "#52525b",
           }}
         >
-          <span style={{ color: "#a3e635" }}>SYSTEM // ONLINE</span>
+          <span style={{ color: "#a855f7" }}>SYSTEM // ONLINE</span>
           <span>CALIBRATION: 0.01mm</span>
           <span>MOTOR / BLADES / POWER</span>
         </div>
