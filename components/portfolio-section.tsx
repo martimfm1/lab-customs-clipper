@@ -28,7 +28,7 @@ const INSTAGRAM_URL = "https://www.instagram.com/labcustomsclipper/";
 
 const works = [
   {
-    src: "/work-2.png",
+    src: "/work-2.webp",
     alt: "Manutenção e limpeza de lâminas profissionais",
     tag: "Manutenção Preventiva",
     span: "col-span-1 row-span-1",
@@ -40,19 +40,19 @@ const works = [
     span: "col-span-1 row-span-2",
   },
   {
-    src: "/work-3.jpg",
+    src: "/work-3.webp",
     alt: "Clipper restaurado após manutenção completa",
     tag: "Diagnóstico Técnico",
     span: "col-span-1 row-span-1",
   },
   {
-    src: "/work-4.png",
+    src: "/work-4.webp",
     alt: "Técnico a trabalhar nos componentes internos",
     tag: "Reparação Especializada",
     span: "col-span-1 row-span-1",
   },
   {
-    src: "/work-5.jpg",
+    src: "/work-5.webp",
     alt: "Clipper desmontado para manutenção e limpeza",
     tag: "Manutenção Preventiva",
     span: "col-span-1 row-span-1",
