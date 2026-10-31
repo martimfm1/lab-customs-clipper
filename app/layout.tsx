@@ -19,7 +19,7 @@ const siteUrl = "https://labcustomsclipper.pt";
 const siteName = "LAB Customs Clipper";
 const siteDescription =
   "Reparação e manutenção de clippers, trimmers e shavers profissionais em Portugal. Manutenção preventiva desde 8€, reparação de avarias e envio para a oficina.";
-const ogImage = "/opengraph-image";
+const ogImage = "/og-image.png";
 const mapsUrl = "https://maps.app.goo.gl/qz1c46oZSvkWxLCd8";
 
 export const metadata: Metadata = {
