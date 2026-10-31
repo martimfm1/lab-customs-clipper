@@ -70,7 +70,7 @@ export default function FaqSection() {
                   hideChevron
                   className="group/faq-trigger flex w-full items-center justify-between gap-4 px-5 py-5 text-left text-sm font-semibold text-zinc-200 transition-colors duration-300 hover:no-underline hover:text-white sm:px-6"
                 >
-                  <span className="transition-colors duration-300 group-aria-expanded/faq-trigger:text-[#bef264]">
+                  <span className="transition-colors duration-300 group-aria-expanded/faq-trigger:text-[#a855f7]">
                     {faq.q}
                   </span>
                   <span className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-400 transition-all duration-300 group-aria-expanded/faq-trigger:border-[#a855f7]/50 group-aria-expanded/faq-trigger:bg-[#a855f7]/10 group-aria-expanded/faq-trigger:text-[#a855f7] group-aria-expanded/faq-trigger:shadow-[0_0_18px_rgba(168,85,247,0.18)]">

@@ -166,7 +166,7 @@ export default function ServicesSection() {
                 </div>
 
                 {"note" in service && service.note && (
-                  <div className="mb-4 rounded-xl border border-[#a855f7]/20 bg-[#a855f7]/[0.06] px-3 py-2.5 text-[11px] font-medium leading-relaxed text-[#bef264]">
+                  <div className="mb-4 rounded-xl border border-[#a855f7]/20 bg-[#a855f7]/[0.06] px-3 py-2.5 text-[11px] font-medium leading-relaxed text-[#a855f7]">
                     {service.note}
                   </div>
                 )}
